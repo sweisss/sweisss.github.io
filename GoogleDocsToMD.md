@@ -48,9 +48,7 @@ Asdfasdfa
 
 
 ![alt_text](images/image1.jpg "image_tooltip")
-
-
-This would be a caption
+*This would be a caption*
 
 More text
 
