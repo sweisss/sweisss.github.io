@@ -74,8 +74,8 @@ _Element 1 designs and fabricates the hydrogen reformers (left) which can be att
 The main product that Element 1 sells is actually the technology and design as well as the license to manufacture the reformers. Because of this, the company is heavily focused on R&D and they run a lot of performance trials which utilize a number of flow meters and sensors to gather essential data and performance metrics. Three key devices used in these metrics are a Coriolis flow meter which measures various properties of the methanol feedstock, an Alicat flow controller which measures various properties of the hydrogen output as well as controls the flow rate, and a [CAN bus](https://www.csselectronics.com/pages/can-bus-simple-intro-tutorial) network known as the LECM (large engine control module) which monitors a number of internal sensors (pump speeds, reactor temperatures, etc.). 
 
 
-![alt_text](images/Coriolis_StockImage.png "Coriolis Flow Meter")
-![alt_text](images/Alicat_StockImage.png "Alicat Flow Controller")
+![alt_text](images/Coriolis_StockImage.png "Coriolis Flow Meter") | ![alt_text](images/Alicat_StockImage.png "Alicat Flow Controller")
+:-------------------------:|:-------------------------:
 _The Coriolis flow meter (left) measures the flow rate (among other aspects) of the methanol feedstock. The Alicat flow controller (right) measures various aspects of the hydrogen output as well as restricts and controls the flow rate._
 
 Previously, the engineers at Element 1 had been logging data from the different devices in separate locations and then spending valuable time manually combining them for analysis. Rather than continue this process, they decided to come to us to partner in our Capstone project in which we decided to build a synthesized logging program. Because the engineers also value the ability to view live data during these performance runs, we agreed to build a graphical user interface for them to monitor key performance indicators (KPIs) alongside the logging. 
