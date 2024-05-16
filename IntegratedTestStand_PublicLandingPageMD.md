@@ -68,14 +68,18 @@ Ben, Eric, and Seth are seniors in the Computer Science program at Oregon State 
 Element 1 is a company here in Bend, OR that designs and fabricates small-scale hydrogen reformers. The reformers take a methanol feedstock, heat it up past its vaporization temperature, and perform a series of proprietary filtration processes to separate the pure hydrogen gas from the rest of the gaseous mixture. The pure hydrogen then exits the reformer where it can be attached to a compressor for storage or used in whatever application is desired. 
 
 
-![alt_text](images/12-Fuel-cell-integration.jpg "E1 Hydrogen Reformer")
+<!-- ![alt_text](images/12-Fuel-cell-integration.jpg "E1 Hydrogen Reformer") -->
+<img src= images/12-Fuel-cell-integration.jpg alt="E1 Hydrogen Reformer" width="500">
+
 _Element 1 designs and fabricates the hydrogen reformers (left) which can be attached to a buffer tank (center) and subsequent storage devices (right)._
 
 The main product that Element 1 sells is actually the technology and design as well as the license to manufacture the reformers. Because of this, the company is heavily focused on R&D and they run a lot of performance trials which utilize a number of flow meters and sensors to gather essential data and performance metrics. Three key devices used in these metrics are a Coriolis flow meter which measures various properties of the methanol feedstock, an Alicat flow controller which measures various properties of the hydrogen output as well as controls the flow rate, and a [CAN bus](https://www.csselectronics.com/pages/can-bus-simple-intro-tutorial) network known as the LECM (large engine control module) which monitors a number of internal sensors (pump speeds, reactor temperatures, etc.). 
 
 <!-- <img src=images/Coriolis_StockImage.png alt="Coriolis Flow Meter"/> -->
-![alt_text](images/Coriolis_StockImage.png "Coriolis Flow Meter") | ![alt_text](images/Alicat_StockImage.png "Alicat Flow Controller")
-:-------------------------:|:-------------------------:
+<!-- ![alt_text](images/Coriolis_StockImage.png "Coriolis Flow Meter") | ![alt_text](images/Alicat_StockImage.png "Alicat Flow Controller")
+:-------------------------:|:-------------------------: -->
+
+<img src=images/Coriolis_StockImage.png alt="Coriolis Flow Meter" width="500" > <img src=images/Alicat_StockImage.png alt="Alicat Flow Controller" width="470">
 
 
 
@@ -91,7 +95,9 @@ The development process can be broken down into three main sections which more o
 We did not strictly follow software engineering development flows such as Agile or Scrum. However, this iterative process of constantly reevaluating and refining our goals is somewhat related to these techniques. We were told by a guest lecturer that Agile is actually more of a mentality than a process flow, so in that sense maybe we were actually practicing Agile all along and didn’t realize it.
 
 
-![alt_text](images/ConferenceRoom.jpeg "Weekly Project Partner Meeting")
+<!-- ![alt_text](images/ConferenceRoom.jpeg "Weekly Project Partner Meeting") -->
+<img src= images/ConferenceRoom.jpeg alt="Conference Room" width="500">
+
 _Our weekly meeting with our project partner was held onsite at Element 1 where we covered our recent accomplishments and goals as well as asked clarifying questions and notify of blockers and obstacles. (Photo credit to Kirsten Winters, our Capstone faculty advisor, who sat in on this particular meeting remotely)._
 
 An aspect of Scrum that we always hear about is weekly stand-ups. We did not do this. However, we did have two weekly meetings. One was specifically for our group in which we discussed what we completed last the previous week, what we intended to do during the current week, and what we hoped to get to in the following week. The other weekly meeting included our project partner. This meeting involved progress updates as well as an opportunity to ask clarifying questions about project design, functionality, or troubleshooting assistance. These project partner meetings were held on site at Element 1 and oftentimes we stayed after the meeting to work on the reformer itself or to test our progress on the live system. So while we may not be explicitly implementing Scrum, we were pulling influence from its techniques of weekly updates and iteration. 
@@ -141,7 +147,9 @@ After we had established a solid set of expectations we began to research into t
 Hoping to reduce the amount of wires and connections, we decided to attach the two external devices (Coriolis flow meter and Alicat flow controller) to a BRX Programmable Logic Controller (PLC). This BRX was the centerpiece of a data acquisition box (DAQ box) to which the Coriolis flow meter was already connected. Connecting the Alicat to the BRX involved cutting and crimping new wires for power and serial communication.
 
 
-![alt_text](images/Ben_Wiring.jpg "Ben making a new Alicat cable")
+<!-- ![alt_text](images/Ben_Wiring.jpg "Ben making a new Alicat cable") -->
+<img src=images/Ben_wiring.jpg alt= "Ben Wiring" width="500">
+
 _Ben was really excited about cutting and crimping new wires to connect these devices. It allowed us to explore the interface between hardware and software, rather than focus on the software like so many other Computer Science students._
 
 We then spent several weeks trying to understand the protocol that the Alicat uses to send out information and updating the BRX software to read and parse that data. We also needed to update the BRX software so that it would send out the data it was receiving from these devices to the controls computer. Previously, the BRX was recording all logs to its own memory. This was an option that we discussed for our project, but we decided logging the data on the Controls computer would be a better long-term solution. By the way, the Controls computer is a Windows 11 desktop computer that sits next to the hydrogen reformer and QA/QC equipment. This Controls computer would also run the synthesizing program and GUI that we would end up building. 
@@ -194,9 +202,10 @@ Spring quarter started with moving our GUI production to PyQT Designer, a GUI bu
 An important part of the GUI is the display of the key performance indicators (KPIs) of the hydrogen reformer. In addition to logging the data, it was established early on in the project that the GUI should display a live stream of the data points for these KPIs. This (like all things GUI on this project), took many iterations and steps towards refinement. A slightly humorous example of one of these iterations is when demonstrating the current functionality and aesthetics of the GUI to our project partner, it was pointed out that we had the wrong units on the pump and blower speed displays! We really appreciated the weekly iterations at this point. 
 
 
-![alt_text](images/GUI_Screenshot.png "Final GUI display")
-<&lt;<Get an updated picture of the GUI on Thursday (need it for the poster too)>>>
+<!-- ![alt_text](images/GUI_Screenshot.png "Final GUI display") -->
+<img src=images/GUI_Screenshot.png alt="Final GUI Display" width="500">
 
+_Gui Final Form_.
 
 #### Logging Control
 
