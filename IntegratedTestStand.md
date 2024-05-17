@@ -39,7 +39,6 @@ Project Partner: [Element 1](https://www.e1na.com/)
 
 
 - [Intro](#intro)
-- [TL;DR](#tldr)
 - [Background](#background)
 - [Process](#process)
 - [Results](#results)
