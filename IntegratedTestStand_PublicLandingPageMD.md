@@ -160,9 +160,8 @@ _The inside of the DAQ box as we neared completion of the physical wiring phase.
 
 With the two flow meters connected to the Controls computer via the BRX, we now only needed to tap into the LECM’s CAN bus. This proved to be fairly straightforward since Element 1 already had most of the hardware necessary to make this connection readily available. We used an existing Deutch connector to run a cable from the CAN bus to a device called a Kvaser CAN to USB converter, which does exactly what the name suggests: it converts the CAN signals to a format recognized by the USB outlet on the other side which we could plug into our Controls computer. There were several issues that we had to work out with decoding the CAN messages and handling certain errors, but once we confirmed accurate transfer of data we were ready to synthesize and log all the data in one place.
 
-<!-- Make larger little bit -->
-<!-- ![alt_text](images/Network_Diagram_v2.png "Network Diagram") -->
-<img src=images/Network_diagram_v2.png alt="Network Diagram" width="800" class = "center">
+<img src=images/Network_Diagram_v2.png alt="Network Diagram" width="800" class = "center">
+
 _Diagram of the physical wiring network used to connect the devices. M18 is the specific model of hydrogen reformer that we focused our project on._
 
 
