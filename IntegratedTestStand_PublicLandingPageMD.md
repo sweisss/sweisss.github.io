@@ -66,10 +66,17 @@ Ben, Eric, and Seth are seniors in the Computer Science program at Oregon State 
 ## Background
 
 Element 1 is a company here in Bend, OR that designs and fabricates small-scale hydrogen reformers. The reformers take a methanol feedstock, heat it up past its vaporization temperature, and perform a series of proprietary filtration processes to separate the pure hydrogen gas from the rest of the gaseous mixture. The pure hydrogen then exits the reformer where it can be attached to a compressor for storage or used in whatever application is desired. 
-
-
-<!-- ![alt_text](images/12-Fuel-cell-integration.jpg "E1 Hydrogen Reformer") -->
-<img src= images/12-Fuel-cell-integration.jpg alt="E1 Hydrogen Reformer" width="500">
+<style>
+    .center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    }
+</style>
+<body>
+<img src= images/12-Fuel-cell-integration.jpg alt="E1 Hydrogen Reformer" width="750" class = "center">
+</body>
 
 _Element 1 designs and fabricates the hydrogen reformers (left) which can be attached to a buffer tank (center) and subsequent storage devices (right)._
 
@@ -78,10 +85,8 @@ The main product that Element 1 sells is actually the technology and design as w
 <!-- <img src=images/Coriolis_StockImage.png alt="Coriolis Flow Meter"/> -->
 <!-- ![alt_text](images/Coriolis_StockImage.png "Coriolis Flow Meter") | ![alt_text](images/Alicat_StockImage.png "Alicat Flow Controller")
 :-------------------------:|:-------------------------: -->
-
-<img src=images/Coriolis_StockImage.png alt="Coriolis Flow Meter" width="500" > <img src=images/Alicat_StockImage.png alt="Alicat Flow Controller" width="470">
-
-
+<img src=images/Coriolis_StockImage.png alt="Coriolis Flow Meter" width="500" >
+<img src=images/Alicat_StockImage.png alt="Alicat Flow Controller" width="470">
 
 _The Coriolis flow meter (left) measures the flow rate (among other aspects) of the methanol feedstock. The Alicat flow controller (right) measures various aspects of the hydrogen output as well as restricts and controls the flow rate._
 
@@ -94,9 +99,9 @@ The development process can be broken down into three main sections which more o
 
 We did not strictly follow software engineering development flows such as Agile or Scrum. However, this iterative process of constantly reevaluating and refining our goals is somewhat related to these techniques. We were told by a guest lecturer that Agile is actually more of a mentality than a process flow, so in that sense maybe we were actually practicing Agile all along and didn’t realize it.
 
-
+<!-- Conference Room picneeds to be bigger -->
 <!-- ![alt_text](images/ConferenceRoom.jpeg "Weekly Project Partner Meeting") -->
-<img src= images/ConferenceRoom.jpeg alt="Conference Room" width="500">
+<img src= images/ConferenceRoom.jpeg alt="Conference Room" width="750" class = "center">
 
 _Our weekly meeting with our project partner was held onsite at Element 1 where we covered our recent accomplishments and goals as well as asked clarifying questions and notify of blockers and obstacles. (Photo credit to Kirsten Winters, our Capstone faculty advisor, who sat in on this particular meeting remotely)._
 
@@ -146,9 +151,9 @@ After we had established a solid set of expectations we began to research into t
 
 Hoping to reduce the amount of wires and connections, we decided to attach the two external devices (Coriolis flow meter and Alicat flow controller) to a BRX Programmable Logic Controller (PLC). This BRX was the centerpiece of a data acquisition box (DAQ box) to which the Coriolis flow meter was already connected. Connecting the Alicat to the BRX involved cutting and crimping new wires for power and serial communication.
 
-
+<!-- Not showing up -->
 <!-- ![alt_text](images/Ben_Wiring.jpg "Ben making a new Alicat cable") -->
-<img src=images/Ben_wiring.jpg alt= "Ben Wiring" width="500">
+<img src=images/Ben_Wiring.jpg alt= "Ben Wiring" width="500" class = "center">
 
 _Ben was really excited about cutting and crimping new wires to connect these devices. It allowed us to explore the interface between hardware and software, rather than focus on the software like so many other Computer Science students._
 
@@ -162,8 +167,9 @@ _The inside of the DAQ box as we neared completion of the physical wiring phase.
 
 With the two flow meters connected to the Controls computer via the BRX, we now only needed to tap into the LECM’s CAN bus. This proved to be fairly straightforward since Element 1 already had most of the hardware necessary to make this connection readily available. We used an existing Deutch connector to run a cable from the CAN bus to a device called a Kvaser CAN to USB converter, which does exactly what the name suggests: it converts the CAN signals to a format recognized by the USB outlet on the other side which we could plug into our Controls computer. There were several issues that we had to work out with decoding the CAN messages and handling certain errors, but once we confirmed accurate transfer of data we were ready to synthesize and log all the data in one place.
 
-
-![alt_text](images/Network_Diagram_v2.png "Network Diagram")
+<!-- Make larger little bit -->
+<!-- ![alt_text](images/Network_Diagram_v2.png "Network Diagram") -->
+<img src=images/Network_diagram_v2.png alt="Network Diagram" width="800" class = "center">
 _Diagram of the physical wiring network used to connect the devices. M18 is the specific model of hydrogen reformer that we focused our project on._
 
 
@@ -201,9 +207,9 @@ Spring quarter started with moving our GUI production to PyQT Designer, a GUI bu
 
 An important part of the GUI is the display of the key performance indicators (KPIs) of the hydrogen reformer. In addition to logging the data, it was established early on in the project that the GUI should display a live stream of the data points for these KPIs. This (like all things GUI on this project), took many iterations and steps towards refinement. A slightly humorous example of one of these iterations is when demonstrating the current functionality and aesthetics of the GUI to our project partner, it was pointed out that we had the wrong units on the pump and blower speed displays! We really appreciated the weekly iterations at this point. 
 
-
+<!-- Make picture Bigger -->
 <!-- ![alt_text](images/GUI_Screenshot.png "Final GUI display") -->
-<img src=images/GUI_Screenshot.png alt="Final GUI Display" width="500">
+<img src=images/GUI_Screenshot.png alt="Final GUI Display" width="1000" class = "center">
 
 _Gui Final Form_.
 
