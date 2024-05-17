@@ -66,14 +66,7 @@ Ben, Eric, and Seth are seniors in the Computer Science program at Oregon State 
 ## Background
 
 Element 1 is a company here in Bend, OR that designs and fabricates small-scale hydrogen reformers. The reformers take a methanol feedstock, heat it up past its vaporization temperature, and perform a series of proprietary filtration processes to separate the pure hydrogen gas from the rest of the gaseous mixture. The pure hydrogen then exits the reformer where it can be attached to a compressor for storage or used in whatever application is desired. 
-<style>
-    .center{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    }
-</style>
+<style>.center{display: block; margin-left: auto; margin-right: auto; width: 50%;} </style>
 <body>
 <img src= images/12-Fuel-cell-integration.jpg alt="E1 Hydrogen Reformer" width="750" class = "center">
 </body>
