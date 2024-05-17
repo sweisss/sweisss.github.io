@@ -34,6 +34,7 @@ Group members: [Ben Foley](https://github.com/Benjaminfoley), [Eric Johnson](htt
 
 Project Partner: [Element 1](https://www.e1na.com/)
 
+Spring 2024
 
 ## Jump To
 
