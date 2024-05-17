@@ -237,7 +237,7 @@ As of the writing of this blog post, we have completed all Must Haves and all Sh
 
 * Synthesized data logging – **Complete**
 * GUI controls start/stop of data logging – **Complete**
-* GUI controls log file directories and names – **Complete **
+* GUI controls log file directories and names – **Complete**
 
 **Should Have:**
 
