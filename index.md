@@ -93,6 +93,31 @@ It is set as "View Only", but anyone can make a copy of it and make it their own
 
 ### More to come...
 
+## Element 1 Projects
+Thesse projects were all made for Element 1 (e1), a company in Bend, OR that makes hydrogen generators.
+Because e1 has not yet given permission to release the source code of these projects, they are only described here. 
+
+### Remote Access Alarm Server
+Worked on as an inter during Summer 2022 and 2023.
+
+### TigerTamer
+Data processing for the TigerOptics Prismatic 3.
+
+### Render FAT
+A program to process Factory Acceptance Test data for hydrogen generators. The program graphs the data in Excel workbooks.
+
+### MM Calculator
+A program to calculate the ideal metal mebrane area in the hydrogen generators.
+
+### Mole Mapper
+A program to find equilibrium composition by direct minimization of Gibbs free energy.
+
+### Mini Reactor Reporter
+A program to process and graph data from the mini reactor.
+
+### S-Series Dockerized HMI
+A new HMI for the S-Series hydrogen generators utilizing Docker containerization and PowerShell scripts for installation and startup.  
+
 ## Videos
 ### Python Dictionaries
 A video explaining some cool and interesting things that you can do with a python dictionary.
