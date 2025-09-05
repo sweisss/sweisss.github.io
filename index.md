@@ -8,21 +8,82 @@ This page is currently under construction and will eventually showcase other asp
 
 ----
 
-## OSU-Cascades Projects
-* [Capstone 2024 - Integrated Test Stand](https://sweisss.github.io/osu-cascades/capstone-24/IntegratedTestStand.html)
-* [RxWatch](https://github.com/sweisss/RxWatch), Spring 2024
-* [Zillite](https://github.com/sweisss/Zillite), Spring 2023
-* [CS370 - Intro to Security](https://github.com/sweisss/CS370-Intro_to_Security), Fall 2023
-* [Chemistry Calculations](./projects/ChemistryCalculations.xlsx) Excel workbook
+## Oregon State University Projects
+Projects created for specific classes at various campuses of Oregon State University from Fall 2020 to Spring 2024.
+
+### Capstone 2024 - Integrated Test Stand
+An academic year-long project involving a team of three Computer Science students.
+The team partnered with a local business to develop on consolidated data recording program that incorporates
+various devices on a hydrogen generator.
+
+[Read more](https://sweisss.github.io/osu-cascades/capstone-24/IntegratedTestStand.html)
+
+### RxWatch
+An Android app created as a final project by a team of four Computer Science students for CS 492 - Mobile Development at Oregon State University, Winter 2024.
+The app allows users to enter a drug name and search for other drugs that may have adverse interactions with that drug.
+It uses two different endpoints of the [openFDA](https://open.fda.gov/) API to search drug labels and return statics of reported adverse events. 
+
+View the project on [GitHub](https://github.com/sweisss/RxWatch)
+
+### Intro to Security
+A GitHub repo containing a colleciton of projects for CS370 - Intro to Security at Oregon State University - Ecampus, Fall 2023.
+
+View the project on [GitHub](https://github.com/sweisss/CS370-Intro_to_Security)
+
+### Zillite
+A web application created as a final project by a team of four Computer Science students for CS 494 at Oregon State University, Winter 2023.
+The uses Zillow as an inspiration to practice and perfect proper web development techniques using the React library.  
+
+View the project on [GitHub](https://github.com/sweisss/Zillite)
+
+### Chemistry Calculations
+An Excel workbook created during CH202 - Chemistry for Engineering Majors at Oregon State University - Cascades, Fall 2020.
+Seth used the massive amount of chemistry homework as an opportunity to teach himself the wonders of Excel. Each sheet corresponds with a
+particular week of the course. The workbook utilizes the name manager to reference constants and values throughout the workbook from the tables
+located on the first sheet. 
+
+[Direct Download](./projects/ChemistryCalculations.xlsx)
 
 ## Personal Projects
-* Raspberry Pi patio lights project
-* [Percentage Clock](https://github.com/sweisss/percent-clock-gui)
-* [Volcano Season 3](https://github.com/sweisss/VolcanoSeason3)
-* [QR Coder](https://github.com/sweisss/QR_Coder)
-* [Bowling Scoreboard](https://docs.google.com/spreadsheets/d/1T2dHcvSfGK9w3xW4Mf51phTdxzOd0TZNsUDxLNJYssI/edit?usp=sharing) Google Sheets
-* Axe Throwing Scoreboard
-* More to come...
+Projects that are unrelated to but utilize the knowledge and experience gained from a CS degreen at OSU-Cascades.
+
+### Raspberry Pi Patio Lights
+Turning dumb devices into smart devices using a Raspberry Pi, Node-RED, MQTT protocol, RF transmissions, and a Discord bot.
+
+### Percentage Clock
+A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
+The second time range is a "Work Day" and can be selected by the user. 
+This is a desktop GUI application written in python using tkinter.
+
+View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
+
+### Volcano Season 3
+The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
+This third iteration builds on the primitive first and second versions by applying the knowledge and experience gained from the RxWatch project above. 
+
+View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)
+
+### QR Coder
+A simple command-line tool that takes text input and generates a QR code in any desired combination of:
+- printed to the console
+- saved as an SVG
+- saved as a PNG
+
+The tool is based off of a portion of the OTP project in the Intro to Security project above.
+It alows for quick and easy generation of QR codes without the need to sign up for online services.
+
+View the project on [GitHub](https://github.com/sweisss/QR_Coder)
+
+
+### Bowling Scoreboard
+A bowling scoreboard built in Google Sheets to help keep track of the winners and losers during competitive events on family vacations involving
+a [table bowling](https://us.amazon.com/bowling-table/s?k=bowling+table) set. The sheet includes a macro to clear out the scoreboard to be ready
+for the next round as quickly as possible!
+
+Access the Google Sheets file [here](https://docs.google.com/spreadsheets/d/1T2dHcvSfGK9w3xW4Mf51phTdxzOd0TZNsUDxLNJYssI/edit?usp=sharing).
+It is set as "View Only", but anyone can make a copy of it and make it their own to start editing or simply entering scores. 
+
+### More to come...
 
 ## Videos
 * [Python Dictionaries](https://youtu.be/-SqWVBQvj-w), Spring 2024
