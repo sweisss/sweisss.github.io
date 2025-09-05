@@ -65,9 +65,9 @@ View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)
 
 ### QR Coder
 A simple command-line tool that takes text input and generates a QR code in any desired combination of:
-- printed to the console
-- saved as an SVG
-- saved as a PNG
+- Printed to the console
+- Saved as an SVG
+- Saved as a PNG
 
 The tool is based off of a portion of the OTP project in the Intro to Security project above.
 It alows for quick and easy generation of QR codes without the need to sign up for online services.
