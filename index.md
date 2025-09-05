@@ -17,7 +17,7 @@ This page is currently under construction and will eventually showcase other asp
 
 ## Personal Projects
 * Raspberry Pi patio lights project
-* [Percentage Cloc](https://github.com/sweisss/percent-clock-gui)
+* [Percentage Clock](https://github.com/sweisss/percent-clock-gui)
 * [Volcano Season 3](https://github.com/sweisss/VolcanoSeason3)
 * [QR Coder](https://github.com/sweisss/QR_Coder)
 * [Bowling Scoreboard](https://docs.google.com/spreadsheets/d/1T2dHcvSfGK9w3xW4Mf51phTdxzOd0TZNsUDxLNJYssI/edit?usp=sharing) Google Sheets
