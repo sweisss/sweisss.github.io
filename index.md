@@ -98,7 +98,12 @@ Thesse projects were all made for Element 1 (e1), a company in Bend, OR that mak
 Because e1 has not yet given permission to release the source code of these projects, they are only described here. 
 
 ### Remote Access Alarm Server
-Worked on as an inter during Summer 2022 and 2023.
+Worked on as an intern during Summer 2022 and 2023.
+The server is written in python and uses MQTT protocol to accept incoming messages
+from registered hydrogen generators. The messages can either be CAN based or in JSON from a Siemens IoT device.
+Once the server receives a message, it decodes it and logs it in a csv. It also searches the message for fault codes.
+If a fault code is found, it utilizes the system ID (also in the message) to forward the fault via SMTP to the engineers
+associated with that system in an SQLite database. 
 
 ### TigerTamer
 Data processing for the TigerOptics Prismatic 3.
