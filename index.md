@@ -14,8 +14,17 @@ This page is currently under construction and will eventually showcase other asp
 <br>
 ▶️ - [YouTube](https://www.youtube.com/@sethweiss) 
 
+
+
 ----
 
+### Contents
+- [OSU Projects](#oregon-state-university-projects)
+- [Personal Projects](#personal-projects)
+- [Element 1 Projects](#element-1-projects)
+- [Videos](#videos)
+
+  
 ## Oregon State University Projects
 Projects created for specific classes at various campuses of Oregon State University from Fall 2020 to Spring 2024.
 
