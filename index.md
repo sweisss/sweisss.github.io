@@ -6,6 +6,14 @@ Capstone Project for Oregon State University -- Cascades, Spring 2024.
 
 This page is currently under construction and will eventually showcase other aspects of Seth's portfolio...
 
+
+### Links
+🐙 - [GitHub](https://github.com/sweisss) 
+<br>
+🔗 - [LinkedIn](https://sweisss.github.io)  **<-- FIX THIS LINK!**
+<br>
+▶️ - [YouTube](https://www.youtube.com/@sethweiss) 
+
 ----
 
 ## Oregon State University Projects
