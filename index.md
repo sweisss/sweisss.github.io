@@ -115,7 +115,13 @@ If a fault code is found, it utilizes the system ID (also in the message) to for
 associated with that system in an SQLite database. 
 
 ### TigerTamer
-Data processing for the TigerOptics Prismatic 3.
+A desktop GUI data processing program for the [TigerOptics Prismatic 3](https://www.process-insights.com/crds-gas-analyzers-2/prismatic-3/).
+TigerTamer combines the csv data files from all four of the gas channels from the "Tiger" and more importantly,
+it cuts out all data outside a set date/time range selected by the user. It then graphs these data in an Excel workbook to form a report. 
+
+As the TigerTamer project evolved, it incorporated a server and an SQLite database that is connected to the Tiger which queries the tiger every night
+to update the database. The server uses a simple API that the TigerTamer client accesses via the GUI application so that the user can
+retrieve the Tiger data from accross the building while connected to the local Wi-Fi network. 
 
 ### Render FAT
 A program to process Factory Acceptance Test data for hydrogen generators. The program graphs the data in Excel workbooks.
