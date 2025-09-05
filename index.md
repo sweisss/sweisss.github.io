@@ -106,3 +106,10 @@ It coveres some basic safety meaures to take when backcountry skiing. However, t
 public speaking and communication skills, not to act as an authority on safe backcountry travel or recreation. 
 
 Watch it on [YouTube](https://youtu.be/dyawWzhf51A)
+
+
+-----
+
+This is a pseudo-footer
+
+(C) Seth Weiss, 2025
