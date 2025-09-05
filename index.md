@@ -86,6 +86,23 @@ It is set as "View Only", but anyone can make a copy of it and make it their own
 ### More to come...
 
 ## Videos
-* [Python Dictionaries](https://youtu.be/-SqWVBQvj-w), Spring 2024
-* [CS372 - Intro to Networking: Packets](https://youtu.be/ZB5TZAU-Dq4), Summer 2023
-* [COM111 - Public Speaking: Informational Speach](https://youtu.be/dyawWzhf51A), Fall 2020
+### Python Dictionaries
+A video explaining some cool and interesting things that you can do with a python dictionary.
+The video was originally made for a leadership project at OSU-Cascades in Spring 2024, but was really intended for a greater audience.
+It coveres a brief introduction to dictionaries, how to use a dictionary as a priority queue, and how to store and call functions from within a dictionary. 
+
+Watch it on [YouTube](https://youtu.be/-SqWVBQvj-w)
+
+### Packets
+A short video for CS372 - Intro to Networking at Oregon State University - Ecampus, Summer 2023.
+The vido coveres how to calculate transmission time of packets.
+> **NOTE**: Watch the video and confirm that this is actually talks about!
+
+Watch it on [YouTube](https://youtu.be/ZB5TZAU-Dq4)
+
+### Informational Speach
+A short video made for COM111 - Public Speaking at Central Oregon Community College, Fall 2020.
+It coveres some basic safety meaures to take when backcountry skiing. However, the point of the video was to learn and practice
+public speaking and communication skills, not to act as an authority on safe backcountry travel or recreation. 
+
+Watch it on [YouTube](https://youtu.be/dyawWzhf51A)
