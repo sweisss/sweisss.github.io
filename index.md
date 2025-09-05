@@ -6,15 +6,12 @@ Capstone Project for Oregon State University -- Cascades, Spring 2024.
 
 This page is currently under construction and will eventually showcase other aspects of Seth's portfolio...
 
-
 ### Links
 🐙 - [GitHub](https://github.com/sweisss) 
 <br>
 🔗 - [LinkedIn](https://sweisss.github.io)  **<-- FIX THIS LINK!**
 <br>
 ▶️ - [YouTube](https://www.youtube.com/@sethweiss) 
-
-
 
 ----
 
@@ -24,7 +21,7 @@ This page is currently under construction and will eventually showcase other asp
 - [Element 1 Projects](#element-1-projects)
 - [Videos](#videos)
 
-  
+
 ## Oregon State University Projects
 Projects created for specific classes at various campuses of Oregon State University from Fall 2020 to Spring 2024.
 
@@ -61,6 +58,7 @@ located on the first sheet.
 
 [Direct Download](./projects/ChemistryCalculations.xlsx)
 
+
 ## Personal Projects
 Projects that are unrelated to but utilize the knowledge and experience gained from a CS degreen at OSU-Cascades.
 
@@ -91,7 +89,6 @@ It alows for quick and easy generation of QR codes without the need to sign up f
 
 View the project on [GitHub](https://github.com/sweisss/QR_Coder)
 
-
 ### Bowling Scoreboard
 A bowling scoreboard built in Google Sheets to help keep track of the winners and losers during competitive events on family vacations involving
 a [table bowling](https://us.amazon.com/bowling-table/s?k=bowling+table) set. The sheet includes a macro to clear out the scoreboard to be ready
@@ -101,6 +98,7 @@ Access the Google Sheets file [here](https://docs.google.com/spreadsheets/d/1T2d
 It is set as "View Only", but anyone can make a copy of it and make it their own to start editing or simply entering scores. 
 
 ### More to come...
+
 
 ## Element 1 Projects
 Thesse projects were all made for Element 1 (e1), a company in Bend, OR that makes hydrogen generators.
@@ -138,6 +136,7 @@ A program to process and graph data from the mini reactor.
 ### S-Series Dockerized HMI
 A new HMI for the S-Series hydrogen generators utilizing Docker containerization and PowerShell scripts for installation and startup.  
 
+
 ## Videos
 ### Python Dictionaries
 A video explaining some cool and interesting things that you can do with a python dictionary.
@@ -159,7 +158,6 @@ It coveres some basic safety meaures to take when backcountry skiing. However, t
 public speaking and communication skills, not to act as an authority on safe backcountry travel or recreation. 
 
 Watch it on [YouTube](https://youtu.be/dyawWzhf51A)
-
 
 -----
 
