@@ -122,7 +122,12 @@ to update the database. The server uses a simple API that the TigerTamer client 
 retrieve the Tiger data from accross the building while connected to the local Wi-Fi network. 
 
 ### Render FAT
-A program to process Factory Acceptance Test data for hydrogen generators. The program graphs the data in Excel workbooks.
+A Desktop GUI program to process Factory Acceptance Test data for hydrogen generators. 
+The program takes csv data from the internal contorl device (e.g. PLC) and optionally from an external measuring device
+(e.g. PLC recording data from a [Coriolis flow meter](https://www.emerson.com/en-us/automation/measurement-instrumentation/flow-measurement/coriolis-flow-meters)).
+The program lines up the data files based on flow movement and control states and then calculates efficiency data. 
+After all data has been processed, it then writes and graphs the data in an Excel workbook (multiple Excel workbooks if it
+detects multiple runs). 
 
 ### MM Calculator
 A program to calculate the ideal metal mebrane area in the hydrogen generators.
