@@ -9,7 +9,7 @@ This page is currently under construction and will eventually showcase other asp
 ### Links
 🐙 - [GitHub](https://github.com/sweisss) 
 <br>
-🔗 - [LinkedIn](https://sweisss.github.io)  **<-- FIX THIS LINK!**
+🔗 - [LinkedIn](https://www.linkedin.com/in/seth-weiss-62793858/)
 <br>
 ▶️ - [YouTube](https://www.youtube.com/@sethweiss) 
 
