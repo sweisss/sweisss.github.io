@@ -76,6 +76,8 @@ View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
 The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
 This third iteration builds on the primitive first and second versions by applying the knowledge and experience gained from the RxWatch project above. 
 
+Read more about the project [here](./projects/volcanoseason3.md).
+<br>
 View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)
 
 ### QR Coder
