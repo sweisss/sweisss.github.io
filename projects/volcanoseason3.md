@@ -45,3 +45,9 @@ to hold a list of links to forecasts. ...
 > **Describe in greater detail when you're not so tired. Add screenshots too!**
 
 Find version 3 on [GitHub](https://github.com/sweisss/VolcanoSeason3)
+
+-----
+
+This is a pseudo-footer
+
+(C) Seth Weiss, 2025
