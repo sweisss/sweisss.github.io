@@ -25,12 +25,12 @@ a year before I had the opportunity to take the next step.
 Find the pseduo-app on [GitHub](https://github.com/sweisss/VolcanoSeason)
 
 ### Teaching Myself Kotlin
-In July of 2022 I contracted Covid-19 and wasn't able to do much other than lay on my couch for 4 days.
+In July of 2022 I contracted COVID-19 and wasn't able to do much other than lay on my couch for 4 days.
 However, I used this opportunity to read a bunch of articles and watch a bunch of YouTube tutorials
 to teach myself Kotlin and Android studio and turn the psedo-app into a real Android app. 
 It was a very primitive app, and the equipment checklist was just the same HTML/CSS file albeit this time
 saved in the app itself rather than Google Docs, but I thought it wasn't bad considering it was made in 4 days
-with Covid-19 in a language and framework that I had never used before. I was proud of it,
+with COVID-19 in a language and framework that I had never used before. I was proud of it,
 but I knew I wanted to improve on it when I had more time. 
 
 Find version 2 on [GitHub](https://github.com/sweisss/VolcanoSeason2)
