@@ -64,6 +64,9 @@ Projects that are unrelated to but utilize the knowledge and experience gained f
 
 ### Raspberry Pi Patio Lights
 Turning dumb devices into smart devices using a Raspberry Pi, Node-RED, MQTT protocol, RF transmissions, and a Discord bot.
+> **NOTE:** Make this description better!
+
+Read more about the project [here](./projects/smarthubfordumblights.md).
 
 ### Percentage Clock
 A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
