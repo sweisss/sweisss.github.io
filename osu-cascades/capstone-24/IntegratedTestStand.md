@@ -251,3 +251,11 @@ As Computer Science students, we learned a lot from this project. We were given 
 The project also offered us an opportunity to practice and develop our problem solving skills. None of us had any real knowledge of serial communications before attempting to get useful data out of the Alicat. The ladder logic that we used to program the BRX PLC was also new to us and the lack of documentation and support for it out on the internet made it particularly challenging. However, our problem solving was not limited to debugging. By pulling from attitudes and frameworks such as Agile and Scrum, we were able to embrace the iterative design and development process and provide official documentation on top of our software program. All of this was done while navigating around surprise scheduling obstacles and balancing our individual lives. 
 
 Indeed, probably the biggest thing we learned from this project is how to effectively work as a team. Working with other peoples’ schedules was just the beginning of it. Understanding each other’s working style and playing to each other's strengths was the crux of it. We all emerged as leaders from this project and are proud of the results.  
+
+-----
+
+This is a pseudo-footer
+
+[Home](https://sweisss.github.io/)
+
+(C) Seth Weiss, 2025

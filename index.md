@@ -174,4 +174,6 @@ Watch it on [YouTube](https://youtu.be/dyawWzhf51A)
 
 This is a pseudo-footer
 
+[Home](https://sweisss.github.io/)
+
 (C) Seth Weiss, 2025
