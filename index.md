@@ -72,7 +72,6 @@ Read more about the project [here](./projects/smarthubfordumblights.md).
 A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
 The second time range is a "Work Day" and can be selected by the user. 
 This is a desktop GUI application written in python using tkinter.
-> **Note:** This application currently only works on Windows.
 
 View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
 
