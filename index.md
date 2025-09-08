@@ -46,7 +46,7 @@ View the project on [GitHub](https://github.com/sweisss/CS370-Intro_to_Security)
 
 ### Zillite
 A web application created as a final project by a team of four Computer Science students for CS 494 at Oregon State University, Winter 2023.
-The uses Zillow as an inspiration to practice and perfect proper web development techniques using the React library.  
+The app uses Zillow as an inspiration to practice and perfect proper web development techniques using the React library.  
 
 View the project on [GitHub](https://github.com/sweisss/Zillite)
 
