@@ -40,7 +40,7 @@ It uses two different endpoints of the [openFDA](https://open.fda.gov/) API to s
 View the project on [GitHub](https://github.com/sweisss/RxWatch)
 
 ### Intro to Security
-A GitHub repo containing a colleciton of projects for CS370 - Intro to Security at Oregon State University - Ecampus, Fall 2023.
+A GitHub repo containing a colleciton of projects for CS 370 - Intro to Security at Oregon State University - Ecampus, Fall 2023.
 
 View the project on [GitHub](https://github.com/sweisss/CS370-Intro_to_Security)
 
@@ -51,7 +51,7 @@ The app uses Zillow as an inspiration to practice and perfect proper web develop
 View the project on [GitHub](https://github.com/sweisss/Zillite)
 
 ### Chemistry Calculations
-An Excel workbook created during CH202 - Chemistry for Engineering Majors at Oregon State University - Cascades, Fall 2020.
+An Excel workbook created during CH 202 - Chemistry for Engineering Majors at Oregon State University - Cascades, Fall 2020.
 Seth used the massive amount of chemistry homework as an opportunity to teach himself the wonders of Excel. Each sheet corresponds with a
 particular week of the course. The workbook utilizes the name manager to reference constants and values throughout the workbook from the tables
 located on the first sheet. 
@@ -156,14 +156,14 @@ It coveres a brief introduction to dictionaries, how to use a dictionary as a pr
 Watch it on [YouTube](https://youtu.be/-SqWVBQvj-w)
 
 ### Packets
-A short video for CS372 - Intro to Networking at Oregon State University - Ecampus, Summer 2023.
+A short video for CS 372 - Intro to Networking at Oregon State University - Ecampus, Summer 2023.
 The vido coveres how to calculate transmission time of packets.
 > **NOTE**: Watch the video and confirm that this is actually talks about!
 
 Watch it on [YouTube](https://youtu.be/ZB5TZAU-Dq4)
 
 ### Informational Speach
-A short video made for COM111 - Public Speaking at Central Oregon Community College, Fall 2020.
+A short video made for COM 111 - Public Speaking at Central Oregon Community College, Fall 2020.
 It coveres some basic safety meaures to take when backcountry skiing. However, the point of the video was to learn and practice
 public speaking and communication skills, not to act as an authority on safe backcountry travel or recreation. 
 
