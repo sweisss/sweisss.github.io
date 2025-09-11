@@ -8,7 +8,12 @@ essentially turning the RPi into a smart hub for "dumb" lights.
 This write-up is part tutorial and part story of a personal project.
 If you wish to follow this as a tutorial, please note that it is not written
 as a set of prescribed steps that must be strictly followed. Feel free to take
-any or all sections as inspriation and adapt them to your own project. 
+any or all sections as inspriation and adapt them to your own project.
+
+## Background
+- The lights
+- The issue (only one remote, but the desire to turn the lights on/off from multiple locations)
+- The Flipper Zero temporary solution
 
 ## Setting Up the MQTT Broker
 ### Auto-start
