@@ -63,8 +63,10 @@ located on the first sheet.
 Projects that are unrelated to but utilize the knowledge and experience gained from a CS degreen at OSU-Cascades.
 
 ### Raspberry Pi Patio Lights
-Turning dumb devices into smart devices using a Raspberry Pi, Node-RED, MQTT protocol, RF transmissions, and a Discord bot.
-> **NOTE:** Make this description better!
+A project that uses a Raspberry Pi as a smart hub for "dumb" lights that can be controlled with a radio frequency remote.
+The RPi hosts an MQTT broker and a Node-RED server to receive external commands via Discord or an MQTT client.
+Based on the commands, the RPi transmits an RF signal to the lights.
+The Node-RED server also maintains a schedule for the lights. 
 
 Read more about the project [here](./projects/smarthubfordumblights.md)
 
