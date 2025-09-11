@@ -1,8 +1,8 @@
 # Smart Hub for Dumb Lights
-This is a project that uses a Raspberry Pi to control a set of patio lights
-that can be controlled with a radio frequency remote (included with the lights).
+This is a project that uses a Raspberry Pi to reproduce the signals of a 
+radio frequency remote to control a set of patio lights.
 Once successful transmission from the RPi to the lights was acheived, the project
-then expanded to include a daily schedule in addition to the on-demand signals,
+then expanded to include a daily schedule in addition to on-demand signals,
 essentially turning the RPi into a smart hub for "dumb" lights. 
 
 This write-up is part tutorial and part story of a personal project.
