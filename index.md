@@ -142,7 +142,7 @@ The program uses python tkinter to present the user with a GUI where various inp
 - Percent hydrogen recovery
 
 The program then calculates the ideal membrane area along with other output data points.
-It also uses matplotlib to graph the area and the percent of hydrogen recovery.
+It also uses Matplotlib to graph the area and the percent of hydrogen recovery.
 
 ### MoleMapper
 A program to find equilibrium composition by direct minimization of Gibbs free energy,
