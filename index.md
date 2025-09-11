@@ -147,7 +147,14 @@ The program then calculates the ideal membrane area along with other output data
 It also uses matplotlib to graph the area and the percent of hydrogen recovery.
 
 ### Mole Mapper
-A program to find equilibrium composition by direct minimization of Gibbs free energy.
+A program to find equilibrium composition by direct minimization of Gibbs free energy,
+primarily intended to calculate the elements of the water-gas shift reaction involving methanol.
+This program is a python based GUI that is inspired by the
+[Chemcial Equilibrium Calculator](https://navier.engr.colostate.edu/code/code-4/index.html) of Colorado Sate University: 
+Chemical and Biological Engineering department. Mole Mapper simplifies the CSU program by limiting the required input
+entries to those necessary for the QA/QC department at Element 1. It also expands on the CSU program by allowing the
+user to select a range of temperatures in which to repeatedly perform the calculations, rather than calculting for a
+single temperature. The results are recorded in a CSV file. 
 
 ### Mini Reactor Reporter
 A program to clean, organize, and combine a number of CSV data sheets from a miniature hydrogen reactor of the QA/QC department.
