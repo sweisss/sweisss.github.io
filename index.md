@@ -10,8 +10,6 @@ This page is currently under construction and will eventually showcase other asp
 🐙 - [GitHub](https://github.com/sweisss) 
 <br>
 🔗 - [LinkedIn](https://www.linkedin.com/in/seth-weiss-62793858/)
-<br>
-▶️ - [YouTube](https://www.youtube.com/@sethweiss) 
 
 ----
 
