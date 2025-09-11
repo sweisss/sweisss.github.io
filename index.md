@@ -150,7 +150,9 @@ It also uses matplotlib to graph the area and the percent of hydrogen recovery.
 A program to find equilibrium composition by direct minimization of Gibbs free energy.
 
 ### Mini Reactor Reporter
-A program to process and graph data from the mini reactor.
+A program to clean, organize, and combine a number of CSV data sheets from a miniature hydrogen reactor of the QA/QC department.
+Much like TigerTamer and Render FAT, This program is a python GUI that takes in CSV data. However, rather than writing
+and graphing the data in an Excel workbook, it simply creates a new CSV file with the cleaned and organized results. 
 
 ### S-Series Dockerized HMI
 A new HMI for the S-Series hydrogen generators utilizing Docker containerization and PowerShell scripts for installation and startup.  
