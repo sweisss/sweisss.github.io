@@ -135,7 +135,16 @@ After all data has been processed, it then writes and graphs the data in an Exce
 detects multiple runs). 
 
 ### MM Calculator
-A program to calculate the ideal metal mebrane area in the hydrogen generators.
+A program to calculate the ideal metal mebrane area of they hydrogen purification module in the hydrogen generators.
+The program uses python tkinter to present the user with a GUI where various inputs can be added, including:
+- Feed more fraction of hydrogen
+- Membrane area inlet feed pressure
+- Premeate pressure
+- Feed flow rate
+- Percent hydrogen recovery
+
+The program then calculates the ideal membrane area along with other output data points.
+It also uses matplotlib to graph the area and the percent of hydrogen recovery.
 
 ### Mole Mapper
 A program to find equilibrium composition by direct minimization of Gibbs free energy.
