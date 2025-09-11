@@ -135,11 +135,11 @@ After all data has been processed, it then writes and graphs the data in an Exce
 detects multiple runs). 
 
 ### MM Calculator
-A program to calculate the ideal metal mebrane area of they hydrogen purification module in the hydrogen generators.
+A program to calculate the ideal metal mebrane area of the hydrogen purification module in the hydrogen generators.
 The program uses python tkinter to present the user with a GUI where various inputs can be added, including:
-- Feed more fraction of hydrogen
+- Feed mole fraction of hydrogen
 - Membrane area inlet feed pressure
-- Premeate pressure
+- Permeate pressure
 - Feed flow rate
 - Percent hydrogen recovery
 
@@ -152,7 +152,7 @@ A program to find equilibrium composition by direct minimization of Gibbs free e
 ### Mini Reactor Reporter
 A program to clean, organize, and combine a number of CSV data sheets from a miniature hydrogen reactor of the QA/QC department.
 Much like TigerTamer and Render FAT, This program is a python GUI that takes in CSV data. However, rather than writing
-and graphing the data in an Excel workbook, it simply creates a new CSV file with the cleaned and organized results. 
+and graphing the results in an Excel workbook, it simply creates a new CSV file with the cleaned and organized data. 
 
 ### S-Series Dockerized HMI
 A new HMI for the S-Series hydrogen generators utilizing Docker containerization and PowerShell scripts for installation and startup.  
