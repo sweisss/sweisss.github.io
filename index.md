@@ -30,7 +30,7 @@ An academic year-long project involving a team of three Computer Science student
 The team partnered with a local business to develop on consolidated data recording program that incorporates
 various devices on a hydrogen generator.
 
-[Read more](https://sweisss.github.io/osu-cascades/capstone-24/IntegratedTestStand.html)
+Read more about the project [here](https://sweisss.github.io/osu-cascades/capstone-24/IntegratedTestStand.html)
 
 ### RxWatch
 An Android app created as a final project by a team of four Computer Science students for CS 492 - Mobile Development at Oregon State University, Winter 2024.
@@ -66,7 +66,7 @@ Projects that are unrelated to but utilize the knowledge and experience gained f
 Turning dumb devices into smart devices using a Raspberry Pi, Node-RED, MQTT protocol, RF transmissions, and a Discord bot.
 > **NOTE:** Make this description better!
 
-Read more about the project [here](./projects/smarthubfordumblights.md).
+Read more about the project [here](./projects/smarthubfordumblights.md)
 
 ### Percentage Clock
 A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
@@ -79,7 +79,7 @@ View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
 The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
 This third iteration builds on the primitive first and second versions by applying the knowledge and experience gained from the RxWatch project above. 
 
-Read more about the project [here](./projects/volcanoseason3.md).
+Read more about the project [here](./projects/volcanoseason3.md)
 <br>
 View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)
 
