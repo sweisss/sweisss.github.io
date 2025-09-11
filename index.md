@@ -164,7 +164,19 @@ Much like TigerTamer and Render FAT, This program is a python GUI that takes in 
 and graphing the results in an Excel workbook, it simply creates a new CSV file with the cleaned and organized data. 
 
 ### S-Series Dockerized HMI
-A new HMI for the S-Series hydrogen generators utilizing Docker containerization and PowerShell scripts for installation and startup.  
+A new HMI for the [S-Series](https://www.e1na.com/s-series-hydrogen-generator) hydrogen generators utilizing
+Docker containerization and PowerShell scripts for installation and startup.
+The HMI uses a Docker compose to spin up several containers:
+- [Fuxa](https://github.com/frangoteam/FUXA) for the graphical front-end of the HMI
+- [Node-RED](https://nodered.org/) to process both system data and GUI display and commands
+- [InfluxDB](https://www.influxdata.com/) to store datapoints gathered from the system and allow the user to view triends
+- [Grafana](https://grafana.com/) to provide a better interface for interacting with the InfluxDB data
+- [Mosquitto](https://mosquitto.org/) to provide an MQTT broker to assist in data transfer between services
+
+The compose also employs several networks to facilitate the sharing of data between services. 
+
+The project utilizes PowerShell to automatically start the compose file on login.
+In addition, the project also uses a PowerShell script to automate the installation process.
 
 
 ## Videos
