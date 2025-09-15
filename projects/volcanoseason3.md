@@ -40,9 +40,18 @@ In June of 2024 I crashed my bike and spent 4 weeks on my couch in a neck brace 
 back brace (sensing a theme here?). I used this opportunity to apply the knowledge and skills
 I gained about Android development from the preceding winter quarter at OSU and recreated the
 primitive 2nd version into a professional-looking, portfolio-worthy app.
+
 Volcano Season 3 is simple but highly customizable. It utilizes material cards and recycler view (check spelling)
-to hold a list of links to forecasts. ...
-> **Describe in greater detail when you're not so tired. Add screenshots too!**
+to hold a list of links to forecasts. Each forecast link card can be categorized as either a volcano (🌋)
+or a region (🌤️). The forecasts can also be organized alphabetically listing regions first, volcanos first,
+regions and volcanos fully integrated, or customized drag-and-drop so the user can organize them according to
+personal relevance. 
+
+The equipment checklist now utilizes an expandable list for better viewing and navigation. Unlike the previous app versions,
+The app leverages Room Database to keep track of the state of the checklist items which now persists across app restarts.
+The user can also now add and remove checklist items at will. 
+
+> **Note:** Add screenshots!
 
 Find version 3 on [GitHub](https://github.com/sweisss/VolcanoSeason3)
 
