@@ -186,6 +186,8 @@ The video was originally made for a leadership project at OSU-Cascades in Spring
 It coveres a brief introduction to dictionaries, how to use a dictionary as a priority queue, and how to store and call functions from within a dictionary. 
 
 Watch it on [YouTube](https://youtu.be/-SqWVBQvj-w)
+<br>
+View the corresponding Jupyter Notebook on [Google Colab](https://colab.research.google.com/drive/1kuXPSAmgbJWupGOFexq01hJvtxBPBBrQ?usp=sharing)
 
 ### Packets
 A short video for CS 372 - Intro to Networking at Oregon State University - Ecampus, Summer 2023.
