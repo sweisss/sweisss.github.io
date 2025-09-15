@@ -203,8 +203,6 @@ Watch it on [YouTube](https://youtu.be/dyawWzhf51A)
 
 -----
 
-This is a pseudo-footer
-
 [Home](https://sweisss.github.io/) &emsp; &emsp;
 [OSU Projects](#oregon-state-university-projects) &emsp; &emsp;
 [Personal Projects](#personal-projects) &emsp; &emsp;
