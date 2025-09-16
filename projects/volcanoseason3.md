@@ -31,20 +31,8 @@ together on the homescreen. I then had quick and easy access to both the list of
 forecast links and the equipment checklist! I used this pseduo-app for a little over
 a year before I had the opportunity to take the next step. 
 
-<!-- Render images as html (side-by-side does not seem to work here) -->
-<!--
-<img src= images/volcanoseason/Screenshot_20250911-191619.png alt="Apps on homescreen" width="200" style="float: left; margin: 0 15px 15px 0;">
-<img src= images/volcanoseason/Screenshot_20250911-191628.png alt="Apps on homescreen" width="200" style="float: right; margin: 0 0 15px 15px;">
--->
-
-<!-- Render images in a markdown table -->
-<!--
-![](images/volcanoseason/Screenshot_20250911-191619.png)             |  ![](images/volcanoseason/Screenshot_20250911-191628.png)
-:-------------------------:|:-------------------------:
-![](images/volcanoseason/Screenshot_20250911-191637.png)  |  ![](images/volcanoseason/Screenshot_20250911-191648.png)
--->
-
-<!-- Render images in a <p> tag -->
+<!-- Render images in a <p> tag to get them side-by-side -->
+<!-- Nest the images in an <a> tag to make them clickable -->
 <p float="left">
   <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191619.png">
     <img src="images/volcanoseason/Screenshot_20250911-191619.png" width="25%" />
