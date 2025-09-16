@@ -193,7 +193,7 @@ View the corresponding Jupyter Notebook on [Google Colab](https://colab.research
 
 ### Packets
 A short video for CS 372 - Intro to Networking at Oregon State University - Ecampus, Summer 2023.
-The vido coveres how to calculate transmission time of packets.
+The video coveres how to calculate transmission time of packets.
 > **NOTE**: Watch the video and confirm that this is actually talks about!
 
 Watch it on [YouTube](https://youtu.be/ZB5TZAU-Dq4)
