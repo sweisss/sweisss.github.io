@@ -31,6 +31,37 @@ together on the homescreen. I then had quick and easy access to both the list of
 forecast links and the equipment checklist! I used this pseduo-app for a little over
 a year before I had the opportunity to take the next step. 
 
+<!-- Render images as html (side-by-side does not seem to work here) -->
+<!--
+<img src= images/volcanoseason/Screenshot_20250911-191619.png alt="Apps on homescreen" width="200" style="float: left; margin: 0 15px 15px 0;">
+<img src= images/volcanoseason/Screenshot_20250911-191628.png alt="Apps on homescreen" width="200" style="float: right; margin: 0 0 15px 15px;">
+-->
+
+<!-- Render images in a markdown table -->
+<!--
+![](images/volcanoseason/Screenshot_20250911-191619.png)             |  ![](images/volcanoseason/Screenshot_20250911-191628.png)
+:-------------------------:|:-------------------------:
+![](images/volcanoseason/Screenshot_20250911-191637.png)  |  ![](images/volcanoseason/Screenshot_20250911-191648.png)
+-->
+
+<!-- Render images in a <p> tag -->
+<p float="left">
+  <img src="images/volcanoseason/Screenshot_20250911-191619.png" width="25%" />
+  <img src="images/volcanoseason/Screenshot_20250911-191628.png" width="25%" />
+</p>
+
+_The three versions of the VolcanoSeason app on my phone homescreen (don't mind my Motorhead-looking cat in the background).
+The original pseudo-app comprised of a group of Google Docs is on the left. The second versions is in the middle (a recent
+Android update appears to have affected the logo). The third app version is on the right.
+When the pseduo-app group is clicked, it slightly expands to give the user an option of which Google Doc to open (pictured on the right)._
+
+<p float="left">
+  <img src="images/volcanoseason/Screenshot_20250911-191637.png" width="25%" />
+  <img src="images/volcanoseason/Screenshot_20250911-191648.png" width="25%" />
+</p> 
+
+_The VolcanoSeason pseudo-app opened as HTML rendered in Google Docs._
+
 Find the pseduo-app on [GitHub](https://github.com/sweisss/VolcanoSeason)
 
 ### Teaching Myself Kotlin
