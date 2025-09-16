@@ -106,8 +106,6 @@ for the next round as quickly as possible!
 Access the Google Sheets file [here](https://docs.google.com/spreadsheets/d/1T2dHcvSfGK9w3xW4Mf51phTdxzOd0TZNsUDxLNJYssI/edit?usp=sharing).
 It is set as "View Only", but anyone can make a copy of it and make it their own to start editing or simply entering scores. 
 
-### More to come...
-
 
 ## Element 1 Projects
 Thesse projects were all made for Element 1 (e1), a company in Bend, OR that makes hydrogen generators.
