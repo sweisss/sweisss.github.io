@@ -99,7 +99,24 @@ The equipment checklist now utilizes an expandable list for better viewing and n
 The app leverages Room Database to keep track of the state of the checklist items which now persists across app restarts.
 The user can also now add and remove checklist items at will. 
 
-> **Note:** Add screenshots!
+<p float="left">
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191718.png">
+    <img src="images/volcanoseason/Screenshot_20250911-191718.png" width="25%" />
+  </a>
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/1000007737.png">
+    <img src="images/volcanoseason/1000007737.png" width="25%" />
+  </a>
+</p>
+<p float="left">
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250914-082732.png">
+    <img src="images/volcanoseason/Screenshot_20250914-082732.png" width="25%" />
+  </a>
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/1000007736.png">
+    <img src="images/volcanoseason/1000007736.png" width="25%" />
+  </a>
+</p>
+
+_Screenshots of the third evolution of the VolcanoSeason app showcasing the Material cards and expandable list._
 
 Find version 3 on [GitHub](https://github.com/sweisss/VolcanoSeason3)
 
