@@ -69,6 +69,18 @@ saved in the app itself rather than Google Docs), but I thought it wasn't bad co
 with COVID-19 in a language and framework that I had never used before. I was proud of it,
 but I knew I wanted to improve on it when I had more time. 
 
+<p float="left">
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191700.png">
+    <img src="images/volcanoseason/Screenshot_20250911-191700.png" width="25%" />
+  </a>
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191708.png">
+    <img src="images/volcanoseason/Screenshot_20250911-191708.png" width="25%" />
+  </a>
+</p>
+
+_Screenshots of the second evolution of the VolcanoSeason app. The app is very basic,
+but it is now an official app made in Kotlin._
+
 Find version 2 on [GitHub](https://github.com/sweisss/VolcanoSeason2)
 
 ## The Big Leagues
