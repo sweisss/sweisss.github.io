@@ -1,10 +1,12 @@
-# Welcome to Seth's Landing Page
+# Welcome to Seth's Project Portfolio
 
-This page was quickly cobbled together to showcase the 
+This page was originally cobbled together to showcase the 
 [Integrated Test Stand](https://sweisss.github.io/osu-cascades/capstone-24/IntegratedTestStand.html)
 Capstone Project for Oregon State University -- Cascades, Spring 2024.
 
-This page is currently under construction and will eventually showcase other aspects of Seth's portfolio....
+It has since been turned into a portfolio showcasing tech and computer science related projects.
+
+This page is actively under construction. Check back frequently for updates...
 
 ### Links
 🐙 - [GitHub](https://github.com/sweisss) 
