@@ -70,13 +70,6 @@ The Node-RED server also maintains a schedule for the lights.
 
 Read more about the project [here](./projects/smarthubfordumblights.md)
 
-### Percentage Clock
-A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
-The second time range is a "Work Day" and can be selected by the user. 
-This is a desktop GUI application written in python using tkinter.
-
-View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
-
 ### Volcano Season 3
 The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
 This third iteration builds on the primitive first and second versions by applying the knowledge and experience gained from the RxWatch project above. 
@@ -84,6 +77,13 @@ This third iteration builds on the primitive first and second versions by applyi
 Read more about the project [here](./projects/volcanoseason3.md)
 <br>
 View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)
+
+### Percentage Clock
+A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
+The second time range is a "Work Day" and can be selected by the user. 
+This is a desktop GUI application written in python using tkinter.
+
+View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
 
 ### QR Coder
 A simple command-line tool that takes text input and generates a QR code in any desired combination of:
