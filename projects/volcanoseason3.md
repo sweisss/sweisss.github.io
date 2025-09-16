@@ -46,8 +46,12 @@ a year before I had the opportunity to take the next step.
 
 <!-- Render images in a <p> tag -->
 <p float="left">
-  <img src="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191619.png" width="25%" />
-  <img src="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191628.png" width="25%" />
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191619.png">
+    <img src="images/volcanoseason/Screenshot_20250911-191619.png" width="25%" />
+  </a>
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191628.png">
+    <img src="images/volcanoseason/Screenshot_20250911-191628.png" width="25%" />
+  </a>
 </p>
 
 _The three versions of the VolcanoSeason app on my phone homescreen (don't mind my Motorhead-looking cat in the background).
@@ -56,8 +60,12 @@ Android update appears to have affected the logo). The third app version is on t
 When the pseduo-app group is clicked, it slightly expands to give the user an option of which Google Doc to open (pictured on the right)._
 
 <p float="left">
-  <img src="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191637.png" width="25%" />
-  <img src="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191648.png" width="25%" />
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191637.png">
+    <img src="images/volcanoseason/Screenshot_20250911-191637.png" width="25%" />
+  </a>
+  <a href="https://sweisss.github.io/projects/images/volcanoseason/Screenshot_20250911-191648.png">
+    <img src="images/volcanoseason/Screenshot_20250911-191648.png" width="25%" />
+  </a>
 </p> 
 
 _The VolcanoSeason pseudo-app opened as HTML rendered in Google Docs._
