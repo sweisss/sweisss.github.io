@@ -1,7 +1,5 @@
 # Volcano Season 3
 
-**NOTE: This is a rough draft and needs to be completed!**
-
 ## The Origins
 Volcano Season first started as a pseudo-app for an Android phone. 
 
