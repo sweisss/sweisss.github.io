@@ -42,8 +42,12 @@ Remove port forwarding
 ### Incorporating the Discord Bot
 ### Building the Schedule
 
-## Future expansion
+## Future Expansion
+### Adding Self-Hosted DNS
+So the MQTT broker doesn't get reasigned a new IP address
+late at night when you are trying to go to sleep...
 ### Strengthening the RF Signal
+So the RPi isn't as limited on possible locations 
 ### Adding in IR Remote for Night Light
 ### Adding Ceiling Fan Control
 ### Building an Android App
