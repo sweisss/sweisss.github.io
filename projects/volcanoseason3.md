@@ -119,6 +119,17 @@ _Screenshots of the third evolution of the VolcanoSeason app showcasing the Mate
 
 Find version 3 on [GitHub](https://github.com/sweisss/VolcanoSeason3)
 
+## Next Steps
+There are a few ways in which I'd like to polish the app, and as time passes I am prone to realizing new and useful features. 
+Eventually, I'd like to put it on [Google Play](https://play.google.com/store/games?hl=en_US), if only as a learning experience
+considering I have never done that before. I'm not really in a rush to do that though. I realize that this app mostly appeals
+to my personal, niche needs and is unlikely to be used by many others. The primary purposes of building this app were to:
+1. Learn about and practice Android app development
+2. Make something that fit a small and unique need that I had
+
+If you like the app and have any ideas that you'd like to contribute, feel free to add an
+[Issue](https://github.com/sweisss/VolcanoSeason3/issues) and open a Pull Request. 
+
 -----
 
 [Home](https://sweisss.github.io/) &emsp; &emsp;
