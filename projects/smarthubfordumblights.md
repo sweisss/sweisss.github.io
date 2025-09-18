@@ -50,7 +50,7 @@ late at night when you are trying to go to sleep...
 So the RPi isn't as limited on possible locations 
 ### Add in IR Remote for Night Light
 ### Add Ceiling Fan Control
-### Add Font Porch Light Control
+### Add Front Porch Light Control
 Use Wireshark to analyze and decode the signals that the smart switch uses to control
 the front porch light and try to reproduce those signals in the Node-RED flow
 ### Build an Android App
