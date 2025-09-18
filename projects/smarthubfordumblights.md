@@ -43,14 +43,17 @@ Remove port forwarding
 ### Building the Schedule
 
 ## Future Expansion
-### Adding Self-Hosted DNS
+### Add Self-Hosted DNS
 So the MQTT broker doesn't get reasigned a new IP address
 late at night when you are trying to go to sleep...
-### Strengthening the RF Signal
+### Strengthen the RF Signal
 So the RPi isn't as limited on possible locations 
-### Adding in IR Remote for Night Light
-### Adding Ceiling Fan Control
-### Building an Android App
+### Add in IR Remote for Night Light
+### Add Ceiling Fan Control
+### Add Font Porch Light Control
+Use Wireshark to analyze and decode the signals that the smart switch uses to control
+the front porch light and try to reproduce those signals in the Node-RED flow
+### Build an Android App
 
 -----
 
