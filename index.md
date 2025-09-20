@@ -71,6 +71,8 @@ Based on the commands, the RPi transmits an RF signal to the lights.
 The Node-RED server also maintains a schedule for the lights. 
 
 Read more about the project [here](./projects/smarthubfordumblights.md)
+<br>
+View the project on [GitHub](https://github.com/sweisss/rpi-smart-hub)
 
 ### Volcano Season 3
 The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
