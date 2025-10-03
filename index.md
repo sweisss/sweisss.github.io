@@ -18,10 +18,58 @@ This page is actively under construction. Check back frequently for updates...
 ----
 
 ### Contents
-- [OSU Projects](#oregon-state-university-projects)
 - [Personal Projects](#personal-projects)
+- [OSU Projects](#oregon-state-university-projects)
 - [Element 1 Projects](#element-1-projects)
 - [Videos](#videos)
+
+
+## Personal Projects
+Projects that are unrelated to but utilize the knowledge and experience gained from a CS degreen at OSU-Cascades.
+
+### Raspberry Pi Patio Lights
+A project that uses a Raspberry Pi as a smart hub for "dumb" lights that can be controlled with a radio frequency remote.
+The RPi hosts an MQTT broker and a Node-RED server to receive external commands via Discord or an MQTT client.
+Based on the commands, the RPi transmits an RF signal to the lights.
+The Node-RED server also maintains a schedule for the lights. 
+
+Read more about the project [here](./projects/smarthubfordumblights.md)
+<br>
+View the project on [GitHub](https://github.com/sweisss/rpi-smart-hub)
+
+### Volcano Season 3
+The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
+This third iteration builds on the primitive first and second versions by applying the knowledge and experience gained from the [RxWatch](#rxwatch) project below. 
+
+Read more about the project [here](./projects/volcanoseason3.md)
+<br>
+View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)
+
+### Percentage Clock
+A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
+The second time range is a "Work Day" and can be selected by the user. 
+This is a desktop GUI application written in python using tkinter.
+
+View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
+
+### QR Coder
+A simple command-line tool that takes text input and generates a QR code in any desired combination of:
+- Printed to the console
+- Saved as an SVG
+- Saved as a PNG
+
+The tool is based off of a portion of the OTP project in the [Intro to Security](#intro-to-security) project below.
+It alows for quick and easy generation of QR codes without the need to sign up for online services.
+
+View the project on [GitHub](https://github.com/sweisss/QR_Coder)
+
+### Bowling Scoreboard
+A bowling scoreboard built in Google Sheets to help keep track of the winners and losers during competitive events on family vacations involving
+a [table bowling](https://us.amazon.com/bowling-table/s?k=bowling+table) set. The sheet includes a macro to clear out the scoreboard to be ready
+for the next round as quickly as possible!
+
+Access the Google Sheets file [here](https://docs.google.com/spreadsheets/d/1T2dHcvSfGK9w3xW4Mf51phTdxzOd0TZNsUDxLNJYssI/edit?usp=sharing).
+It is set as "View Only", but anyone can make a copy of it and make it their own to start editing or simply entering scores. 
 
 
 ## Oregon State University Projects
@@ -59,54 +107,6 @@ particular week of the course. The workbook utilizes the name manager to referen
 located on the first sheet. 
 
 [Direct Download](./projects/ChemistryCalculations.xlsx)
-
-
-## Personal Projects
-Projects that are unrelated to but utilize the knowledge and experience gained from a CS degreen at OSU-Cascades.
-
-### Raspberry Pi Patio Lights
-A project that uses a Raspberry Pi as a smart hub for "dumb" lights that can be controlled with a radio frequency remote.
-The RPi hosts an MQTT broker and a Node-RED server to receive external commands via Discord or an MQTT client.
-Based on the commands, the RPi transmits an RF signal to the lights.
-The Node-RED server also maintains a schedule for the lights. 
-
-Read more about the project [here](./projects/smarthubfordumblights.md)
-<br>
-View the project on [GitHub](https://github.com/sweisss/rpi-smart-hub)
-
-### Volcano Season 3
-The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
-This third iteration builds on the primitive first and second versions by applying the knowledge and experience gained from the RxWatch project above. 
-
-Read more about the project [here](./projects/volcanoseason3.md)
-<br>
-View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)
-
-### Percentage Clock
-A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
-The second time range is a "Work Day" and can be selected by the user. 
-This is a desktop GUI application written in python using tkinter.
-
-View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
-
-### QR Coder
-A simple command-line tool that takes text input and generates a QR code in any desired combination of:
-- Printed to the console
-- Saved as an SVG
-- Saved as a PNG
-
-The tool is based off of a portion of the OTP project in the Intro to Security project above.
-It alows for quick and easy generation of QR codes without the need to sign up for online services.
-
-View the project on [GitHub](https://github.com/sweisss/QR_Coder)
-
-### Bowling Scoreboard
-A bowling scoreboard built in Google Sheets to help keep track of the winners and losers during competitive events on family vacations involving
-a [table bowling](https://us.amazon.com/bowling-table/s?k=bowling+table) set. The sheet includes a macro to clear out the scoreboard to be ready
-for the next round as quickly as possible!
-
-Access the Google Sheets file [here](https://docs.google.com/spreadsheets/d/1T2dHcvSfGK9w3xW4Mf51phTdxzOd0TZNsUDxLNJYssI/edit?usp=sharing).
-It is set as "View Only", but anyone can make a copy of it and make it their own to start editing or simply entering scores. 
 
 
 ## Element 1 Projects
