@@ -41,9 +41,37 @@ However, because the RF signal only traveled so far, I still could not turn on t
 - Call the python script from the Node-RED flow based on the MQTT messages.
 
 ## Setting Up the MQTT Broker
+### Initial Setup
+I don't recall if my Raspberry Pi came with [Eclipse Mosquitto](https://mosquitto.org/) pre-installed or not. Regardless, [Steve's Guide](https://stevessmarthomeguide.com/) is a great resource for home automation and MQTT related tasks. [Here](https://stevessmarthomeguide.com/install-mosquitto-raspberry-pi/) an article on the site outlining how to install a Mosquitto MQTT broker on the Pi. 
+
+Once Mosquitto is installed on the Pi, there are some things that need to be configured for it to work properly. First, you need to make sure that there is a `mosquitto.conf` file.
+I kept this file as simple as possible at first, just to test the connections: 
+```
+listener 1883 0.0.0.0
+allow_anonymous true
+```
+My `mosquitto.conf` file lives in the `/etc/mosquitto/` directory. 
+
+To start up the broker in verbose mode for testing, enter the command:
+```
+mosquitto -c /etc/mosquitto/mosquitto.conf -v
+```
+If your `mosquitto.conf` file is located in a different location, use that location instead.
+
+There are various ways to test the connection. Personally, I followed [Steve's Guide on setting up a python client using Paho](http://www.steves-internet-guide.com/into-mqtt-python-client/). I set up two clients on separate devices (my laptop): a publisher and a subscriber. If the subscriber was able to read the message sent from the publisher, then I knew that the broker was working. 
+
+Another way to test is to use [MQTT Explorer](https://mqtt-explorer.com/). This is a GUI based tool that can subscribe and publish to a broker and is very helpful in debugging. 
+
+### Authentication Setup
+Once the connections have been confirmed to work properly, it's time to add authentication (if desired). Again, [Steve's Guide](http://www.steves-internet-guide.com/mqtt-username-password-example/) provides a very helpful article explaining how to do this. 
+After setting up authentication, use Paho or MQTT Explorer once again to test the connections. 
+
 ### Auto-start
-### Security/access
+Because I wanted my broker to be running all the time, the next step was to make sure it started up any time the Pi was rebooted. 
+...
+
 ### Port Forwarding
+...
 
 ## Setting Up Node-RED
 Auto-start
