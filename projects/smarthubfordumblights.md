@@ -1,20 +1,14 @@
 # Smart Hub for Dumb Lights
 This is a project that uses a Raspberry Pi to reproduce the signals of a 
 radio frequency remote to control a set of patio lights.
-Once successful transmission from the RPi to the lights was acheived, the project
+Once successful transmission from the RPi to the lights was achieved, the project
 then expanded to include a daily schedule in addition to on-demand signals,
 essentially turning the RPi into a smart hub for "dumb" lights. 
 
 This write-up is part tutorial and part story of a personal project.
 If you wish to follow this as a tutorial, please note that it is not written
 as a set of prescribed steps that must be strictly followed. Feel free to take
-any or all sections as inspriation and adapt them to your own project.
-
-### Development status
-- [x] Outline
-- [ ] ***Rough Draft***
-- [ ] 2nd Draft
-- [ ] Final Draft 
+any or all sections as inspiration and adapt them to your own project.
 
 ### Contents
 - [Background](#background)
@@ -23,6 +17,13 @@ any or all sections as inspriation and adapt them to your own project.
 - [Writing the RF Transmit Script](#writing-the-rf-transmit-script)
 - [Incorporating It All in Node-RED](#building-the-node-red-flow-and-incorporating-the-rf-tx-script)
 - [Adding a Discord Bot](#creating-the-discord-bot)
+
+> **NOTE:** This is a work in progress. Check back occasionally for updates. 
+> #### Document Development status
+> - [x] Outline
+> - [ ] ***Rough Draft***
+> - [ ] 2nd Draft
+> - [ ] Final Draft 
 
 ## Background
 
