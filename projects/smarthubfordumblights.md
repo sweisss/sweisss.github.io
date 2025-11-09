@@ -41,37 +41,58 @@ However, because the RF signal only traveled so far, I still could not turn on t
 - Call the python script from the Node-RED flow based on the MQTT messages.
 
 ## Setting Up the MQTT Broker
-### Initial Setup
-I don't recall if my Raspberry Pi came with [Eclipse Mosquitto](https://mosquitto.org/) pre-installed or not. Regardless, [Steve's Guide](https://stevessmarthomeguide.com/) is a great resource for home automation and MQTT related tasks. [Here](https://stevessmarthomeguide.com/install-mosquitto-raspberry-pi/) an article on the site outlining how to install a Mosquitto MQTT broker on the Pi. 
+[Eclipse Mosquitto](https://mosquitto.org/) is an open source message broker using the MQTT protocol. I decided to make this the core of communication for the lights. To get Mosquitto installed on the Raspberry Pi, I followed [this guide](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/). It is a very straightforward and helpful walkthrough on not only how to get Mosquitto installed on the Pi, but also how to set it up so that the broker starts running automatically when the Pi boots up, as well as setting up authentication. 
 
-Once Mosquitto is installed on the Pi, there are some things that need to be configured for it to work properly. First, you need to make sure that there is a `mosquitto.conf` file.
-I kept this file as simple as possible at first, just to test the connections: 
+I first set it up unauthenticated, with my `mosquitto.conf` file containing the following:
 ```
 listener 1883 0.0.0.0
 allow_anonymous true
 ```
-My `mosquitto.conf` file lives in the `/etc/mosquitto/` directory. 
-
-To start up the broker in verbose mode for testing, enter the command:
-```
-mosquitto -c /etc/mosquitto/mosquitto.conf -v
-```
-If your `mosquitto.conf` file is located in a different location, use that location instead.
-
-There are various ways to test the connection. Personally, I followed [Steve's Guide on setting up a python client using Paho](http://www.steves-internet-guide.com/into-mqtt-python-client/). I set up two clients on separate devices (my laptop): a publisher and a subscriber. If the subscriber was able to read the message sent from the publisher, then I knew that the broker was working. 
+I did this to easily test the connections and the auto-start and remote connections. 
+There are various ways to test the connections. Personally, I followed [Steve's Guide on setting up a python client using Paho](http://www.steves-internet-guide.com/into-mqtt-python-client/). I set up two clients on separate devices (my laptop): a publisher and a subscriber. If the subscriber was able to read the message sent from the publisher, then I knew that the broker was working. 
 
 Another way to test is to use [MQTT Explorer](https://mqtt-explorer.com/). This is a GUI based tool that can subscribe and publish to a broker and is very helpful in debugging. 
 
-### Authentication Setup
-Once the connections have been confirmed to work properly, it's time to add authentication (if desired). Again, [Steve's Guide](http://www.steves-internet-guide.com/mqtt-username-password-example/) provides a very helpful article explaining how to do this. 
-After setting up authentication, use Paho or MQTT Explorer once again to test the connections. 
+After confirming that the broker handled the messages properly and that I could attach both publish clients and subscribe clients, I then added the authentication as described in the [aforementioned article](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/) and repeated the python and MQTT testing.
 
-### Auto-start
-Because I wanted my broker to be running all the time, the next step was to make sure it started up any time the Pi was rebooted. 
-...
+My final `mosquitto.conf` file looks like this:
+```
+# Place your local configuration in /etc/mosquitto/conf.d/
+#
+# A full description of the configuration file is at
+# /usr/share/doc/mosquitto/examples/mosquitto.conf.example
+
+per_listener_settings true
+
+pid_file /run/mosquitto/mosquitto.pid
+
+persistence true
+persistence_location /var/lib/mosquitto/
+
+log_dest file /var/log/mosquitto/mosquitto.log
+
+include_dir /etc/mosquitto/conf.d
+
+listener 1883
+allow_anonymous false
+password_file /etc/mosquitto/passwd
+```
+
+I could now access the broker and send/receive messages from anywhere on my home network. However, the end goal would be to control the lights from anywhere with an Internet connection, so I needed to set up port forwarding. 
 
 ### Port Forwarding
-...
+This turned out to be very simple. 
+Access your router's interface by navigating a web browser to `192.168.0.1`. You will then be prompted to log in using your router's password. Once logged in, there should be an option in the settings interface to add port forwarding. My router is Arris. The Arris interface has the port forwarding option under the "Advanced" section of the left-hand navigation menu. From there, you can enable the port forwarding and add a service. This service should include a helpful name (so you know what it is a few months down the road when you open it again), the IP of the Pi (Server IPv4), and the port mapping (both the internal and external ports). The default port for Mosquitto is 1883. To make it simple, I just used the same port for both the internal and external. Note that the external port is the one that you will be accessing from the outside Internet, and the internal port is the one that the service is running on inside your network (on the Pi). 
+
+![Port forwarding interface](images/rpilights/ARRIS_port_forwarding.png)
+
+*An example of the port forwarding screen of my router's interface.*
+
+Once the port forwarding is set up, you can then use MQTT Explorer to connect to the broker via your external IP (this can be found at https://www.whatsmyip.org/). To further prove that you can access the broker from anywhere with an Internet connection, download an MQTT app for your phone and disconnect your phone from your Wi-Fi so it's on your mobile service provider's data connection. Then test the broker connection through your phone app.
+
+> Note: There are several MQTT apps out there for Android and iOS. Some of them are OK, but I really don't like any of them too much. I'll elaborate more on this later, but at this step it is worth mentioning that [MyMQTT](https://mymqtt.app/en) is the Android app that I found to be the most usable. 
+
+A quick note on security. It's best practice to close all unused ports. Therefore, if you get all this up and running and set the project aside for a couple months like I did, it's a good idea to deactivate the service or simply disable port forwarding on your router altogether until you're ready to continue. 
 
 ## Setting Up Node-RED
 Auto-start
