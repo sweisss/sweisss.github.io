@@ -16,6 +16,14 @@ any or all sections as inspriation and adapt them to your own project.
 - [ ] 2nd Draft
 - [ ] Final Draft 
 
+### Contents
+- [Background](#background)
+- [Setting Up the MQTT Broker](#setting-up-the-mqtt-broker)
+- [Setting Up Node-RED](#setting-up-node-red)
+- [Writing the RF Transmit Script](#writing-the-rf-transmit-script)
+- [Incorporating It All in Node-RED](#building-the-node-red-flow-and-incorporating-the-rf-tx-script)
+- [Adding a Discord Bot](#creating-the-discord-bot)
+
 ## Background
 
 > ### TL;DR
