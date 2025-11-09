@@ -104,7 +104,21 @@ Once the port forwarding is set up, you can then use MQTT Explorer to connect to
 A quick note on security. It's best practice to close all unused ports. Therefore, if you get all this up and running and set the project aside for a couple months like I did, it's a good idea to deactivate the service or simply disable port forwarding on your router altogether until you're ready to continue. 
 
 ## Setting Up Node-RED
-Auto-start
+Node-RED is a "flow-based, low-code development tool for visual programming, originally developed by IBM for wiring together hardware devices, APIs and online services as part of the Internet of things." ([Wikipedia](https://en.wikipedia.org/wiki/Node-RED))
+
+Node-RED came preinstalled on my Raspberry Pi, and it likely is on yours too. In the event that it isn't, visit the [official Node-RED documentation](https://nodered.org/docs/getting-started/raspberrypi) to get it installed. That article also says that you can set up Node-RED to autostart on system boot of the Pi with the following command:
+```
+sudo systemctl enable nodered.service
+```
+I could not get it to work using this command. Instead, I wrote a very simple bash script that contained nothing more than the line `node-red` and saved it to `/home/raspberry/Documents/scripts/node_red_startup.sh`. 
+
+I then opened up my crontab in the nano editor with the command `crontab -e` and added the following line to the end of the file:
+```
+@reboot sh /home/raspberry/Documents/scripts/node_red_startup.sh
+```
+I saved the file and rebooted the Pi and it worked. 
+
+To view the Node-RED interface, open the web browser to http://localhost:1880. From there you can make a very simple flow to subscribe to your broker and output the message contents to the debug window. With this step complete, I then shifted my focus to transmitting the RF signals using the Pi. 
 
 ## Writing the RF Transmit Script
 ### Determining the Correct Signials
