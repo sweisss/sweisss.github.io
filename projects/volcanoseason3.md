@@ -4,7 +4,7 @@
 Volcano Season first started as a pseudo-app for an mobile device and has evolved
 into a fully functional and customizable Android app.
 
-### Where The Idea Came From
+### The Setting
 Every Spring in the Pacific Northwest I like to partake in what is known as "Volcano Season":
 When the large and prominent volcanoes of the Cascades mountian range are no longer surrounded
 by severe Winter storms and are more safely accessible for climbing and skiing. This, however,
@@ -59,7 +59,7 @@ _The VolcanoSeason pseudo-app opened as HTML rendered in Google Docs._
 
 Find the pseduo-app on [GitHub](https://github.com/sweisss/VolcanoSeason)
 
-### Teaching Myself Kotlin
+## Teaching Myself Kotlin
 In July of 2022 I contracted COVID-19 and wasn't able to do much other than lay on my couch for 4 days.
 However, I used this opportunity to read a bunch of articles and watch a bunch of YouTube tutorials
 to teach myself Kotlin and Android studio and turn the psedo-app into a real Android app. 
