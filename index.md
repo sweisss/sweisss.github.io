@@ -191,10 +191,10 @@ Watch it on [YouTube](https://youtu.be/-SqWVBQvj-w)
 <br>
 View the accompanying Jupyter Notebook on [Google Colab](https://colab.research.google.com/drive/1kuXPSAmgbJWupGOFexq01hJvtxBPBBrQ?usp=sharing)
 
-### Packets
+### Packet Transmission Time Calculation
 A short video for CS 372 - Intro to Networking at Oregon State University - Ecampus, Summer 2023.
-The video coveres how to calculate transmission time of packets.
-> **NOTE**: Watch the video and confirm that this is actually talks about!
+The video demonstrates how to calculate the packet transmission time of two different files of two different sizes.
+It uses Excel to lay out the information necessary for the calculation in a clear and organized manner. 
 
 Watch it on [YouTube](https://youtu.be/ZB5TZAU-Dq4)
 
