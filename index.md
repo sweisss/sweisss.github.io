@@ -189,7 +189,7 @@ It coveres a brief introduction to dictionaries, how to use a dictionary as a pr
 
 Watch it on [YouTube](https://youtu.be/-SqWVBQvj-w)
 <br>
-View the accompanying Jupyter Notebook on [Google Colab](https://colab.research.google.com/drive/1kuXPSAmgbJWupGOFexq01hJvtxBPBBrQ?usp=sharing)
+View the accompanying Jupyter Notebook on [Google Colab](https://colab.research.google.com/drive/1kuXPSAmgbJWupGOFexq01hJvtxBPBBrQ?usp=sharing) or [GitHub Gist](https://gist.github.com/sweisss/0ec18f07065864403595cf3906c9e72a)
 
 ### Packet Transmission Time Calculation
 A short video for CS 372 - Intro to Networking at Oregon State University - Ecampus, Summer 2023.
