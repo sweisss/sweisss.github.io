@@ -130,9 +130,30 @@ To view the Node-RED interface, open the web browser to http://localhost:1880. F
 
 ## Writing the RF Transmit Script
 ### Determining the Correct Signials
-- RF recieve Instructables Matplotlib technique
+- RF receive Instructables Matplotlib technique
 - Flipper file
 - Flipper RAW file
+
+As mentioned in the [Background](#background) section above, I had already cloned the main RF signals of the remote (on, off, white, red, and blue) using the Flipper Zero. I was able to easily get the files for these cloned signals onto my computer using the [qFlipper app](https://docs.flipper.net/zero/qflipper). The files contain several pieces of information about the signals, but the most important parts are the protocol (e.g. Princeton 24bit), the frequency (**or is it bandwidth??**) (e.g. 433.92 AM), and the "key", which is a hex representation of the signal pattern (confirm this is accurate and get more official terminology). 
+
+The Flipper actually tells you everything you need to reproduce the signal. However, I couldn't find explicit documentation on understanding and reproducing a Flipper Sub-GHz file on the Raspberry Pi, so I used some other techniques and followed some other guides to confirm I had the correct information.
+
+> NOTE TO AUTHOR: Maybe put some screenshots in here of the files.
+
+Many of the guides and tutorials I found online also set up a way to receive the RF signals on the Raspberry Pi. Luckily, most of the hardware devices come in packs with multiple sets of both transmitters and receivers. Just search amazon (or better yet, the Internet outside of amazon) for "433 MHz transmitter" and you should find a number of packs. I believe I settled on [this one](https://www.amazon.com/D-FLIFE-Wireless-Transmitter-Receiver-Antenna/dp/B0BZRRBBNK/ref=sr_1_5?crid=1HX08K3J57REE&dib=eyJ2IjoiMSJ9._u6mJHvj5VdGXvG_aPTiNRhLoNXQ0tjavzH7dikQi23FgwKJL1Pmx4JPpj7efk8get-TtEzA9OL1hL1Tshoxd41niUUMXehAR3iJOpnD87sgpg4MKgUq1ZorV7KsETmq1yl97Uok-5joWD3MkhcfV6A16Sy2Z91JTCU1vBWytzJQrVQwRAUzlq4WRTBwYPpvpvtF2iXONNcYIr2PbRlDEzodS9lJEZLsd2r5z5BOshzO9NkpUzh4nhZFRmBCN9M4uSp2-AO06cP5U1VQTmP6vI2WD6GjpNnO6EJR-zwnoyo.s9LU6z3GJmbBTqXNvM9UHOdMrhjh5NQgEly3ATHkt68&dib_tag=se&keywords=433+mhz+transmitter&qid=1765552744&sprefix=%2Caps%2C118&sr=8-5).
+
+> NOTE TO AUTHOR: Get the actual device pack, maybe even model number.
+
+The first way I confirmed the information on the Flipper file was to follow an article on Instructables titled [Super Simple Raspberry Pi 433MHz Home Automation](https://www.instructables.com/id/Super-Simple-Raspberry-Pi-433MHz-Home-Automation/). Unfortunately, it appears the article is no longer up as of this writing (Dec, 2025), so I'll give a brief summary here.
+
+The article is broken into two main sections: receive and transmit. The first section, receiving the signal, wires up the RX hardware to the Pi and uses a script to capture the RF signal and graph the results using Matplotlib. It then explains that an RF signal works by interpreting a pattern of high/low signals. The pattern is made of a combination of short signals and long signals, often preceded by a preamble to let whatever is receiving the signal know that what's about to follow is the data. Different protocols will use different combinations of high/low and long/short signals to signify a 1 or a 0. To decode the signal, you just need to view the pattern and write down either a 1 or a 0 each time you see a long-high to short-low or a short-high to long-low, for example. It may sound like this method is tedious and not guaranteed, which is correct. However, after going through it multiple times I ended up with consistent results. I used an online binary to hex converter to translate the binary code I kept getting from the graph, and it matched up with the hex value in the Flipper file!
+
+If you're interested in diving deeper into the analysis of the RF signal, by all means, go ahead. It's actually really interesting. I found a number of YouTube videos by [Derek Jamison](https://www.youtube.com/@MrDerekJamison) that dive deep into the Flipper Zero and how it analyzes RF signals. [This one](https://www.youtube.com/watch?v=ojpc7Q2fjS8) in particular is a great one to start with and explains how the signals work (probably in a better way than I just did). Some of his other videos also explain the "Read RAW" feature, which was actually another way that I confirmed I was using the correct signal.
+However, for the purpose of this project, these were just a ways to confirm that the hex value from the "key" of the Flipper file was actually the signal that I would need to transmit to the lights. 
+
+Once I was confident about the signal I needed to send, I then swapped out the RX hardware for the TX hardware and wired it up to the Pi. I actually got hung up on this part of the project for quite a while. Looking back, this was definitely the crux of the whole project for me. 
+...
+
 ### Confirming the Script Works
 - Using Flipper to capture signal
 
