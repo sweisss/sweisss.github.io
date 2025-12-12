@@ -1,3 +1,10 @@
+[Home](https://sweisss.github.io/) &emsp; &emsp;
+[OSU Projects](https://sweisss.github.io/#oregon-state-university-projects) &emsp; &emsp;
+[Personal Projects](https://sweisss.github.io/#personal-projects) &emsp; &emsp;
+[Element 1 Projects](https://sweisss.github.io/#element-1-projects) &emsp; &emsp;
+[Videos](https://sweisss.github.io/#videos)
+
+-----------
 
 # Integrated Test Stand
 

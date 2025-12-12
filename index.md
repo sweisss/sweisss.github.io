@@ -1,3 +1,11 @@
+[Home](https://sweisss.github.io/) &emsp; &emsp;
+[OSU Projects](#oregon-state-university-projects) &emsp; &emsp;
+[Personal Projects](#personal-projects) &emsp; &emsp;
+[Element 1 Projects](#element-1-projects) &emsp; &emsp;
+[Videos](#videos)
+
+---------
+
 # Welcome to Seth's Project Portfolio
 
 This page was originally cobbled together to showcase the 
