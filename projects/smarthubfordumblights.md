@@ -1,6 +1,6 @@
 [Home](https://sweisss.github.io/) &emsp; &emsp;
-[OSU Projects](https://sweisss.github.io/#oregon-state-university-projects) &emsp; &emsp;
 [Personal Projects](https://sweisss.github.io/#personal-projects) &emsp; &emsp;
+[OSU Projects](https://sweisss.github.io/#oregon-state-university-projects) &emsp; &emsp;
 [Element 1 Projects](https://sweisss.github.io/#element-1-projects) &emsp; &emsp;
 [Videos](https://sweisss.github.io/#videos)
 
@@ -163,8 +163,8 @@ the front porch light and try to reproduce those signals in the Node-RED flow
 -----
 
 [Home](https://sweisss.github.io/) &emsp; &emsp;
-[OSU Projects](https://sweisss.github.io/#oregon-state-university-projects) &emsp; &emsp;
 [Personal Projects](https://sweisss.github.io/#personal-projects) &emsp; &emsp;
+[OSU Projects](https://sweisss.github.io/#oregon-state-university-projects) &emsp; &emsp;
 [Element 1 Projects](https://sweisss.github.io/#element-1-projects) &emsp; &emsp;
 [Videos](https://sweisss.github.io/#videos)
 

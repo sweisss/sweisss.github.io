@@ -1,6 +1,6 @@
 [Home](https://sweisss.github.io/) &emsp; &emsp;
-[OSU Projects](#oregon-state-university-projects) &emsp; &emsp;
 [Personal Projects](#personal-projects) &emsp; &emsp;
+[OSU Projects](#oregon-state-university-projects) &emsp; &emsp;
 [Element 1 Projects](#element-1-projects) &emsp; &emsp;
 [Videos](#videos)
 
@@ -216,8 +216,8 @@ Watch it on [YouTube](https://youtu.be/dyawWzhf51A)
 -----
 
 [Home](https://sweisss.github.io/) &emsp; &emsp;
-[OSU Projects](#oregon-state-university-projects) &emsp; &emsp;
 [Personal Projects](#personal-projects) &emsp; &emsp;
+[OSU Projects](#oregon-state-university-projects) &emsp; &emsp;
 [Element 1 Projects](#element-1-projects) &emsp; &emsp;
 [Videos](#videos)
 
