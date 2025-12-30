@@ -130,10 +130,6 @@ To view the Node-RED interface, open the web browser to http://localhost:1880. F
 
 ## Writing the RF Transmit Script
 ### Determining the Correct Signials
-- RF receive Instructables Matplotlib technique
-- Flipper file
-- Flipper RAW file
-
 As mentioned in the [Background](#background) section above, I had already cloned the main RF signals of the remote (on, off, white, red, and blue) using the Flipper Zero. I was able to easily get the files for these cloned signals onto my computer using the [qFlipper app](https://docs.flipper.net/zero/qflipper). The files contain several pieces of information about the signals, but the most important parts are the protocol (e.g. Princeton 24bit), the frequency (**or is it bandwidth??**) (e.g. 433.92 AM), and the "key", which is a hex representation of the signal pattern (confirm this is accurate and get more official terminology). 
 
 The Flipper actually tells you everything you need to reproduce the signal. However, I couldn't find explicit documentation on understanding and reproducing a Flipper Sub-GHz file on the Raspberry Pi, so I used some other techniques and followed some other guides to confirm I had the correct information.
