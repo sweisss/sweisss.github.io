@@ -180,7 +180,7 @@ From here, I started testing it with various MQTT apps for my Android phone. As 
 - Attach the bot to the server
 - Add profile pictures to the bot
 
-### Integrating the Bot to Node-RED and Replacing the MQTT Android App
+### Integrating the Bot to Node-RED
 There are several node libraries that integrate Discord with Node-RED. My RPi seemed to be a bit dated, and while several were searchable from the Node-RED "Manage palette", all but one required me to update my underlying NodeJS version for them to work. I decided to go with the one library that did not require fully updating NodeJS and Node-RED: [node-red-contrib-discord 5.0.0](https://flows.nodered.org/node/node-red-contrib-discord). That library hadn't been updated in nearly 5 years. It is definitely a little buggy, but it serves its purpose for my project and hasn't yet given me enough trouble to force me to try a more recently maintained and updated one. 
 
 The Discord library is fairly simple to use. You just need to create a `discord-token` node with the token you saved when creating your bot and give it a helpful name. This `discord-token` node can be created within (while setting up) a `discordMessage` node or a `discordSendMessage` node, which simply listen for and return messages from the bot or send out payload messages to the bot, respectively.
@@ -191,6 +191,7 @@ The second main section of the Node-RED flow starts by subscribing to the MQTT b
 
 > NOTE TO AUTHOR: Use detail screenshots of these sections of the flow
 
+### Replacing the MQTT Android App
 At this point, the Discord server and bot became my primary means of communication with the RPi, essentially replacing the user-unfriendly MQTT Android apps. Rather than communicating with the broker directly, the Discord nodes communicate with the Discord server via websockets and HTTPS (**NOTE TO AUTHOR: Look into this deeper**). It's best practice to only expose ports that are regularly being used or are essential for the services to run correctly. Therefore it's a good idea to go back to the router interface and close the port exposing the broker to the public-facing Internet (1883). 
 
 Because I am now utilizing the Discord bot as the main communication with the RPi, the MQTT broker could probably be bypassed altogether. This would certainly simplify the Node-RED flow and the overall project. However, I decided to keep the MQTT broker for a couple reasons. First, I still have the idea of possibly making a custom Android app that would utilize MQTT to communicate with the RPi. Second, the bugginess of the Discord node library has given me the attitude that it is nice to be ready with backup methods of communication. If you're using this writeup to influence your own project, weigh these options and make the decision that makes the most sense for your situation. 
