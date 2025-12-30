@@ -176,7 +176,12 @@ From here, I started testing it with various MQTT apps for my Android phone. As 
 
 ## Creating the Discord Bot
 ### Replacing MQTT Android App with Discord
-Remove port forwarding
+- Remove port forwarding
+- Could probably bypass MQTT altogether and exclusively communicate via Discord and Node-RED
+  - This would make the program less complicated
+- I prefer to keep MQTT because:
+  - I still like the idea of making a custom Android app in the future that communicates via mqtt
+  - The Node-RED library of Discord nodes I used seem to be a little buggy. They haven't been maintained in several years. If they go out, the schedule still works because it's sending commands via mqtt. Again, this isn't necessary, it could just send the commands directly from the Node-RED flow, but it's nice to have a backup (MQTT Explorer, etc.). 
 
 ## Polishing and Final Touches
 ### Incorporating the Discord Bot
