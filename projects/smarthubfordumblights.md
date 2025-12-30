@@ -170,6 +170,9 @@ With the python script successfully transmitting the RF signals to the lights, a
 
 ## Building the Node-RED Flow and Incorporating the RF TX Script
 ### Confirming MQTT Connections with MQTT Explorer and Android App
+The first step I took to incorporate my python script into the Node-RED flow was to call it from a simple `exec` node and activate that node from a simple `inject` node. After confirming that the lights would respond correctly to the signals triggered through Node-RED, I then hooked it up to the `mqtt in` node described earlier. I added some string parsing and error checking to make sure it would only call the `exec` node with valid arguments, and then tested it by sending the commands through the MQTT Explorer app on my desktop. 
+
+From here, I started testing it with various MQTT apps for my Android phone. As mentioned earlier, the end goal of this project is to control the lights from anywhere with an Internet connection (i.e. mobile data connectivity). Also as mentioned earlier, I did not like any of the MQTT apps available for Android devices that I found. I thought about making my own custom Android app, and I still might eventually do that. However, I realized it would be much quicker and easier to set up a private Discord server and make a Discord bot that could relay commands and the status of the lights. This turned out to be a very fun part of the project. 
 
 ## Creating the Discord Bot
 ### Replacing MQTT Android App with Discord
