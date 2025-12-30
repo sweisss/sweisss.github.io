@@ -18,6 +18,8 @@ If you wish to follow this as a tutorial, please note that it is not written
 as a set of prescribed steps that must be strictly followed. Feel free to take
 any or all sections as inspiration and adapt them to your own project.
 
+The GitHub repository for the project is located [here](https://github.com/sweisss/rpi-smart-hub).
+
 ### Contents
 - [Background](#background)
 - [Setting Up the MQTT Broker](#setting-up-the-mqtt-broker)
@@ -152,6 +154,7 @@ However, for the purpose of this project, these were just a ways to confirm that
 Once I was confident about the signal I needed to send, I then swapped out the RX hardware for the TX hardware and wired it up to the Pi. I actually got hung up on this part of the project for quite a while. Looking back, this was definitely the crux of the whole project for me. 
 
 > NOTE TO AUTHOR: Describe how the hardware is wired to the Pi. Find a good picture of the pinout.
+> Also use pictures of the final setup.
 
 ### Confirming the Script Works
 Getting the timing right for the signal lengths (short vs. long in ms) proved to be pretty tricky. However, after some trial and error and a little help from some AI to analyze my flipper files and my working python script, I landed on a python library to do the heavy lifting of the RF transmission. The library is `rpi_rf`. If I recall correctly, this library was pre-installed on my RPi. If it's not on yours, you can install it with `pip install rpi-rf`. Notice the dash (`-`) in the pip install command as opposed to the underscore (`_`) that should be used in the import statement (`from rpi_rf import RFDevice`). Documentation for this library can be found on [pypi](https://pypi.org/project/rpi-rf/) and [GitHub](https://github.com/milaq/rpi-rf).
@@ -170,9 +173,14 @@ With the python script successfully transmitting the RF signals to the lights, a
 ### Replacing MQTT Android App with Discord
 Remove port forwarding
 
-## Expanding the Node-RED Flow
+## Polishing and Final Touches
 ### Incorporating the Discord Bot
 ### Building the Schedule
+### Adding the Nightlight
+  - Attempt at IR transmission
+      - Issues (failure to transmit, line of sight)
+  - RF USB switch and USB LED workaround
+### Setting a static IP in the router interface
 
 ## Future Expansion
 ### Add Self-Hosted DNS
@@ -180,7 +188,6 @@ So the MQTT broker doesn't get reasigned a new IP address
 late at night when you are trying to go to sleep...
 ### Strengthen the RF Signal
 So the RPi isn't as limited on possible locations 
-### Add in IR Remote for Night Light
 ### Add Ceiling Fan Control
 ### Add Front Porch Light Control
 Use Wireshark to analyze and decode the signals that the smart switch uses to control
