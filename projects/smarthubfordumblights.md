@@ -185,12 +185,16 @@ From here, I started testing it with various MQTT apps for my Android phone. As 
 
 ## Polishing and Final Touches
 ### Incorporating the Discord Bot
+- Utilizing environment variables
 ### Building the Schedule
+- Turning the lights on a sunset
+- Set a backup fixed time in case of loss of Internet
+### Setting a static IP in the router interface
 ### Adding the Nightlight
   - Attempt at IR transmission
       - Issues (failure to transmit, line of sight)
   - RF USB switch and USB LED workaround
-### Setting a static IP in the router interface
+### Fine tuning string parsing and error messages
 
 ## Future Expansion
 ### Add Self-Hosted DNS
