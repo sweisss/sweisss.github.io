@@ -154,10 +154,16 @@ If you're interested in diving deeper into the analysis of the RF signal, by all
 However, for the purpose of this project, these were just a ways to confirm that the hex value from the "key" of the Flipper file was actually the signal that I would need to transmit to the lights. 
 
 Once I was confident about the signal I needed to send, I then swapped out the RX hardware for the TX hardware and wired it up to the Pi. I actually got hung up on this part of the project for quite a while. Looking back, this was definitely the crux of the whole project for me. 
-...
+
+> NOTE TO AUTHOR: Describe how the hardware is wired to the Pi. Find a good picture of the pinout.
 
 ### Confirming the Script Works
-- Using Flipper to capture signal
+Getting the timing right for the signal lengths (short vs. long in ms) proved to be pretty tricky. However, after some trial and error and a little help from some AI to analyze my flipper files and my working python script, I landed on a python library to do the heavy lifting of the RF transmission. The library is `rpi_rf`. If I recall correctly, this library was pre-installed on my RPi. If it's not on yours, you can install it with `pip install rpi-rf`. Notice the dash (`-`) in the pip install command as opposed to the underscore (`_`) that should be used in the import statement (`from rpi_rf import RFDevice`). Documentation for this library can be found on [pypi](https://pypi.org/project/rpi-rf/) and [GitHub](https://github.com/milaq/rpi-rf).
+
+To test that I was sending the correct signal, I set up my Flipper Zero to listen for RF signals next to my RPi transmitter. After working out the bugs in my script the Flipper sounded the alert that it had captured a signal. I checked the hex value of it and it matched the one I sent from the python script! Since the lights did not turn on when I successfully captured this signal, I assumed the transmitter was not powerful enough to reach the RF receiver on the patio lights. Maybe it was my poor soldering skills, or maybe it was my lack of knowledge, but every time I tried to solder an antenna to a transmitter to extend the range I seemed to fry it. I then found a workaround by finding a spot in my bedroom that was close enough to the patio lights receiver for the RF signal to reach it, yet close enough to the wall of my home office so that I could reach the Pi from the keyboard and monitor in my office via a bluetooth connection (this makes it much easier to work on, since my bedroom isn't really set up with a desirable space for computer work).
+> Pro Tip: I found a bluetooth [keyboard with built-in touchpad](https://www.amazon.com/Bnnwa-Multi-Device-Bluetooth-Touchpad-Wireless-Multi-Touch/dp/B0D5CR6Y47) to control the Pi. I also got a wireless [HDMI transmitter/receiver](https://www.amazon.com/Wireless-Transmitter-Receiver-Portable-Streaming/dp/B0DBPTCQDC/?th=1) and an [HDMI switch](https://www.amazon.com/Anker-Bi-Directional-Switcher-Compatible-Projector/dp/B0CJT6JBM8/?th=1) to alternate my 2nd monitor between the Pi and my desktop in my home office. Those products aren't the only ones out there, and you may be able to find better deals, but those are the ones I ended up getting. 
+
+With the python script successfully transmitting the RF signals to the lights, and my work station connected to the Pi from the other room, it was now time to return to Node-RED and start putting it all together. 
 
 ## Building the Node-RED Flow and Incorporating the RF TX Script
 ### Confirming MQTT Connections with MQTT Explorer and Android App
