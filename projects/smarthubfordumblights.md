@@ -175,12 +175,51 @@ The first step I took to incorporate my python script into the Node-RED flow was
 From here, I started testing it with various MQTT apps for my Android phone. As mentioned earlier, the end goal of this project is to control the lights from anywhere with an Internet connection (i.e. mobile data connectivity). Also as mentioned earlier, I did not like any of the MQTT apps available for Android devices that I found. I thought about making my own custom Android app, and I still might eventually do that. However, I realized it would be much quicker and easier to set up a private Discord server and make a Discord bot that could relay commands and the status of the lights. This turned out to be a very fun part of the project. 
 
 ## Creating the Discord Bot
-- Create the private server
-- Create the bot
-- Attach the bot to the server
-- Add profile pictures to the bot
+### Create a Dedicated Server
+Creating a personal Discord server is very straightforward. If you haven't done so yet, all you need to do is simply click on the circle icon with the plus (+) in it at the bottom of the list of your server icons.
 
-### Integrating the Bot to Node-RED
+![Add a Discord Server](images/rpilights/add_discord_server.png)
+
+After you click on it, a menu will pop up with the option to "Create My Own" and after a few more clicks you'll have your own server. Add an icon image for your server so it stands out in the list, and a channel for each device that you want to control to keep things organized (if you want to organize it like I did, it's completely up to you). 
+
+### Create the Bot
+With my dedicated Discord server up an running, I then began to set up the bot. This can be done from the developers section of the Discord website. The helpful docs page can be found [here](https://discord.com/developers/docs/intro). The [Applications](https://discord.com/developers/applications) page can be reached at the top of the left-hand navigation menu. You will need to log in with your Discord account credentials to reach this portion of the website. 
+
+Once logged in on the Applications page, click on the blue "New Application" button on the upper-right. You will be prompted to give the app a name. I chose "RPi Messenger" since this app would essentially serve as a messenger between my phone (or computer) and the Raspberry Pi. After agreeing to the Terms of Service and confirming that you're a human, the "General Information" screen for the app will be displayed. Use the navigation menu on the left to move to the "Bot" page under the Settings section.
+
+![Discord Bot Settings Menu](images/rpilights/discord_bot_settings_menu.png)
+
+Give the app an icon image so it stands out, and a banner for a nice touch. I gave it the same one that I gave my server: a fun image of a finger with a happy face drawn on it and wearing a raspberry as a hat. 
+
+![RPi Messenger Icon and Banner](images/rpilights/rpi_messenger_icon_banner.png)
+
+Beneath this area will be an entry box to update the bot's Username. I kept it the same as the Application name (the default setting). The next item on the settings menu is the "Token". If you see the token value and a blue "Copy" button, click copy and immediately save it somewhere safe. It will only be shown once and you will need to reset it if you lose it. If it's already hidden and you only see the blue "Reset Token" button, go ahead and reset it. You will need to enter your password in order to reset it. I had to reset it a couple times. It's a bit of friction, but overall inconsequential if the bot is still new and nothing else depends on the token yet. Below is an example of the token from a throwaway test bot I made.
+
+![Discord Bot Example Token](images/rpilights/discord_bot_example_token.png)
+
+To make things easy, I kept "Public Bot" checked and "Requires OAuth2 Code Grant" unchecked considering I don't intent to invite anyone else to the dedicated server this bot is on and don't intend to invite the bot to any other servers. 
+
+![Discord Bot Public and OAuth Check Boxes](images/rpilights/discord_bot_public_oauth_settings.png)
+
+In the "Privileged Gateway Intents" section, make sure that "Server Members Intent" and "Message Content Intent" are checked. These are necessary for the bot to receive the content of messages sent in the server channels. 
+
+![Discord Bot Intents](images/rpilights/discord_bot_intents.png)
+
+Make sure to save any changes. 
+
+### Attach the Bot to the Server
+The final step in setting up the bot is to invite it to the dedicated Discord server. To do this, move from the "Bot" page up to the "OAuth2" page of the left-hand navigation menu and scroll down to the "OAuth2 URL Generator" section. Under "Scopes" check to box for "bot". 
+
+![Discord Bot Scopes Section](images/rpilights/discord_bot_scopes.png)
+
+After selecting the "bot" checkbox, a new section will appear named "Bot Permissions". 
+To allow the bot to send and receive messages back and forth between Node-RED and Discord, I selected "View Channels", "Send Messages", and "Read Message History". If you want your bot to have additional abilities, check the appropriate permissions boxes in this section.
+
+![Discord Bot Permissions](images/rpilights/discord_bot_permissions.png)
+
+At the bottom of the page will be a Generated URL. Copy this and enter it into a new tab in your web browser. It will display a few more confirmation screens to authorize the bot. Once authorized, the bot will be added to the server!
+
+## Integrating the Bot to Node-RED
 There are several node libraries that integrate Discord with Node-RED. My RPi seemed to be a bit dated, and while several were searchable from the Node-RED "Manage palette", all but one required me to update my underlying NodeJS version for them to work. I decided to go with the one library that did not require fully updating NodeJS and Node-RED: [node-red-contrib-discord 5.0.0](https://flows.nodered.org/node/node-red-contrib-discord). That library hadn't been updated in nearly 5 years. It is definitely a little buggy, but it serves its purpose for my project and hasn't yet given me enough trouble to force me to try a more recently maintained and updated one. 
 
 The Discord library is fairly simple to use. You just need to create a `discord-token` node with the token you saved when creating your bot and give it a helpful name. This `discord-token` node can be created within (while setting up) a `discordMessage` node or a `discordSendMessage` node, which simply listen for and return messages from the bot or send out payload messages to the bot, respectively.
