@@ -238,17 +238,37 @@ At this point, the Discord server and bot became my primary means of communicati
 Because I am now utilizing the Discord bot as the main communication with the RPi, the MQTT broker could probably be bypassed altogether. This would certainly simplify the Node-RED flow and the overall project. However, I decided to keep the MQTT broker for a couple reasons. First, I still have the idea of possibly making a custom Android app that would utilize MQTT to communicate with the RPi. Second, the bugginess of the Discord node library has given me the attitude that it is nice to be ready with backup methods of communication. If you're using this writeup to influence your own project, weigh these options and make the decision that makes the most sense for your situation. 
 
 ## Polishing and Final Touches
-### Incorporating the Discord Bot
-- Utilizing environment variables
-### Building the Schedule
-- Turning the lights on a sunset
-- Set a backup fixed time in case of loss of Internet
-### Setting a static IP in the router interface
-### Adding the Nightlight
-  - Attempt at IR transmission
-      - Issues (failure to transmit, line of sight)
-  - RF USB switch and USB LED workaround
-### Fine tuning string parsing and error messages
+### Utilizing Environment Variables
+Because the Discord node requires the bot's token to be saved, it's good practice to save the token as an environment variable and reference this variable to configure the node. This ensures that the token is not accidentally included in the JavaScript code of the flow and won't be accidentally distributed to GitHub or any other repository where the flow code may end up. However, anyone with direct access to the Node-RED interface of your system can read the environment variable with a simple `Debug` print node. Keep this in mind if you plan to expose the port that your Node-RED service is running on. 
+
+To set up an environment variable... ... ...
+- Save the environment variable in ____
+- Reference the environment variable in ____ using the `${VARIABLENAME}` syntax
+
+### Building a Schedule
+I quickly wanted the lights to do more than simply turn on or off on command. I thought it would be great if I could also set up a schedule like my front porch light (which is controlled by a commercial IoT smart switch). The switch that controls my front porch light, however, has the limitation that I need to change the "on" time every few days during shoulder seasons when the sunset time is rapidly changing. After a few weeks of updating my "on" time for the front porch and now patio lights in Node-RED, I decided it would be a much better idea to set it based off of the sunset time for that day. I did this with the `HTTP request` node.
+
+Every day at 1:00 am, the flow sends a request to [timeanddate.com](https://www.timeanddate.com/). You can find a list of U.S. cities [here](https://www.timeanddate.com/astronomy/usa). I chose the page for my specific city to send the HTTP request to. After the HTTP request, I have a node to check for a `200` response code. Any code other than a `200` will result in setting the "on" time for "4:30" pm (at least for the Winter). If the HTTP request does return `200`, the data gets passed through a few more nodes to parse the response and get the shceduled time of sunset. From there, the flow calculates and sets a delay based on the current time (1:00 am) and the sunset time. Once the delay has completed, the flow continues with sending the "on" command to the MQTT broker. 
+
+### Setting a Static IP in the Router Interface
+A few months after getting the Discord bot and schedule working, I ran into an issue where the Raspberry Pi was assigned a new IP on my home network. I looked into setting up a self-hosted DNS server to prevent this issue, but a much quicker and easier workaround was to simply register the IP as static in my home router's interface. 
+> NOTE TO AUTHOR: Insert screenshot here
+
+### Adding a Nightlight
+Part of the reason I originally wanted to use my Raspberry Pi and create a smart hub rather than simply trying to use a Wi-Fi smart switch plugged direcly into the patio lights was so that I could expand it to other devices. The next device I wanted to include in the system was a little [IR controlled orb](https://www.amazon.com/Cordless-Changing-Remote-Rechargeable-Bedside/dp/B0BVYHQ64S) that I had left over from a Halloween costume and had been using as a nightlight. The "on" and "off" signals of this nightlight were some of the first that I captured on my Flipper Zero, so moving these files over to the Pi was no issue. However, I ran into some issues with transmitting the signal from the Pi. I also found it difficult to find a location for the Pi and its attached breadboard that could reach the RF receiver of the patio lights, be close enough to my home office for the wireless HDMI transmitters to communicate, and maintain a clear line of sight to the orb nightlight. I ended up solving this issue by replacing the IR controlled light with a small [USB LED](https://www.amazon.com/Febrytold-Interior-Atmosphere-Universal-Decoration/dp/B089K6WJ5J/ref=sr_1_6?sr=8-6) that I plugged into an [RF controlled USB switch](https://www.amazon.com/URANT-Wireless-Frequency-Transmitter-Receiver/dp/B0F2HP1D8L/ref=sr_1_4). As a bonus, this USB LED and switch take up much less space on my night stand and keep the clutter down.
+
+It was a very simple and straightforward process of capturing the RF signals for the switch with the Flipper Zero and adding the hex codes from them to the list of options in the python script on the Pi. I then added in a second channel in the Discord server for the `#nightlight` and added a new branch to the Node-RED flow. I now can control each light through its own respective channel on the Discord server. 
+
+### Adding Helpful Error Messages
+As the number of commands and devices expanded, I found it helpful to write some help messages that the Discord bot could return if an incorrect command was sent to a device. I thought it would look good for the bot to respond to an invalid command with a CLI inspired help message. Writing this help message turned out to be a bit tedious. I wrote the message as a [JSONata](https://jsonata.org/) expression and needed to add a `\n` any time I wanted a newline in the message. After some trial and error, it looked good enough to ship. I alo decided it would be a nice touch to repeat the invalid command in the help message. 
+> NOTE TO AUTHOR: Insert screenshot here
+
+## Results
+The most up-to-date python code and Node-RED flow can be found on [this GitHub repository](https://github.com/sweisss/rpi-smart-hub/tree/main). 
+
+Here is an image of the current Node-RED flow. Part of what makes Node-RED so great is that you can visually follow the logic and understand how the program works. 
+
+![flows.png](https://github.com/sweisss/rpi-smart-hub/blob/main/PatioLightsFlow_11-11-25.png)
 
 ## Future Expansion
 ### Add Self-Hosted DNS
