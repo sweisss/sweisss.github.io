@@ -31,7 +31,7 @@ The GitHub repository for the project is located [here](https://github.com/sweis
 > **NOTE:** This is a work in progress. Check back occasionally for updates. 
 > #### Document Development status
 > - [x] Outline
-> - [ ] ***Rough Draft***
+> - [x] ***Rough Draft***
 > - [ ] 2nd Draft
 > - [ ] Final Draft 
 
@@ -272,15 +272,23 @@ Here is an image of the current Node-RED flow. Part of what makes Node-RED so gr
 
 ## Future Expansion
 ### Add Self-Hosted DNS
-So the MQTT broker doesn't get reasigned a new IP address
-late at night when you are trying to go to sleep...
+As mentioned earlier, I considered self-hosting a DNS server to prevent the RPi from being assigned a new IP at inconveneint times. Assigning a static IP through the router interface provided a much easier solution. However, making a self-hosted DNS server is a great project and learning experience and is therefore still on my list of future expansions. 
+
 ### Strengthen the RF Signal
-So the RPi isn't as limited on possible locations 
+Either from my lack of soldering skills or from my misunderstanding of how the RF transmitter chips work, every time I tried to attach an antenna to the chip I seemed to fry it and it would not send out the RF signal. Improving the strength of the signal would greatly increase the possible locations where I can store the device. The main concern right now is that it is fully accessible by my cats...
+
+### Get a Proper Housing for the Components
+The RPi was gifted to me with a nice little plastic housing which keeps things clean and protects the internals. I currently do not have any such housing for the breadboard with the RF transmitter. Figuring out a secure housing for these componenets would prevent the risk of falling behind cabinets or being experimented with by cats. 
+
 ### Add Ceiling Fan Control
+My ceiling fan is also controlled with an RF remote. Unfortunately, the frequency this remote works on is not in a range that is legal for civilian use. I cannot even emulate the signal on the Flipper Zero because I have the stock firmware on it. I would like to find an RF transmitter that can send this frequency and include it in the project. 
+> NOTE TO AUTHOR: WHhat is the frequency?
+
 ### Add Front Porch Light Control
-Use Wireshark to analyze and decode the signals that the smart switch uses to control
-the front porch light and try to reproduce those signals in the Node-RED flow
+Including control of the front porch light is currently one of the more interesting expansions for this project and is likely the next one I will tackle (other than maybe cat-proofing the hardware). The light is controlled by a switch that is powered by [eWeLink](https://ewelink.cc/). There are some Node-RED libraries out there for eWeLink devices. However, they all appear to be out of date and the protocol that eWeLink uses appears to have changed. Another option is somehow integrating the Pi or the Discrod bot with Home Assistant. A third option that I am very intrigued by is setting up a device to act as a proxy or a MitM and capture the data entering and exiting the smart switch. Once the protocol is understood and the data has been captured, it should then be possible (hopefully) to replectate the signals from the Pi. I really like this idea because it combines several interests of mine, including DIY, IoT, reverse engineering, and security.  
+
 ### Build an Android App
+As mentioned at the beginning of this writeup, having a custom Android app to send the MQTT signals is completely feasable and is probably good practice for my mobile development skills. However, the Discord bot works well enough that this future expansion is at the end of the list. 
 
 -----
 
