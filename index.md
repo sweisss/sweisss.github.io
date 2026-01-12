@@ -31,7 +31,7 @@ It has since been turned into a portfolio showcasing tech and computer science r
 
 
 ## Personal Projects
-Projects that are unrelated to but utilize the knowledge and experience gained from a CS degreen at OSU-Cascades.
+Projects that are unrelated to but utilize the knowledge and experience gained from a CS degree at OSU-Cascades.
 
 ### Raspberry Pi Patio Lights
 A project that uses a Raspberry Pi as a smart hub for "dumb" lights that can be controlled with a radio frequency remote.
