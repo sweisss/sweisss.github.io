@@ -14,8 +14,6 @@ Capstone Project for Oregon State University -- Cascades, Spring 2024.
 
 It has since been turned into a portfolio showcasing tech and computer science related projects.
 
-This page is actively under construction. Check back frequently for updates...
-
 ### Links
 🐙 - [GitHub](https://github.com/sweisss) 
 <br>
