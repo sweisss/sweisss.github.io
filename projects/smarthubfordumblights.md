@@ -25,14 +25,17 @@ The GitHub repository for the project is located [here](https://github.com/sweis
 - [Setting Up the MQTT Broker](#setting-up-the-mqtt-broker)
 - [Setting Up Node-RED](#setting-up-node-red)
 - [Writing the RF Transmit Script](#writing-the-rf-transmit-script)
-- [Incorporating It All in Node-RED](#building-the-node-red-flow-and-incorporating-the-rf-tx-script)
-- [Adding a Discord Bot](#creating-the-discord-bot)
+- [Putting It All Together](#putting-it-all-together)
+  - [Adding a Discord Bot](#creating-the-discord-bot)
+- [Polishing and Final Touches](#polishing-and-final-touches)
+- [Results](#results)
+- [Future Expansion](#future-expansion)
 
 > **NOTE:** This is a work in progress. Check back occasionally for updates. 
 > #### Document Development status
 > - [x] Outline
-> - [x] ***Rough Draft***
-> - [ ] 2nd Draft
+> - [x] Rough Draft
+> - [ ] ***2nd Draft***
 > - [ ] Final Draft 
 
 ## Background
@@ -168,7 +171,7 @@ The most up-to-date version of the script can be found [here](https://github.com
 
 With the python script successfully transmitting the RF signals to the lights, and my work station connected to the Pi from the other room, it was now time to return to Node-RED and start putting it all together. 
 
-## Building the Node-RED Flow and Incorporating the RF TX Script
+## Putting It All Together
 ### Confirming MQTT Connections with MQTT Explorer and Android App
 The first step I took to incorporate my python script into the Node-RED flow was to call it from a simple `exec` node and activate that node from a simple `inject` node. After confirming that the lights would respond correctly to the signals triggered through Node-RED, I then hooked it up to the `mqtt in` node described earlier. I added some string parsing and error checking to make sure it would only call the `exec` node with valid arguments, and then tested it by sending the commands through the MQTT Explorer app on my desktop. 
 
