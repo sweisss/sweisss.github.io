@@ -266,35 +266,35 @@ It was a very simple and straightforward process of capturing the RF signals for
 As the number of commands and devices expanded, I found it helpful to write some help messages that the Discord bot could return if an incorrect command was sent to a device. I thought it would look good for the bot to respond to an invalid command with a CLI inspired help message. Writing this help message turned out to be a bit tedious. I wrote the message as a [JSONata](https://jsonata.org/) expression and needed to add a `\n` any time I wanted a newline in the message. After some trial and error, it looked good enough to ship. I alo decided it would be a nice touch to repeat the invalid command in the help message. 
 > NOTE TO AUTHOR: Insert screenshot here
 
+### Adding Nightlight "On" to the Schedule
+Like many people, I often have trouble waking up and getting out of bed in the morning. Turning on the lights definitely helps with this, especially when my first few alarms are set to times before sunrise. I decided to add a daily "on" command for the nightlight at the time of my first alarm to help initiate the waking up process and to try to prevent me from going back to sleep. 
+
 ## Results
 The most up-to-date python code and Node-RED flow can be found on [this GitHub repository](https://github.com/sweisss/rpi-smart-hub/tree/main). 
 
 Here is an image of the current Node-RED flow. Part of what makes Node-RED so great is that you can visually follow the logic and understand how the program works. 
 
-![flows.png](https://github.com/sweisss/rpi-smart-hub/blob/main/PatioLightsFlow_11-11-25.png)
+![flows.png](images/rpilights/flow.png)
 
 ## Future Expansion
 ### Add Self-Hosted DNS
-As mentioned earlier, I considered self-hosting a DNS server to prevent the RPi from being assigned a new IP at inconveneint times. Assigning a static IP through the router interface provided a much easier solution. However, making a self-hosted DNS server is a great project and learning experience and is therefore still on my list of future expansions. 
+As mentioned earlier, I considered self-hosting a DNS server to prevent the RPi from being assigned a new IP at inconvenient times. Assigning a static IP through the router interface provided a much easier solution. However, making a self-hosted DNS server is a great project and learning experience and is therefore still on my list of future expansions. 
 
 ### Strengthen the RF Signal
 Either from my lack of soldering skills or from my misunderstanding of how the RF transmitter chips work, every time I tried to attach an antenna to the chip I seemed to fry it and it would not send out the RF signal. Improving the strength of the signal would greatly increase the possible locations where I can store the device. The main concern right now is that it is fully accessible by my cats...
 
 ### Get a Proper Housing for the Components
-The RPi was gifted to me with a nice little plastic housing which keeps things clean and protects the internals. I currently do not have any such housing for the breadboard with the RF transmitter. Figuring out a secure housing for these componenets would prevent the risk of falling behind cabinets or being experimented with by cats. 
+The RPi was gifted to me with a nice little plastic housing which keeps things clean and protects the internals. I currently do not have any such housing for the breadboard with the RF transmitter. Figuring out a secure housing for these components would prevent the risk of falling behind cabinets or being experimented with by cats. 
 
 ### Add Ceiling Fan Control
-My ceiling fan is also controlled with an RF remote. Unfortunately, the frequency this remote works on is not in a range that is legal for civilian use. I cannot even emulate the signal on the Flipper Zero because I have the stock firmware on it. I would like to find an RF transmitter that can send this frequency and include it in the project. 
+My ceiling fan is also controlled with an RF remote. Unfortunately, the frequency this remote works on is not in a range that is legal for civilian use. Even though I've captured it, I cannot emulate the signal on the Flipper Zero because I have the stock firmware on it. I would like to find an RF transmitter that can send this frequency and include it in the project. This would not only allow me to control the light and fan speed from other rooms, but I would also then be able to enhance my "lights on" morning alarm. 
 > NOTE TO AUTHOR: WHhat is the frequency?
 
 ### Add Front Porch Light Control
-Including control of the front porch light is currently one of the more interesting expansions for this project and is likely the next one I will tackle (other than maybe cat-proofing the hardware). The light is controlled by a switch that is powered by [eWeLink](https://ewelink.cc/). There are some Node-RED libraries out there for eWeLink devices. However, they all appear to be out of date and the protocol that eWeLink uses appears to have changed. Another option is somehow integrating the Pi or the Discrod bot with Home Assistant. A third option that I am very intrigued by is setting up a device to act as a proxy or a MitM and capture the data entering and exiting the smart switch. Once the protocol is understood and the data has been captured, it should then be possible (hopefully) to replectate the signals from the Pi. I really like this idea because it combines several interests of mine, including DIY, IoT, reverse engineering, and security. 
-
-### Add Nightlight "On" to the Schedule
-Like many people, I often have trouble waking up and getting out of bed in the morning. Turning on the lights definitely helps. Ideally, if I am able to connect the ceiling fan controls to the Pi, I could turn its integrated light on in the mornings when my alarm is scheduled to go off. An easier step towards this solution would be to add the nightlight to the schedule, considering I already have on-demand control of the nightlight from the Pi. 
+Including control of the front porch light is currently one of the more interesting expansions for this project and is likely the next one I will tackle (other than maybe cat-proofing the hardware). The light is controlled by a switch that is powered by [eWeLink](https://ewelink.cc/). There are some Node-RED libraries out there for eWeLink devices. However, they all appear to be out of date and the protocol that eWeLink uses appears to have changed. Another option is somehow integrating the Pi or the Discord bot with Home Assistant. A third option that I am very intrigued by is setting up a device to act as a proxy or a MitM and capture the data entering and exiting the smart switch. Once the protocol is understood and the data has been captured, it should then be possible (hopefully) to replicate the signals from the Pi. I really like this idea because it combines several interests of mine, including DIY, IoT, reverse engineering, and security.  
 
 ### Build an Android App
-As mentioned at the beginning of this writeup, having a custom Android app to send the MQTT signals is completely feasable and is probably good practice for my mobile development skills. However, the Discord bot works well enough that this future expansion is at the end of the list. 
+As mentioned at the beginning of this writeup, having a custom Android app to send the MQTT signals is completely feasible and is probably good practice for my mobile development skills. However, the Discord bot works well enough that this future expansion is at the end of the list. 
 
 -----
 
