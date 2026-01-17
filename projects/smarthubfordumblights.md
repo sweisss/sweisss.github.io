@@ -244,9 +244,16 @@ Because I am now utilizing the Discord bot as the main communication with the RP
 ### Utilizing Environment Variables
 Because the Discord node requires the bot's token to be saved, it's good practice to save the token as an environment variable and reference this variable to configure the node. This ensures that the token is not accidentally included in the JavaScript code of the flow and won't be accidentally distributed to GitHub or any other repository where the flow code may end up. However, anyone with direct access to the Node-RED interface of your system can read the environment variable with a simple `Debug` print node. Keep this in mind if you plan to expose the port that your Node-RED service is running on. 
 
-To set up an environment variable... ... ...
-- Save the environment variable in ____
-- Reference the environment variable in ____ using the `${VARIABLENAME}` syntax
+To set up an environment variable, open up _~/.node-red/settings.js_ in your favorite text editor. At the top of the file, add the line:
+```
+process.env.DISCORD_TOKEN = '<token>'
+```
+
+You can replace `DISCORD_TOKEN` with any variable name you'd like.
+
+To reference the environment variable in Node-RED, simply use the syntax `${VARIABLENAME}`, or `${DISCORD_TOKEN}` in this case. 
+
+![Discord environment variable reference](images/rpilights/discord_token_reference.png)
 
 ### Building a Schedule
 I quickly wanted the lights to do more than simply turn on or off on command. I thought it would be great if I could also set up a schedule like my front porch light (which is controlled by a commercial IoT smart switch). The switch that controls my front porch light, however, has the limitation that I need to change the "on" time every few days during shoulder seasons when the sunset time is rapidly changing. After a few weeks of updating my "on" time for the front porch and now patio lights in Node-RED, I decided it would be a much better idea to set it based off of the sunset time for that day. I did this with the `HTTP request` node.
