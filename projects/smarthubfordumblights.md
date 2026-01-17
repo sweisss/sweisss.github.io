@@ -255,6 +255,8 @@ To reference the environment variable in Node-RED, simply use the syntax `${VARI
 
 ![Discord environment variable reference](images/rpilights/discord_token_reference.png)
 
+For more details on using environment variables in Node-RED, see the [official docs](https://nodered.org/docs/user-guide/environment-variables).
+
 ### Building a Schedule
 I quickly wanted the lights to do more than simply turn on or off on command. I thought it would be great if I could also set up a schedule like my front porch light (which is controlled by a commercial IoT smart switch). The switch that controls my front porch light, however, has the limitation that I need to change the "on" time every few days during shoulder seasons when the sunset time is rapidly changing. After a few weeks of updating my "on" time for the front porch and now patio lights in Node-RED, I decided it would be a much better idea to set it based off of the sunset time for that day. I did this with the `HTTP request` node.
 
