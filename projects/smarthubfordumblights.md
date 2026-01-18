@@ -351,7 +351,13 @@ It was a very simple and straightforward process of capturing the RF signals for
 
 ### Adding Helpful Error Messages
 As the number of commands and devices expanded, I found it helpful to write some help messages that the Discord bot could return if an incorrect command was sent to a device. I thought it would look good for the bot to respond to an invalid command with a CLI inspired help message. Writing this help message turned out to be a bit tedious. I wrote the message as a [JSONata](https://jsonata.org/) expression and needed to add a `\n` any time I wanted a newline in the message. After some trial and error, it looked good enough to ship. I alo decided it would be a nice touch to repeat the invalid command in the help message. 
-> NOTE TO AUTHOR: Insert screenshot here
+
+![Discord Bot Error Message](images/rpilights/discord_bot_error_message.png)
+
+After setting up error messages that I felt satisfied with, I decided to take the messages to another level and use a similar technique to allow the bot to confirm a valid command before performing the action and reporting back on the result. A series of nodes to parse the device channel as well as the command gives a nice, personalized look to the responses.
+
+![Discord Bot Confirmation Message](images/rpilights/discord_bot_confirmation_message.png)
+![Discord Bot Confirmation Message2](images/rpilights/discord_bot_confirmation_message_2.png)
 
 ### Adding Nightlight "On" to the Schedule
 Like many people, I often have trouble waking up and getting out of bed in the morning. Turning on the lights definitely helps with this, especially when my first few alarms are set to times before sunrise. I decided to add a daily "on" command for the nightlight at the time of my first alarm to help initiate the waking up process and to try to prevent me from going back to sleep. 
