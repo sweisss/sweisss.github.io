@@ -276,6 +276,7 @@ After replacing an old Vizio soundbar with a Sonos surround system and roaming  
 
 ### Setting a Static IP in the Router Interface
 A few months after getting the Discord bot and schedule working, I ran into an issue where the Raspberry Pi was assigned a new IP address on my home network. I looked into setting up a self-hosted DNS server to prevent this issue, but a much quicker and easier workaround was to simply register the IP as static in my home router's interface. On my router interface, this can be done by selecting "Static Addresses" under the "Connected Devices" section of the left-hand navigation bar. From there, you can click on the button to manually add a static device and enter the appropriate information.
+
 ![Static IP List](images/rpilights/router_static_ip_list_redacted.png)
 ![Add Static Device Popup](images/rpilights/router_mannually_add_static_ip.png)
 
