@@ -70,7 +70,7 @@ Before setting up any authentication, I started with a very simple configuration
 listener 1883 0.0.0.0
 allow_anonymous true
 ```
-There are various ways to test the connections. Personally, I followed [Steve's Guide on setting up a python client using Paho](http://www.steves-internet-guide.com/into-mqtt-python-client/). I set up two clients on a separate device (my laptop): a publisher and a subscriber. If the subscriber was able to read the message sent from the publisher, then I knew that the broker was working. 
+There are various ways to test the connections. Personally, I followed [Steve's Guide on setting up a python client using Paho](http://www.steves-internet-guide.com/into-mqtt-python-client/). I set up two clients on a separate device (my laptop): a publisher and a subscriber. I would know that the broker was working if the subscriber was able to read the message sent from the publisher. 
 
 Another way to test the connections is to use [MQTT Explorer](https://mqtt-explorer.com/). This is a GUI based tool that can subscribe and publish to a broker. It is very helpful in debugging and I used this method after the initial Paho test and throughout the project any time I needed to debug a communication issue.
 
