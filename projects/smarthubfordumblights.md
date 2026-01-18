@@ -63,6 +63,7 @@ A friend then gifted me a Raspberry Pi and I realized that this could be the tic
 - Call the python script from the Node-RED flow based on the MQTT messages.
 
 ## Setting Up the MQTT Broker
+### Initial Setup
 [Eclipse Mosquitto](https://mosquitto.org/) is an open source message broker using the MQTT protocol. I decided to make this the core of communication for the lights. To get Mosquitto installed on the Raspberry Pi, I followed [this guide](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/). It is a very straightforward and helpful walkthrough on how to get Mosquitto installed on the Pi, how to set it up so that the broker starts running automatically when the Pi boots up, and how to set up authentication for connecting to the broker. 
 
 Before setting up any authentication, I started with a very simple configuration so I could be sure that all connections worked properly. My initial `mosquitto.conf` file was essentially just the following:
