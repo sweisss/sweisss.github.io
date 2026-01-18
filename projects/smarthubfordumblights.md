@@ -240,6 +240,47 @@ At this point, the Discord server and bot became my primary means of communicati
 
 Because I am now utilizing the Discord bot as the main communication with the RPi, the MQTT broker could probably be bypassed altogether. This would certainly simplify the Node-RED flow and the overall project. However, I decided to keep the MQTT broker for a couple reasons. First, I still have the idea of possibly making a custom Android app that would utilize MQTT to communicate with the RPi. Second, the bugginess of the Discord node library has given me the attitude that it is nice to be ready with backup methods of communication. If you're using this writeup to influence your own project, weigh these options and make the decision that makes the most sense for your situation. 
 
+## Addressing Stability Issues
+Several issues caused the RPi to periodically lose connectivity. Through hours of troubleshooting, I ended up with the following solutions. 
+
+### Disable Wi-Fi Power Management
+```
+# Check Wi-Fi power saving (if using Wi-Fi)
+iwconfig wlan0  # Look for "Power Management:on"
+
+# Disable Wi-Fi power management
+sudo iwconfig wlan0 power off
+```
+Create a system service:
+```
+# Create a systemd service
+sudo nano /etc/systemd/system/disable-wifi-powersave.service
+```
+Add:
+```
+[Unit]
+Description=Disable Wi-Fi power management
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/iwconfig wlan0 power off
+
+[Install]
+WantedBy=multi-user.target
+```
+> NOTE TO AUTHOR: Confirm on the Pi that this was actually the solution that was implemented. 
+
+### Use a Wi-Fi Antenna to Avoid Interference
+After replacing an old Vizio soundbar with a Sonos surround system and roaming  speaker, I noticed that I was starting to have connection issues with the Pi again. It seemed that it would lose connection when all the Sonos speakers were active, but if I turned one off, the Pi would be reachable again. After a bit of research, I determined this issue to be the result of a crowded network. To solve this, I ordered a [Wi-Fi antenna](https://www.brostrend.com/products/ac5l) so that the Pi could join my 5G network which is much less crowded as most of my devices in my house (Sonos speakers included) only have the ability to join the 2.4GHz network. There are many Wi-Fi antennas out there. At the time of solving the issue, [this one](https://www.brostrend.com/products/ac5l) made the most sense. At the time of writing, there are many better deals out there. 
+
+### Setting a Static IP in the Router Interface
+A few months after getting the Discord bot and schedule working, I ran into an issue where the Raspberry Pi was assigned a new IP on my home network. I looked into setting up a self-hosted DNS server to prevent this issue, but a much quicker and easier workaround was to simply register the IP as static in my home router's interface. 
+> NOTE TO AUTHOR: Insert screenshot here
+
+### Configure a Static Fallback
+The static IP reservation in your router doesn't prevent lease expiration - it just ensures the Pi always gets the same IP when it successfully requests one.
+
 ## Polishing and Final Touches
 ### Utilizing Environment Variables
 Because the Discord node requires the bot's token to be saved, it's good practice to save the token as an environment variable and reference this variable to configure the node. This ensures that the token is not accidentally included in the JavaScript code of the flow and won't be accidentally distributed to GitHub or any other repository where the flow code may end up. However, anyone with direct access to the Node-RED interface of your system can read the environment variable with a simple `Debug` print node. Keep this in mind if you plan to expose the port that your Node-RED service is running on. 
@@ -261,10 +302,6 @@ For more details on using environment variables in Node-RED, see the [official d
 I quickly wanted the lights to do more than simply turn on or off on command. I thought it would be great if I could also set up a schedule like my front porch light (which is controlled by a commercial IoT smart switch). The switch that controls my front porch light, however, has the limitation that I need to change the "on" time every few days during shoulder seasons when the sunset time is rapidly changing. After a few weeks of updating my "on" time for the front porch and now patio lights in Node-RED, I decided it would be a much better idea to set it based off of the sunset time for that day. I did this with the `HTTP request` node.
 
 Every day at 1:00 am, the flow sends a request to [timeanddate.com](https://www.timeanddate.com/). You can find a list of U.S. cities [here](https://www.timeanddate.com/astronomy/usa). I chose the page for my specific city to send the HTTP request to. After the HTTP request, I have a node to check for a `200` response code. Any code other than a `200` will result in setting the "on" time for "4:30" pm (at least for the Winter). If the HTTP request does return `200`, the data gets passed through a few more nodes to parse the response and get the scheduled time of sunset. From there, the flow calculates and sets a delay based on the current time (1:00 am) and the sunset time. Once the delay has completed, the flow continues with sending the "on" command to the MQTT broker. 
-
-### Setting a Static IP in the Router Interface
-A few months after getting the Discord bot and schedule working, I ran into an issue where the Raspberry Pi was assigned a new IP on my home network. I looked into setting up a self-hosted DNS server to prevent this issue, but a much quicker and easier workaround was to simply register the IP as static in my home router's interface. 
-> NOTE TO AUTHOR: Insert screenshot here
 
 ### Adding a Nightlight
 Part of the reason I originally wanted to use my Raspberry Pi and create a smart hub rather than simply trying to use a Wi-Fi smart switch plugged direcly into the patio lights was so that I could expand it to other devices. The next device I wanted to include in the system was a little [IR controlled orb](https://www.amazon.com/Cordless-Changing-Remote-Rechargeable-Bedside/dp/B0BVYHQ64S) that I had left over from a Halloween costume and had been using as a nightlight. The "on" and "off" signals of this nightlight were some of the first that I captured on my Flipper Zero, so moving these files over to the Pi was no issue. However, I ran into some issues with transmitting the signal from the Pi. I also found it difficult to find a location for the Pi and its attached breadboard that could reach the RF receiver of the patio lights, be close enough to my home office for the wireless HDMI transmitters to communicate, and maintain a clear line of sight to the orb nightlight. I ended up solving this issue by replacing the IR controlled light with a small [USB LED](https://www.amazon.com/Febrytold-Interior-Atmosphere-Universal-Decoration/dp/B089K6WJ5J/ref=sr_1_6?sr=8-6) that I plugged into an [RF controlled USB switch](https://www.amazon.com/URANT-Wireless-Frequency-Transmitter-Receiver/dp/B0F2HP1D8L/ref=sr_1_4). As a bonus, this USB LED and switch take up much less space on my night stand and keep the clutter down.
