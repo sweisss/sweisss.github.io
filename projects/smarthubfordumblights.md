@@ -27,6 +27,7 @@ The GitHub repository for the project is located [here](https://github.com/sweis
 - [Writing the RF Transmit Script](#writing-the-rf-transmit-script)
 - [Putting It All Together](#putting-it-all-together)
   - [Adding a Discord Bot](#creating-the-discord-bot)
+- [Addressing Stability Issues](#addressing-stability-issues)
 - [Polishing and Final Touches](#polishing-and-final-touches)
 - [Results](#results)
 - [Future Expansion](#future-expansion)
