@@ -279,7 +279,24 @@ A few months after getting the Discord bot and schedule working, I ran into an i
 > NOTE TO AUTHOR: Insert screenshot here
 
 ### Configure a Static Fallback
-The static IP reservation in your router doesn't prevent lease expiration - it just ensures the Pi always gets the same IP when it successfully requests one.
+After several months without issue using the static IP address reserved in the router interface, the Pi suddenly started having connectivity issues again. It was different this time. The Discord bot would be unreachable, as would the Node-RED interface from another computer on my network. When I would connect my screen to the Pi It would show that it was still connected to my home network, but no longer had an IP address. It turns out that the static IP reservation in the router doesn't prevent DHCP lease expiration. Rather, it just ensures the Pi always gets the same IP when it successfully requests one. In short, the Pi itself would be looking for a new IP from DHCP, but without a static fallback set up on it it would just lose the IP address. To fix this, I added the following to _/etc/dhcpcd.conf_:
+```
+# Static Fallback
+interface wlan1
+option dhcp_lease_time 86400
+profile static_wlan1
+static ip_address=192.168.0.182/24    # The static IP of the Pi
+static routers=192.168.0.1            # The IP of the router
+static domain_name_servers=192.168.0.1 8.8.8.8
+fallback static_wlan1
+```
+
+As an additional insurrance, I made sure `dhcpcd` was up to date with the following commands:
+```
+sudo apt update
+sudo apt upgrade dhcpcd5
+sudo apt upgrade dhcpcd
+```
 
 ## Polishing and Final Touches
 ### Utilizing Environment Variables
