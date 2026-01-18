@@ -63,19 +63,18 @@ A friend then gifted me a Raspberry Pi and I realized that this could be the tic
 - Call the python script from the Node-RED flow based on the MQTT messages.
 
 ## Setting Up the MQTT Broker
-[Eclipse Mosquitto](https://mosquitto.org/) is an open source message broker using the MQTT protocol. I decided to make this the core of communication for the lights. To get Mosquitto installed on the Raspberry Pi, I followed [this guide](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/). It is a very straightforward and helpful walkthrough on not only how to get Mosquitto installed on the Pi, but also how to set it up so that the broker starts running automatically when the Pi boots up, as well as setting up authentication. 
+[Eclipse Mosquitto](https://mosquitto.org/) is an open source message broker using the MQTT protocol. I decided to make this the core of communication for the lights. To get Mosquitto installed on the Raspberry Pi, I followed [this guide](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/). It is a very straightforward and helpful walkthrough on how to get Mosquitto installed on the Pi, how to set it up so that the broker starts running automatically when the Pi boots up, and how to set up authentication for connecting to the broker. 
 
-I first set it up unauthenticated, with my `mosquitto.conf` file containing the following:
+Before setting up any authentication, I started with a very simple configuration so I could be sure that all connections worked properly. My initial `mosquitto.conf` file was essentially just the following:
 ```
 listener 1883 0.0.0.0
 allow_anonymous true
 ```
-I did this to easily test the connections and the auto-start and remote connections. 
-There are various ways to test the connections. Personally, I followed [Steve's Guide on setting up a python client using Paho](http://www.steves-internet-guide.com/into-mqtt-python-client/). I set up two clients on separate devices (my laptop): a publisher and a subscriber. If the subscriber was able to read the message sent from the publisher, then I knew that the broker was working. 
+There are various ways to test the connections. Personally, I followed [Steve's Guide on setting up a python client using Paho](http://www.steves-internet-guide.com/into-mqtt-python-client/). I set up two clients on a separate device (my laptop): a publisher and a subscriber. If the subscriber was able to read the message sent from the publisher, then I knew that the broker was working. 
 
-Another way to test is to use [MQTT Explorer](https://mqtt-explorer.com/). This is a GUI based tool that can subscribe and publish to a broker and is very helpful in debugging. 
+Another way to test the connections is to use [MQTT Explorer](https://mqtt-explorer.com/). This is a GUI based tool that can subscribe and publish to a broker. It is very helpful in debugging and I used this method after the initial Paho test and throughout the project any time I needed to debug a communication issue.
 
-After confirming that the broker handled the messages properly and that I could attach both publish clients and subscribe clients, I then added the authentication as described in the [aforementioned article](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/) and repeated the python and MQTT testing.
+I added the authentication as described in the [aforementioned article](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/) after the unauthenticated connection tests. I then repeated the python and MQTT Explorer testing to confirm that everything still worked after the authentication was in place.
 
 My final `mosquitto.conf` file looks like this:
 ```
@@ -100,7 +99,7 @@ allow_anonymous false
 password_file /etc/mosquitto/passwd
 ```
 
-I could now access the broker and send/receive messages from anywhere on my home network. However, the end goal would be to control the lights from anywhere with an Internet connection, so I needed to set up port forwarding. 
+I could now access the broker and send/receive messages from anywhere on my home network. However, the end goal would be to control the lights from anywhere with an Internet connection. To do this I needed to set up port forwarding. 
 
 ### Port Forwarding
 This turned out to be very simple. 
