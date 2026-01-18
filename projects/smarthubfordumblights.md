@@ -112,7 +112,7 @@ Access your router's interface by navigating a web browser to `192.168.0.1`. You
 
 Once the port forwarding is set up, you can then use MQTT Explorer to connect to the broker via your external IP (this can be found at https://www.whatsmyip.org/). To further prove that you can access the broker from anywhere with an Internet connection, download an MQTT app for your phone and disconnect your phone from your Wi-Fi so it's on your mobile service provider's data connection. Then test the broker connection through your phone app.
 
-> Note: There are several MQTT apps out there for Android and iOS. Some of them are OK, but I really don't like any of them too much. I'll elaborate more on this later, but at this step it is worth mentioning that [MyMQTT](https://mymqtt.app/en) is the Android app that I found to be the most usable. 
+> **Note:** There are several MQTT apps out there for Android and iOS. Some of them are OK, but I really don't like any of them too much. I'll elaborate more on this later, but at this step it is worth mentioning that [MyMQTT](https://mymqtt.app/en) is the Android app that I found to be the most usable. 
 
 A quick note on security. It's best practice to close all unused ports. Therefore, if you get all this up and running and set the project aside for a couple months like I did, it's a good idea to deactivate the service or simply disable port forwarding on your router altogether until you're ready to continue. 
 
@@ -244,6 +244,9 @@ Because I am now utilizing the Discord bot as the main communication with the RP
 Several issues caused the RPi to periodically lose connectivity. Through hours of troubleshooting, I ended up with the following solutions. 
 
 ### Disable Wi-Fi Power Management
+Wi-Fi Power Management is enabled by default on the Raspberry Pi. This is likely because these devices are often used in restricted power scenarios. After all, it's a fanless board with light-weight components, not a gaming PC. Wi-Fi Power Management allows the Pi to put the Wi-Fi adapter into a sleep state to conserve power. Unfortunately, keeping this setting on can cause issues when constant connectivity is desired (like when I want to turn on or off the lights at random hours throughout the day). In order to disable this feature, I did the following.
+
+First, I checked to make sure it was on, and then turned it off with the following commands:
 ```
 # Check Wi-Fi power saving (if using Wi-Fi)
 iwconfig wlan0  # Look for "Power Management:on"
@@ -251,28 +254,46 @@ iwconfig wlan0  # Look for "Power Management:on"
 # Disable Wi-Fi power management
 sudo iwconfig wlan0 power off
 ```
-Create a system service:
+
+For a more permanent solution, I created two services in _/etc/systemd/system/_. The first was _wifi-powermanagement-off.service_:
 ```
-# Create a systemd service
-sudo nano /etc/systemd/system/disable-wifi-powersave.service
+sudo nano /etc/systemd/system/wifi-powermanagement-off.service
 ```
-Add:
+I then added the following:
 ```
 [Unit]
-Description=Disable Wi-Fi power management
-After=network.target
+Description=Disable Wi-Fi Power Management
+After=network.target   # NOTE: I had a typo in netwrok. It is likely that this is why I made two services.
 
 [Service]
 Type=oneshot
 ExecStart=/sbin/iwconfig wlan0 power off
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
 ```
-> NOTE TO AUTHOR: Confirm on the Pi that this was actually the solution that was implemented. 
+As noted in the code block, I had a typo (`netwrok` instead of `network`) that went unnoticed for months. It is likely that this typo was the reason that I made two services, making the second one because the first one likely did not solve the issue. I have fixed the typo in this code block for clarity. If this corrected code block does not work for you, try the next one. 
+
+The second service I created was _wifi-powersave-off.service_:
+```
+[Unit]
+Description=Disable Wi-Fi Power Save
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/iw dev wlan0 set power_save off
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+With these two services in place, the intermitted connectivity issue was solved for a bit. However, this was not the only thing that caused connectivity issues for me.
 
 ### Use a Wi-Fi Antenna to Avoid Interference
 After replacing an old Vizio soundbar with a Sonos surround system and roaming  speaker, I noticed that I was starting to have connection issues with the Pi again. It seemed that it would lose connection when all the Sonos speakers were active, but if I turned one off, the Pi would be reachable again. After a bit of research, I determined this issue to be the result of a crowded network. To solve this, I ordered a [Wi-Fi antenna](https://www.brostrend.com/products/ac5l) so that the Pi could join my 5G network which is much less crowded as most of my devices in my house (Sonos speakers included) only have the ability to join the 2.4GHz network. There are many Wi-Fi antennas out there. At the time of solving the issue, [this one](https://www.brostrend.com/products/ac5l) made the most sense. At the time of writing, there are many better deals out there. 
+> **Note:** Once adding in the Wi-Fi antenna, `wlan1` became the primary network interface since on my RPi `wlan0` is associated with 2.4GHz and `wlan1` is associated with 5GHz.
 
 ### Setting a Static IP in the Router Interface
 A few months after getting the Discord bot and schedule working, I ran into an issue where the Raspberry Pi was assigned a new IP address on my home network. I looked into setting up a self-hosted DNS server to prevent this issue, but a much quicker and easier workaround was to simply register the IP as static in my home router's interface. On my router interface, this can be done by selecting "Static Addresses" under the "Connected Devices" section of the left-hand navigation bar. From there, you can click on the button to manually add a static device and enter the appropriate information.
