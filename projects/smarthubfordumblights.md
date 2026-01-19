@@ -305,21 +305,54 @@ A few months after getting the Discord bot and schedule working, I ran into an i
 ### Configure a Static Fallback
 After several months without issue using the static IP address reserved in the router interface, the Pi suddenly started having connectivity issues again. It was different this time. The Discord bot would be unreachable, as would the Node-RED interface from another computer on my network. When I would connect my screen to the Pi It would show that it was still connected to my home network, but no longer had an IP address. It turns out that the static IP reservation in the router doesn't prevent DHCP lease expiration. Rather, it just ensures the Pi always gets the same IP when it successfully requests one. In short, the Pi itself would be looking for a new IP from DHCP, but without a static fallback set up on it it would just lose the IP address. To fix this, I added the following to _/etc/dhcpcd.conf_:
 ```
-# Static Fallback
+# wlan1 Setup
+# wlan1 configuration
 interface wlan1
-option dhcp_lease_time 86400
+# Increase timeout for slow networks
+timeout 60
+# Disable rapid commit - can cause issues
+nooption rapid_commit
+# Persistent retry on failure
+persistent 
+
+# Static fallback profile
 profile static_wlan1
-static ip_address=192.168.0.182/24    # The static IP of the Pi
-static routers=192.168.0.1            # The IP of the router
+static ip_address=192.168.0.182/24
+static routers=192.168.0.1
 static domain_name_servers=192.168.0.1 8.8.8.8
+
+# Apply fallback to wlan1
+interface wlan1
 fallback static_wlan1
 ```
 
 As an additional insurrance, I made sure `dhcpcd` was up to date with the following commands:
 ```
+dhcpcd --version
 sudo apt update
 sudo apt upgrade dhcpcd5
 sudo apt upgrade dhcpcd
+```
+
+I then restarted the service with the following commands:
+```
+sudo systemctl restart dhcpcd
+sudo systemctl status dhcpcd
+```
+
+In the output, there was a line that read 
+```
+wlan1: leased 192.168.0.182 for 3600 seconds
+```
+This is a 1 hour lease time, which is apparently very short and explains why I would lose connectivity multiple times per day.
+
+After making these changes, I set up some live monitoring with the command:
+```
+sudo journalctl -u dhcpcd -f
+```
+The idea here is that if the issue persists, it should fail in every 2 hours and the live monitoring of the `journalctl` would display this. I also decided to leave the Pi alone for 30 minutes and then check for renewal attempts with the command:
+```
+sudo journalctl -u dhcpcd --since "17:39" | grep -i "renew\|rebind\|lease"
 ```
 
 ## Polishing and Final Touches
