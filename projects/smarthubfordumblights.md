@@ -398,7 +398,7 @@ As the number of commands and devices expanded, I found it helpful to write some
 After setting up error messages that I felt satisfied with, I decided to take the messages to another level and use a similar technique to allow the bot to confirm a valid command before performing the action and reporting back on the result. A series of nodes to parse the device channel as well as the command gives a nice, personalized look to the responses.
 
 ![Discord Bot Confirmation Message](images/rpilights/discord_bot_confirmation_message.png)
-![Discord Bot Confirmation Message2](images/rpilights/discord_bot_confirmation_message_2_cropped.PNG)
+![Discord Bot Confirmation Message2](images/rpilights/discord_bot_confirmation_message_2_cropped_2.PNG)
 
 ### Adding Nightlight "On" to the Schedule
 Like many people, I often have trouble waking up and getting out of bed in the morning. Turning on the lights definitely helps with this, especially when my first few alarms are set to times before sunrise. I decided to add a daily "on" command for the nightlight at the time of my first alarm to help initiate the waking up process and to try to prevent me from going back to sleep. 
