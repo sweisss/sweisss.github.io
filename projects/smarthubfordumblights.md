@@ -72,6 +72,7 @@ Before setting up any authentication, I started with a very simple configuration
 listener 1883 0.0.0.0
 allow_anonymous true
 ```
+
 There are various ways to test the connections. Personally, I followed [Steve's Guide on setting up a python client using Paho](http://www.steves-internet-guide.com/into-mqtt-python-client/). I set up two clients on a separate device (my laptop): a publisher and a subscriber. I would know that the broker was working if the subscriber was able to read the message sent from the publisher. 
 
 Another way to test the connections is to use [MQTT Explorer](https://mqtt-explorer.com/). This is a GUI based tool that can subscribe and publish to a broker. It is very helpful in debugging and I used this method after the initial Paho test and throughout the project any time I needed to debug a communication issue.
@@ -124,12 +125,14 @@ Node-RED came preinstalled on my Raspberry Pi, and it likely is on yours too. In
 ```
 sudo systemctl enable nodered.service
 ```
+
 I could not get it to work using this command. Instead, I wrote a very simple bash script that contained nothing more than the line `node-red` and saved it to `/home/raspberry/Documents/scripts/node_red_startup.sh`. 
 
 I then opened up my crontab in the nano editor with the command `crontab -e` and added the following line to the end of the file:
 ```
 @reboot sh /home/raspberry/Documents/scripts/node_red_startup.sh
 ```
+
 I saved the file and rebooted the Pi and it worked. 
 
 To view the Node-RED interface, open the web browser to http://localhost:1880. From there you can make a very simple flow to subscribe to your broker and output the message contents to the debug window. With this step complete, I then shifted my focus to transmitting the RF signals using the Pi. 
@@ -260,6 +263,7 @@ For a more permanent solution, I created two services in _/etc/systemd/system/_.
 ```
 sudo nano /etc/systemd/system/wifi-powermanagement-off.service
 ```
+
 I then added the following:
 ```
 [Unit]
@@ -274,6 +278,7 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 ```
+
 As noted in the code block, I had a typo (`netwrok` instead of `network`) that went unnoticed for months. It is likely that this typo was the reason that I made two services, making the second one because the first one likely did not solve the issue. I have fixed the typo in this code block for clarity. If this corrected code block does not work for you, try the next one. 
 
 The second service I created was _wifi-powersave-off.service_:
@@ -290,6 +295,7 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 ```
+
 With these two services in place, the intermitted connectivity issue was solved for a bit. However, this was not the only thing that caused connectivity issues for me.
 
 ### Use a Wi-Fi Antenna to Avoid Interference
@@ -344,12 +350,14 @@ In the output, there was a line that read
 ```
 wlan1: leased 192.168.0.182 for 3600 seconds
 ```
+
 This is a 1 hour lease time, which is apparently very short and explains why I would lose connectivity multiple times per day.
 
 After making these changes, I set up some live monitoring with the command:
 ```
 sudo journalctl -u dhcpcd -f
 ```
+
 The idea here is that if the issue persists, it should fail in every 2 hours and the live monitoring of the `journalctl` would display this. I also decided to leave the Pi alone for 30 minutes and then check for renewal attempts with the command:
 ```
 sudo journalctl -u dhcpcd --since "17:39" | grep -i "renew\|rebind\|lease"
