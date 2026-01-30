@@ -361,6 +361,8 @@ The idea here is that if the issue persists, it should fail in every 2 hours and
 sudo journalctl -u dhcpcd --since "17:39" | grep -i "renew\|rebind\|lease"
 ```
 
+Life got in the way and I got sidetracked by many distractions and didn't get around to checking the results of these `journalctl -u` commands for 2 weeks rather than 2 hours. However, the Pi and communications with the Discord bot appeared to maintain connectivity throughout this time. When I finally did pull up the Pi's GUI to check on it 2 weeks later there was only one DHCP lease expiration and reassignment from that initial night just before 10:00 pm. I decided called the issue solved (at least for the moment). 
+
 ## Polishing and Final Touches
 ### Utilizing Environment Variables
 Because the Discord node requires the bot's token to be saved, it's good practice to save the token as an environment variable and reference this variable to configure the node. This ensures that the token is not accidentally included in the JavaScript code of the flow and won't be accidentally distributed to GitHub or any other repository where the flow code may end up. However, anyone with direct access to the Node-RED interface of your system can read the environment variable with a simple `Debug` print node. Keep this in mind if you plan to expose the port that your Node-RED service is running on. 
