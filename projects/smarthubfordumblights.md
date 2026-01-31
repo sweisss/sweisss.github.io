@@ -403,6 +403,15 @@ After setting up error messages that I felt satisfied with, I decided to take th
 ### Adding Nightlight "On" to the Schedule
 Like many people, I often have trouble waking up and getting out of bed in the morning. Turning on the lights definitely helps with this, especially when my first few alarms are set to times before sunrise. I decided to add a daily "on" command for the nightlight at the time of my first alarm to help initiate the waking up process and to try to prevent me from going back to sleep. 
 
+### "Cat-Proofing" the Hardware
+The RPi and breadboard with the RF transmitter on it sit on a dresser just beneath a large window in my bedroom. This is because it is the only place I could find where the underpowered RF transmitter can still reach the patio lights and night light receivers, yet the wireless transmitter and receiver for the monitor and keyboard in my home office would still be able to communicate. I never felt comfortable leaving it here since it is a window that my cats commonly like to hang out in. The dresser also tends to collect clothing and other random things that don't immediately get put away where they belong when they are done being used. Furthermore, the dresser does not sit flush with the wall because of the baseboard. While this is nice for running wires behind the scenes, it also leaves open a risk that my curious and careless cats (and I) might knock the breadboard and RF transmitter into the crevasse behind. 
+
+While attempting to troubleshoot the transmission distance with various antennas one day, I decided to make a quick housing for everything out of a couple boxes left over from some online shopping. It's not the most elegant looking solution, and as everyone knows, cats love boxes, so it's still not 100% cat-proof. However, the box provides much more assurance from accidentally knocking wires loose or dropping pieces of hardware behind the dresser. 
+
+![RPi in a box](images/rpilights/rpi_in_box.jpg)
+
+![RPi box with cat](images/rpilights/rpi_cover_with_cat.jpg)
+
 ## Results
 The most up-to-date python code and Node-RED flow can be found on [this GitHub repository](https://github.com/sweisss/rpi-smart-hub/tree/main). 
 
@@ -418,7 +427,7 @@ As mentioned earlier, I considered self-hosting a DNS server to prevent the RPi 
 Either from my lack of soldering skills or from my misunderstanding of how the RF transmitter chips work, every time I tried to attach an antenna to the chip I seemed to fry it and it would not send out the RF signal. Improving the strength of the signal would greatly increase the possible locations where I can store the device. The main concern right now is that it is fully accessible by my cats...
 
 ### Get a Proper Housing for the Components
-The RPi was gifted to me with a nice little plastic housing which keeps things clean and protects the internals. I currently do not have any such housing for the breadboard with the RF transmitter. Figuring out a secure housing for these components would prevent the risk of falling behind cabinets or being experimented with by cats. 
+The box mentioned [above](#cat-proofing-the-hardware) in the "Polishing and Final Touches" section provides a nice, temporary for preventing my cats (or myself) from messing with the hardware, pulling wires, and/or dropping it behind the dresser where it sits. However, I would like to make a more elegant solution. Something like a custom made wooden or 3D printed box would look a lot nicer as well as provide more strength to hold up to prying cat paws. As mentioned in the last point, strengthening the RF signal would increase the number of locations where I could store the setup and would also increase the different options and influence the design of the housing. 
 
 ### Add Ceiling Fan Control
 My ceiling fan is also controlled with an RF remote. Unfortunately, the frequency this remote works on is not in a range that is legal for civilian use. Even though I've captured it, I cannot emulate the signal on the Flipper Zero because I have the stock firmware on it. I would like to find an RF transmitter that can send this frequency and include it in the project. This would not only allow me to control the light and fan speed from other rooms, but I would also then be able to enhance my "lights on" morning alarm. 
