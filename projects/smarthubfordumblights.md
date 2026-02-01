@@ -233,9 +233,13 @@ The Discord library is fairly simple to use. You just need to create a `discord-
 
 From here I set up two main sections of the flow. The first section starts by using the `discordMessage` node to listen to commands sent via the Discord bot. It then passes the message payload through a series of string parsing and verification nodes. If the received command is valid, it is forwarded to the MQTT broker. If the command is invalid (for example, I often send "test" to simply see if the bot is responsive), it returns a message listing the valid command options. 
 
+![Discord to MQTT flow](images/rpilights/nodered_discord_to_mqtt_flow.png)
+
 The second main section of the Node-RED flow starts by subscribing to the MQTT broker. Any messages published by the broker will be received by this node and go through some string parsing steps before being forwarded to an `exec` node to call the python script that sends the RF signals. Even though the incoming Discord messages are validated before being sent to the MQTT broker, there is a potential that the broker could receive an invalid message from a third party method (like MQTT Explorer). However, the python script itself also has error handling and will return an exit code of 1 if a valid command was not successfully received and sent. More string parsing steps follow to combine the return code from the `exec` node with the command from the `mqtt in` node and build a nice, readable message about the status of the action (whether the script completed successfully or not). The `discordSendMessage` node then sends this message out to the Discord bot. 
 
-See the [Results](#results) section for an image of the flows. There is also an image posted in the [GitHub repository](https://github.com/sweisss/rpi-smart-hub/blob/main/PatioLightsFlow_1-17-26.png) of the project. 
+![MQTT to RF to Discord flow](images/rpilights/nodered_mqtt_to_rf_to_discord_flow.png)
+
+See the [Results](#results) section for an image of these flow sections in the full flow context. There is also an image posted in the [GitHub repository](https://github.com/sweisss/rpi-smart-hub/blob/main/PatioLightsFlow_1-17-26.png) of the project. 
 
 ### Replacing the MQTT Android App
 At this point, the Discord server and bot became my primary means of communication with the RPi, essentially replacing the user-unfriendly MQTT Android apps. Rather than communicating with the broker directly, the Discord nodes communicate with the Discord server via websockets and HTTPS (**NOTE TO AUTHOR: Look into this deeper**). It's best practice to only expose ports that are regularly being used or are essential for the services to run correctly. Therefore it's a good idea to go back to the router interface and close the port exposing the broker to the public-facing Internet (1883). 
