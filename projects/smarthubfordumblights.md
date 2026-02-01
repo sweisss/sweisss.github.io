@@ -138,12 +138,26 @@ I saved the file and rebooted the Pi and it worked.
 To view the Node-RED interface, open the web browser to http://localhost:1880. From there you can make a very simple flow to subscribe to your broker and output the message contents to the debug window. With this step complete, I then shifted my focus to transmitting the RF signals using the Pi. 
 
 ## Writing the RF Transmit Script
-### Determining the Correct Signials
-As mentioned in the [Background](#background) section above, I had already cloned the main RF signals of the remote (on, off, white, red, and blue) using the Flipper Zero. I was able to easily get the files for these cloned signals onto my computer using the [qFlipper app](https://docs.flipper.net/zero/qflipper). The files contain several pieces of information about the signals, but the most important parts are the protocol (e.g. Princeton 24bit), the frequency (**NOTE TO AUTHOR: Or is it bandwidth??**) (e.g. 433.92 AM), and the "key", which is a hex representation of the signal pattern (**NOTE TO AUTHOR: Confirm this is accurate and get more official terminology**). 
+### Determining the Correct Signals
+As mentioned in the [Background](#background) section above, I had already cloned the main RF signals of the remote (on, off, white, red, and blue) using the Flipper Zero. I was able to easily get the files for these cloned signals onto my computer using the [qFlipper app](https://docs.flipper.net/zero/qflipper). The Flipper saves the recorded information in a `.sub` file containing several pieces of information. The most important parts are the protocol (e.g. Princeton 24bit), the frequency (e.g. 433.92 AM), and the "Key", which is the demodulated data from the signal [carrier wave](https://en.wikipedia.org/wiki/Carrier_wave) in hexadecimal. This file format is described in greater detail on the GitHub repo [flipperzero-firmware](https://github.com/flipperdevices/flipperzero-firmware/blob/dev/documentation/file_formats/SubGhzFileFormats.md#transceiver-configuration-data).
 
-The Flipper actually tells you everything you need to reproduce the signal. However, I couldn't find explicit documentation on understanding and reproducing a Flipper Sub-GHz file on the Raspberry Pi, so I used some other techniques and followed some other guides to confirm I had the correct information.
+As an example, the information for the "on" signal of the lights looks like this on the Flipper screen:
 
-> NOTE TO AUTHOR: Maybe put some screenshots in here of the files.
+![Flipper screen patio on](images/rpilights/flipper_screen_patio_on.png)
+
+The extracted `.sub` file for this signal reads as follows:
+```
+Filetype: Flipper SubGhz Key File
+Version: 1
+Frequency: 433920000
+Preset: FuriHalSubGhzPresetOok650Async
+Protocol: Princeton
+Bit: 24
+Key: 00 00 00 00 00 D4 86 FE
+TE: 159
+```
+
+The Flipper actually tells you everything you need to reproduce the signal. However, I couldn't find explicit documentation on understanding and translating a Flipper `.sub` file to the Raspberry Pi. I therefore used some other techniques found in some other guides to confirm I had the correct information and to figure out what to do with it.
 
 Many of the guides and tutorials I found online also set up a way to receive the RF signals on the Raspberry Pi. Luckily, most of the hardware devices come in packs with multiple sets of both transmitters and receivers. Just search amazon (or better yet, the Internet outside of amazon) for "433 MHz transmitter" and you should find a number of packs. [This pack](https://www.amazon.com/HiLetgo-Wireless-Transmitter-Receiver-Raspberry/dp/B01DKC2EY4/) is the one that worked for me, at least at first. They seem to be fairly underpowered (more on that later), but they worked well enough for me to move forward with the project. 
 
