@@ -139,7 +139,7 @@ To view the Node-RED interface, open the web browser to http://localhost:1880. F
 
 ## Writing the RF Transmit Script
 ### Determining the Correct Signals
-As mentioned in the [Background](#background) section above, I had already cloned the main RF signals of the remote (on, off, white, red, and blue) using the Flipper Zero. I was able to easily get the files for these cloned signals onto my computer using the [qFlipper app](https://docs.flipper.net/zero/qflipper). The Flipper saves the recorded information in a `.sub` file containing several pieces of information. The most important parts are the protocol (e.g. Princeton 24bit), the frequency (e.g. 433.92 AM), and the "Key", which is the demodulated data from the signal [carrier wave](https://en.wikipedia.org/wiki/Carrier_wave) in hexadecimal. 
+As mentioned in the [Background](#background) section above, I had already cloned the main RF signals of the remote (on, off, white, red, and blue) using the Flipper Zero. Check out the [Flipper Docs](https://docs.flipper.net/zero/sub-ghz/read) for tips on how to do this for a variety of devices in different frequency bands. Once captured, I was able to easily get the files for these cloned signals onto my computer using the [qFlipper app](https://docs.flipper.net/zero/qflipper). The Flipper saves the recorded information in a `.sub` file containing several pieces of information. The most important parts are the protocol (e.g. Princeton 24bit), the frequency (e.g. 433.92 AM), and the "Key", which is the demodulated data from the signal [carrier wave](https://en.wikipedia.org/wiki/Carrier_wave) in hexadecimal. 
 
 As an example, the information for the "on" signal of the lights looks like this on the Flipper screen after being captured and saved:
 
