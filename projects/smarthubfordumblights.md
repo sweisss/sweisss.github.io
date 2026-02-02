@@ -139,9 +139,9 @@ To view the Node-RED interface, open the web browser to http://localhost:1880. F
 
 ## Writing the RF Transmit Script
 ### Determining the Correct Signals
-As mentioned in the [Background](#background) section above, I had already cloned the main RF signals of the remote (on, off, white, red, and blue) using the Flipper Zero. I was able to easily get the files for these cloned signals onto my computer using the [qFlipper app](https://docs.flipper.net/zero/qflipper). The Flipper saves the recorded information in a `.sub` file containing several pieces of information. The most important parts are the protocol (e.g. Princeton 24bit), the frequency (e.g. 433.92 AM), and the "Key", which is the demodulated data from the signal [carrier wave](https://en.wikipedia.org/wiki/Carrier_wave) in hexadecimal. This file format is described in greater detail on the GitHub repo [flipperzero-firmware](https://github.com/flipperdevices/flipperzero-firmware/blob/dev/documentation/file_formats/SubGhzFileFormats.md#transceiver-configuration-data).
+As mentioned in the [Background](#background) section above, I had already cloned the main RF signals of the remote (on, off, white, red, and blue) using the Flipper Zero. I was able to easily get the files for these cloned signals onto my computer using the [qFlipper app](https://docs.flipper.net/zero/qflipper). The Flipper saves the recorded information in a `.sub` file containing several pieces of information. The most important parts are the protocol (e.g. Princeton 24bit), the frequency (e.g. 433.92 AM), and the "Key", which is the demodulated data from the signal [carrier wave](https://en.wikipedia.org/wiki/Carrier_wave) in hexadecimal. 
 
-As an example, the information for the "on" signal of the lights looks like this on the Flipper screen:
+As an example, the information for the "on" signal of the lights looks like this on the Flipper screen after being captured and saved:
 
 ![Flipper screen patio on](images/rpilights/flipper_screen_patio_on.png)
 
@@ -156,6 +156,8 @@ Bit: 24
 Key: 00 00 00 00 00 D4 86 FE
 TE: 159
 ```
+
+The `.sub` file format is described in greater detail in the documentation section of the [flipperzero-firmware](https://github.com/flipperdevices/flipperzero-firmware/blob/dev/documentation/file_formats/SubGhzFileFormats.md#transceiver-configuration-data) GitHub repository.
 
 The Flipper actually tells you everything you need to reproduce the signal. However, I couldn't find explicit documentation on understanding and translating a Flipper `.sub` file to the Raspberry Pi. I therefore used some other techniques found in some other guides to confirm I had the correct information and to figure out what to do with it.
 
