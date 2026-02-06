@@ -300,7 +300,7 @@ The second main section of the Node-RED flow starts by subscribing to the MQTT b
 See the [Results](#results) section for an image of these flow sections in the full flow context. There is also an image posted in the [GitHub repository](https://github.com/sweisss/rpi-smart-hub/blob/main/PatioLightsFlow_1-17-26.png) of the project. 
 
 ### Replacing the MQTT Android App
-At this point, the Discord server and bot became my primary means of communication with the RPi, essentially replacing the user-unfriendly MQTT Android apps. Rather than communicating with the broker directly, the Discord nodes utilize [Discord.js]() which communicates with the Discord server via WebSockets over TLS/SSL (WSS). More details can be found in the [docs](https://discord.com/developers/docs/events/gateway#connections) section of the Discord Developer's page, but here is an image that demonstrates the connection at a high level:
+At this point, the Discord server and bot became my primary means of communication with the RPi, essentially replacing the user-unfriendly MQTT Android apps. Rather than communicating with the broker directly, the Discord nodes utilize [Discord.js](https://discord.js.org/) which communicates with the Discord server via WebSockets over TLS/SSL (WSS). More details can be found in the [docs](https://discord.com/developers/docs/events/gateway#connections) section of the Discord Developer's page, but here is an image that demonstrates the connection at a high level:
 
 ![Discord Gateway](images/rpilights/discord_gateway.svg)
 
