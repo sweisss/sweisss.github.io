@@ -36,7 +36,7 @@ The GitHub repository for the project is located [here](https://github.com/sweis
 > #### Document Development status
 > - [x] Outline
 > - [x] Rough Draft
-> - [ ] ***2nd Draft***
+> - [x] 2nd Draft
 > - [ ] Final Draft 
 
 ## Background
@@ -219,7 +219,7 @@ Once I was confident about the signal I needed to send, I then swapped out the R
 
 I actually got hung up on this part of the project for quite a while. Looking back, this was definitely the crux of the whole project for me. 
 
-### Transmitting the Signal
+### Transmitting the Signals
 Getting the timing right for the signal lengths (short vs. long in ms) proved to be pretty tricky. However, after some trial and error and a little help from some AI to analyze my flipper files and my Python script, I landed on a Python library to do the heavy lifting of the RF transmission. The library is `rpi_rf`. If I recall correctly, this library was pre-installed on my RPi. If it's not on yours, you can install it with `pip install rpi-rf`. Notice the dash (`-`) in the pip install command as opposed to the underscore (`_`) that should be used in the import statement (`from rpi_rf import RFDevice`). Documentation for this library can be found on [pypi](https://pypi.org/project/rpi-rf/) and [GitHub](https://github.com/milaq/rpi-rf).
 
 To test that I was sending the correct signal, I set up my Flipper Zero to listen for RF signals next to my RPi transmitter. After working out the bugs in my script the Flipper sounded the alert that it had captured a signal. I checked the hex value of it and it matched the one I sent from the Python script! Since the lights did not turn on when I successfully captured this signal, I assumed the transmitter was not powerful enough to reach the RF receiver on the patio lights. Maybe it was my poor soldering skills, or maybe it was my lack of knowledge, but every time I tried to solder an antenna to a transmitter to extend the range I seemed to fry it. I then found a workaround by finding a spot in my bedroom that was close enough to the patio lights receiver for the RF signal to reach it, yet close enough to the wall of my home office so that I could reach the Pi from the keyboard and monitor in my office via a bluetooth connection (this makes it much easier to work on, since my bedroom isn't really set up with a desirable space for computer work).
@@ -240,14 +240,14 @@ From here, I started testing it with various MQTT apps for my Android phone. As 
 ### Creating the Discord Bot
 I created the Discord bot in three basic steps. First, I made a dedicated server for the bot. Then I made the bot on Discord's [developer website](https://discord.com/developers). Once both the server and the bot were created, all I needed to do in the third step was to invite the bot to the server. 
 
-- #### Create a Dedicated Server
+- #### Creating a Dedicated Server
   Creating a personal Discord server is very straightforward. If you haven't done so yet, all you need to do is simply click on the circle icon with the plus (+) in it at the bottom of the list of your server icons.
 
   ![Add a Discord Server](images/rpilights/add_discord_server.png)
 
   After you click on it, a menu will pop up with the option to "Create My Own" and after a few more clicks you'll have your own server. Add an icon image for your server so it stands out in the list, and a channel for each device that you want to control to keep things organized (if you want to organize it like I did, it's completely up to you). 
 
-- #### Create the Bot
+- #### Creating the Bot
   With my dedicated Discord server up an running, I then began to set up the bot. This can be done from the developers section of the Discord website. The helpful docs page can be found [here](https://discord.com/developers/docs/intro). The [Applications](https://discord.com/developers/applications) page can be reached at the top of the left-hand navigation menu. You will need to log in with your Discord account credentials to reach this portion of the website. 
 
   Once logged in on the Applications page, click on the blue "New Application" button on the upper-right. You will be prompted to give the app a name. I chose "RPi Messenger" since this app would essentially serve as a messenger between my phone (or computer) and the Raspberry Pi. After agreeing to the Terms of Service and confirming that you're a human, the "General Information" screen for the app will be displayed. Use the navigation menu on the left to move to the "Bot" page under the Settings section.
@@ -272,7 +272,7 @@ I created the Discord bot in three basic steps. First, I made a dedicated server
 
   Make sure to save any changes. 
 
-- #### Attach the Bot to the Server
+- #### Attaching the Bot to the Server
   The final step in setting up the bot is to invite it to the dedicated Discord server. To do this, move from the "Bot" page up to the "OAuth2" page of the left-hand navigation menu and scroll down to the "OAuth2 URL Generator" section. Under "Scopes" check to box for "bot". 
 
   ![Discord Bot Scopes Section](images/rpilights/discord_bot_scopes.png)
@@ -311,7 +311,7 @@ Because I am now utilizing the Discord bot as the main means of communication wi
 ## Addressing Stability Issues
 Several issues caused the RPi to periodically lose connectivity. Through hours of troubleshooting, I ended up with the following solutions. 
 
-### Disable Wi-Fi Power Management
+### Disabling Wi-Fi Power Management
 Wi-Fi Power Management is enabled by default on the Raspberry Pi. This is likely because these devices are often used in restricted power scenarios. After all, it's a fanless board with light-weight components, not a gaming PC. Wi-Fi Power Management allows the Pi to put the Wi-Fi adapter into a sleep state to conserve power. Unfortunately, keeping this setting on can cause issues when constant connectivity is desired (like when I want to turn on or off the lights at random hours throughout the day). In order to disable this feature, I did the following.
 
 First, I checked to make sure it was on, and then turned it off with the following commands:
@@ -362,7 +362,7 @@ WantedBy=multi-user.target
 
 With these two services in place, the intermitted connectivity issue was solved for a bit. However, this was not the only thing that caused connectivity issues for me.
 
-### Use a Wi-Fi Antenna to Avoid Interference
+### Using a Wi-Fi Antenna to Avoid Interference
 After replacing an old Vizio soundbar with a Sonos surround system and roaming  speaker, I noticed that I was starting to have connection issues with the Pi again. It seemed that it would lose connection when all the Sonos speakers were active, but if I turned one off, the Pi would be reachable again. After a bit of research, I determined this issue to be the result of a crowded network. To solve this, I ordered a [Wi-Fi antenna](https://www.brostrend.com/products/ac5l) so that the Pi could join my 5G network which is much less crowded as most of my devices in my house (Sonos speakers included) only have the ability to join the 2.4GHz network. There are many Wi-Fi antennas out there. At the time of solving the issue, [this one](https://www.brostrend.com/products/ac5l) made the most sense. At the time of writing, there are many better deals out there. 
 > **Note:** Once adding in the Wi-Fi antenna, `wlan1` became the primary network interface since on my RPi `wlan0` is associated with 2.4GHz and `wlan1` is associated with 5GHz.
 
@@ -372,7 +372,7 @@ A few months after getting the Discord bot and schedule working, I ran into an i
 ![Static IP List](images/rpilights/router_static_ip_list_redacted.PNG)
 ![Add Static Device Popup](images/rpilights/router_mannually_add_static_ip.png)
 
-### Configure a Static Fallback
+### Configuring a Static Fallback
 After several months without issue using the static IP address reserved in the router interface, the Pi suddenly started having connectivity issues again. It was different this time. The Discord bot would be unreachable, as would the Node-RED interface from another computer on my network. When I would connect my screen to the Pi It would show that it was still connected to my home network, but no longer had an IP address. It turns out that the static IP reservation in the router doesn't prevent DHCP lease expiration. Rather, it just ensures the Pi always gets the same IP when it successfully requests one. In short, the Pi itself would be looking for a new IP from DHCP, but without a static fallback set up on it it would just lose the IP address. To fix this, I added the following to _/etc/dhcpcd.conf_:
 ```
 # wlan1 Setup
