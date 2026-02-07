@@ -33,7 +33,7 @@ It has since been turned into a portfolio showcasing tech and computer science r
 ## Personal Projects
 Projects that are unrelated to but utilize the knowledge and experience gained from a CS degree at OSU-Cascades.
 
-### Raspberry Pi as a Smart Hub (RPaaSH)
+### Smart Hub for Dumb Lights
 A project that uses a Raspberry Pi as a smart hub for "dumb" lights that can be controlled with radio frequency remotes.
 The RPi hosts an MQTT broker and a Node-RED server to receive external commands via Discord or an MQTT client.
 Based on the commands, the RPi transmits an RF signal to the lights.
