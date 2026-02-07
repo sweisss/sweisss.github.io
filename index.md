@@ -39,24 +39,24 @@ The RPi hosts an MQTT broker and a Node-RED server to receive external commands 
 Based on the commands, the RPi transmits an RF signal to the lights.
 The Node-RED server also maintains a schedule for the lights. 
 
-Read more about the project [here](./projects/smarthubfordumblights.md)
+**Read more about the project [here](./projects/smarthubfordumblights.md)**
 <br>
-View the project on [GitHub](https://github.com/sweisss/rpi-smart-hub)
+**View the project on [GitHub](https://github.com/sweisss/rpi-smart-hub)**
 
 ### Volcano Season 3
 The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
 This third iteration builds on the primitive first and second versions by applying the knowledge and experience gained from the [RxWatch](#rxwatch) project below. 
 
-Read more about the project [here](./projects/volcanoseason3.md)
+**Read more about the project [here](./projects/volcanoseason3.md)**
 <br>
-View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)
+**View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)**
 
 ### Percentage Clock
 A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
 The second time range is a "Work Day" and can be selected by the user. 
 This is a desktop GUI application written in python using tkinter.
 
-View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)
+**View the project on [GitHub](https://github.com/sweisss/percent-clock-gui)**
 
 ### QR Coder
 A simple command-line tool that takes text input and generates a QR code in any desired combination of:
@@ -67,15 +67,15 @@ A simple command-line tool that takes text input and generates a QR code in any 
 The tool is based off of a portion of the OTP project in the [Intro to Security](#intro-to-security) project below.
 It alows for quick and easy generation of QR codes without the need to sign up for online services.
 
-View the project on [GitHub](https://github.com/sweisss/QR_Coder)
+**View the project on [GitHub](https://github.com/sweisss/QR_Coder)**
 
 ### Bowling Scoreboard
 A bowling scoreboard built in Google Sheets to help keep track of the winners and losers during competitive events on family vacations involving
 a [table bowling](https://us.amazon.com/bowling-table/s?k=bowling+table) set. The sheet includes a macro to clear out the scoreboard to be ready
 for the next round as quickly as possible!
 
-Access the Google Sheets file [here](https://docs.google.com/spreadsheets/d/1T2dHcvSfGK9w3xW4Mf51phTdxzOd0TZNsUDxLNJYssI/edit?usp=sharing).
-It is set as "View Only", but anyone can make a copy of it and make it their own to start editing or simply entering scores. 
+**Access the Google Sheets file [here](https://docs.google.com/spreadsheets/d/1T2dHcvSfGK9w3xW4Mf51phTdxzOd0TZNsUDxLNJYssI/edit?usp=sharing).**
+It is set as "View Only", but anyone can make a copy of it and make it their own to start editing or simply entering scores.
 
 
 ## Oregon State University Projects
@@ -86,25 +86,25 @@ An academic year-long project involving a team of three Computer Science student
 The team partnered with a local business to develop on consolidated data recording program that incorporates
 various devices on a hydrogen generator.
 
-Read more about the project [here](https://sweisss.github.io/osu-cascades/capstone-24/IntegratedTestStand.html)
+**Read more about the project [here](https://sweisss.github.io/osu-cascades/capstone-24/IntegratedTestStand.html)**
 
 ### RxWatch
 An Android app created as a final project by a team of four Computer Science students for CS 492 - Mobile Development at Oregon State University, Winter 2024.
 The app allows users to enter a drug name and search for other drugs that may have adverse interactions with that drug.
 It uses two different endpoints of the [openFDA](https://open.fda.gov/) API to search drug labels and return statics of reported adverse events. 
 
-View the project on [GitHub](https://github.com/sweisss/RxWatch)
+**View the project on [GitHub](https://github.com/sweisss/RxWatch)**
 
 ### Intro to Security
 A GitHub repo containing a colleciton of projects for CS 370 - Intro to Security at Oregon State University - Ecampus, Fall 2023.
 
-View the project on [GitHub](https://github.com/sweisss/CS370-Intro_to_Security)
+**View the project on [GitHub](https://github.com/sweisss/CS370-Intro_to_Security)**
 
 ### Zillite
 A web application created as a final project by a team of four Computer Science students for CS 494 at Oregon State University, Winter 2023.
 The app uses Zillow as an inspiration to practice and perfect proper web development techniques using the React library.  
 
-View the project on [GitHub](https://github.com/sweisss/Zillite)
+**View the project on [GitHub](https://github.com/sweisss/Zillite)**
 
 ### Chemistry Calculations
 An Excel workbook created during CH 202 - Chemistry for Engineering Majors at Oregon State University - Cascades, Fall 2020.
@@ -112,11 +112,11 @@ Seth used the massive amount of chemistry homework as an opportunity to teach hi
 particular week of the course. The workbook utilizes the name manager to reference constants and values throughout the workbook from the tables
 located on the first sheet. 
 
-[Direct Download](./projects/ChemistryCalculations.xlsx)
+**[Direct Download](./projects/ChemistryCalculations.xlsx)**
 
 
 ## Element 1 Projects
-Thesse projects were all made for Element 1 (e1), a company in Bend, OR that makes hydrogen generators.
+These projects were all made for Element 1 (e1), a company in Bend, OR that makes hydrogen generators.
 Because e1 has not yet given permission to release the source code of these projects, they are only described here. 
 
 ### Remote Access Alarm Server
