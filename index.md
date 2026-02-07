@@ -52,7 +52,7 @@ This third iteration builds on the primitive first and second versions by applyi
 **View the project on [GitHub](https://github.com/sweisss/VolcanoSeason3)**
 
 ### Percentage Clock
-A simple clock that tells the current time as a percantage of two different time ranges. The first time range is midnight - midnight.
+A simple clock that tells the current time as a percentage of two different time ranges. The first time range is midnight - midnight.
 The second time range is a "Work Day" and can be selected by the user. 
 This is a desktop GUI application written in python using tkinter.
 
@@ -93,7 +93,7 @@ An Android app created as a final project by a team of four Computer Science stu
 The app allows users to enter a drug name and search for other drugs that may have adverse interactions with that drug.
 It uses two different endpoints of the [openFDA](https://open.fda.gov/) API to search drug labels and return statics of reported adverse events. 
 
-**View the project on [GitHub](https://github.com/sweisss/RxWatch)**
+**View the project on [GitHub](https://github.com/osu-cs492-599-w24/final-project-rxwatch)**
 
 ### Intro to Security
 A GitHub repo containing a collection of projects for CS 370 - Intro to Security at Oregon State University - Ecampus, Fall 2023.
