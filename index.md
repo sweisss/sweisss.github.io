@@ -65,7 +65,7 @@ A simple command-line tool that takes text input and generates a QR code in any 
 - Saved as a PNG
 
 The tool is based off of a portion of the OTP project in the [Intro to Security](#intro-to-security) project below.
-It alows for quick and easy generation of QR codes without the need to sign up for online services.
+It allows for quick and easy generation of QR codes without the need to sign up for online services.
 
 **View the project on [GitHub](https://github.com/sweisss/QR_Coder)**
 
@@ -96,7 +96,7 @@ It uses two different endpoints of the [openFDA](https://open.fda.gov/) API to s
 **View the project on [GitHub](https://github.com/sweisss/RxWatch)**
 
 ### Intro to Security
-A GitHub repo containing a colleciton of projects for CS 370 - Intro to Security at Oregon State University - Ecampus, Fall 2023.
+A GitHub repo containing a collection of projects for CS 370 - Intro to Security at Oregon State University - Ecampus, Fall 2023.
 
 **View the project on [GitHub](https://github.com/sweisss/CS370-Intro_to_Security)**
 
@@ -134,18 +134,18 @@ it cuts out all data outside a set date/time range selected by the user. It then
 
 As the TigerTamer project evolved, it incorporated a server and an SQLite database that is connected to the Tiger which queries the tiger every night
 to update the database. The server uses a simple API that the TigerTamer client accesses via the GUI application so that the user can
-retrieve the Tiger data from accross the building while connected to the local Wi-Fi network. 
+retrieve the Tiger data from across the building while connected to the local Wi-Fi network. 
 
 ### Render FAT
 A Desktop GUI program to process Factory Acceptance Test data for hydrogen generators. 
-The program takes csv data from the internal contorl device (e.g. PLC) and optionally from an external measuring device
+The program takes csv data from the internal control device (e.g. PLC) and optionally from an external measuring device
 (e.g. PLC recording data from a [Coriolis flow meter](https://www.emerson.com/en-us/automation/measurement-instrumentation/flow-measurement/coriolis-flow-meters)).
 The program lines up the data files based on flow movement and control states and then calculates efficiency data. 
 After all data has been processed, it then writes and graphs the data in an Excel workbook (multiple Excel workbooks if it
 detects multiple runs). 
 
 ### MM Calculator
-A program to calculate the ideal metal mebrane area of the hydrogen purification module in the hydrogen generators.
+A program to calculate the ideal metal membrane area of the hydrogen purification module in the hydrogen generators.
 The program uses python tkinter to present the user with a GUI where various inputs can be added, including:
 - Feed mole fraction of hydrogen
 - Membrane area inlet feed pressure
@@ -160,10 +160,10 @@ It also uses Matplotlib to graph the area and the percent of hydrogen recovery.
 A program to find equilibrium composition by direct minimization of Gibbs free energy,
 primarily intended to calculate the elements of the water-gas shift reaction involving methanol.
 This program is a python based GUI that is inspired by the
-[Chemcial Equilibrium Calculator](https://navier.engr.colostate.edu/code/code-4/index.html) of Colorado Sate University: 
+[Chemical Equilibrium Calculator](https://navier.engr.colostate.edu/code/code-4/index.html) of Colorado Sate University: 
 Chemical and Biological Engineering department. MoleMapper simplifies the CSU program by limiting the required input
 entries to those necessary for the QA/QC department at Element 1. It also expands on the CSU program by allowing the
-user to select a range of temperatures in which to repeatedly perform the calculations, rather than calculting for a
+user to select a range of temperatures in which to repeatedly perform the calculations, rather than calculating for a
 single temperature. The results are recorded in a CSV file. 
 
 ### Mini Reactor Reporter
@@ -177,7 +177,7 @@ Docker containerization and PowerShell scripts for installation and startup.
 The HMI uses a Docker compose to spin up several containers:
 - [Fuxa](https://github.com/frangoteam/FUXA) for the graphical front-end of the HMI
 - [Node-RED](https://nodered.org/) to process both system data and GUI display and commands
-- [InfluxDB](https://www.influxdata.com/) to store datapoints gathered from the system and allow the user to view triends
+- [InfluxDB](https://www.influxdata.com/) to store datapoints gathered from the system and allow the user to view trends
 - [Grafana](https://grafana.com/) to provide a better interface for interacting with the InfluxDB data
 - [Mosquitto](https://mosquitto.org/) to provide an MQTT broker to assist in data transfer between services
 
@@ -191,7 +191,7 @@ In addition, the project also uses a PowerShell script to automate the installat
 ### Python Dictionaries
 A video explaining some cool and interesting things that you can do with a python dictionary.
 The video was originally made for a leadership project at OSU-Cascades in Spring 2024, but was really intended for a greater audience.
-It coveres a brief introduction to dictionaries, how to use a dictionary as a priority queue, and how to store and call functions from within a dictionary. 
+It covers a brief introduction to dictionaries, how to use a dictionary as a priority queue, and how to store and call functions from within a dictionary. 
 
 Watch it on [YouTube](https://youtu.be/-SqWVBQvj-w)
 <br>
@@ -204,9 +204,9 @@ It uses Excel to lay out the information necessary for the calculation in a clea
 
 Watch it on [YouTube](https://youtu.be/ZB5TZAU-Dq4)
 
-### Informational Speach
+### Informational Speech
 A short video made for COM 111 - Public Speaking at Central Oregon Community College, Fall 2020.
-It coveres some basic safety meaures to take when backcountry skiing. However, the point of the video was to learn and practice
+It covers some basic safety measures to take when backcountry skiing. However, the point of the video was to learn and practice
 public speaking and communication skills, not to act as an authority on safe backcountry travel or recreation. 
 
 Watch it on [YouTube](https://youtu.be/dyawWzhf51A)
