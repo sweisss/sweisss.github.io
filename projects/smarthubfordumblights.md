@@ -22,6 +22,7 @@ The GitHub repository for the project is located [here](https://github.com/sweis
 
 ### Contents
 - [Background](#background)
+  - [The Plan](#the-plan)
 - [Setting Up the MQTT Broker](#setting-up-the-mqtt-broker)
 - [Setting Up Node-RED](#setting-up-node-red)
 - [Writing the RF Transmit Script](#writing-the-rf-transmit-script)
@@ -32,15 +33,7 @@ The GitHub repository for the project is located [here](https://github.com/sweis
 - [Results](#results)
 - [Future Expansion](#future-expansion)
 
-> **NOTE:** This is a work in progress. Check back occasionally for updates. 
-> #### Document Development status
-> - [x] Outline
-> - [x] Rough Draft
-> - [x] 2nd Draft
-> - [ ] Final Draft 
-
 ## Background
-
 > ### TL;DR
 >
 > I have a set of patio lights controlled by an RF remote. I wanted to control them outside the
@@ -48,7 +41,7 @@ The GitHub repository for the project is located [here](https://github.com/sweis
 > could develop the full solution using a Raspberry Pi. 
 
 Years ago I purchased a set of LED string lights for my back patio, very similar to
-[model 56521 from Luminar](https://www.citylightsusa.com/luminar-outdoor-color-changing-led-string-lights-24-ft-of-string-12-bulbs-remote-control-outdoor-rated-56521/). They look like typical string lights with an aesthetically pleasing bulb like you would find in a restaurant or bar patio. These lights have a feature that allows them to change colors from commands sent by a radio frequency (RF) remote. I liked the idea of having them on when I came home late at night (I typically enter/exit my property through a gate on my back fence that connects to a bike path rather than through the front door), but if I left my house before the sun went down I would often forget to turn them on ahead of time. I tried for a bit to bring the remote with me, but it only works up to a certain distance since it uses an RF signal and not Wi-Fi.
+[model 56521 from Luminar](https://www.citylightsusa.com/luminar-outdoor-color-changing-led-string-lights-24-ft-of-string-12-bulbs-remote-control-outdoor-rated-56521/). They look like typical string lights with an aesthetically pleasing bulb like you would find in a restaurant or bar patio. These lights have a feature that allows them to change colors from commands sent by a radio frequency (RF) remote. I liked the idea of having them on when I came home late at night (I typically enter/exit my property through a gate in my back fence that connects to a bike path rather than through the front door), but if I left my house before the sun went down I would often forget to turn them on ahead of time. I tried for a bit to bring the remote with me, but it only works up to a certain distance since it uses an RF signal and not Wi-Fi.
 I started to keep the remote in my home office since I liked to have them on as I worked at my computer in the evenings. However, I would often forget to turn them off until I was in bed about to go to sleep and would notice the light beaming in through my bedroom window, forcing me to get out of bed and go into the other room to turn them off. I thought that If I could somehow connect the lights (or even the remote itself) to my Wi-Fi network and make a custom app to control them, I could turn my lights on/off from anywhere that has Internet connectivity. 
 
 I looked into various smart outlet and smart switch products, but none of them fit my specific needs. They all would only control the power on/off aspect of the lights, and I wanted the ability to also control the colors. Furthermore, the RF receiver was at the end of the lights cable, in the same casing as the power adapter and plug. This was too far from my router to get a stable Wi-Fi connection. 
@@ -65,9 +58,9 @@ A friend then gifted me a Raspberry Pi and I realized that this could be the tic
 
 ## Setting Up the MQTT Broker
 ### Initial Setup
-[Eclipse Mosquitto](https://mosquitto.org/) is an open source message broker using the MQTT protocol. I decided to make this the core of communication for the lights. To get Mosquitto installed on the Raspberry Pi, I followed [this guide](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/). It is a very straightforward and helpful walkthrough on how to get Mosquitto installed on the Pi, how to set it up so that the broker starts running automatically when the Pi boots up, and how to set up authentication for connecting to the broker. 
+[Eclipse Mosquitto](https://mosquitto.org/) is an open source message broker using the [MQTT](https://mqtt.org/) protocol. I decided to make this the core communication for the lights. To get Mosquitto installed on the Raspberry Pi, I followed [this guide](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/). It is a very straightforward and helpful walkthrough on how to get Mosquitto installed on the Pi, how to set it up so that the broker starts running automatically when the Pi boots up, and how to set up authentication for connecting to the broker. 
 
-Before setting up any authentication, I started with a very simple configuration so I could be sure that all connections worked properly. My initial `mosquitto.conf` file was essentially just the following:
+Before setting up any authentication, I started with a very simple configuration so I could be sure that all connections worked properly. My initial _mosquitto.conf_ file was essentially just the following:
 ```
 listener 1883 0.0.0.0
 allow_anonymous true
@@ -79,7 +72,7 @@ Another way to test the connections is to use [MQTT Explorer](https://mqtt-explo
 
 I added the authentication as described in the [aforementioned article](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/) after the unauthenticated connection tests. I then repeated the Python and MQTT Explorer testing to confirm that everything still worked after the authentication was in place.
 
-My final `mosquitto.conf` file looks like this:
+My final _mosquitto.conf_ file looks like this:
 ```
 # Place your local configuration in /etc/mosquitto/conf.d/
 #
@@ -109,10 +102,10 @@ This turned out to be very simple.
 Access your router's interface by navigating a web browser to `192.168.0.1`. You will then be prompted to log in using your router's password. Once logged in, there should be an option in the settings interface to add port forwarding. My router is Arris. The Arris interface has the port forwarding option under the "Advanced" section of the left-hand navigation menu. From there, you can enable the port forwarding and add a service. This service should include a helpful name (so you know what it is a few months down the road when you open it again), the IP of the Pi (Server IPv4), and the port mapping (both the internal and external ports). The default port for Mosquitto is 1883. To make it simple, I just used the same port for both the internal and external. Note that the external port is the one that you will be accessing from the outside Internet and the internal port is the one that the service is running on inside your network (on the Pi). 
 
 ![Port forwarding interface](images/rpilights/ARRIS_port_forwarding.png)
+<br>
+_An example of the port forwarding screen of my router's interface._
 
-*An example of the port forwarding screen of my router's interface.*
-
-Once the port forwarding is set up, you can then use MQTT Explorer to connect to the broker via your external IP (this can be found at https://www.whatsmyip.org/). To further prove that you can access the broker from anywhere with an Internet connection, download an MQTT app for your phone and disconnect your phone from your Wi-Fi so it's on your mobile service provider's data connection. Then test the broker connection through your phone app.
+Once the port forwarding is set up, you can then use MQTT Explorer to connect to the broker via your external IP (this can be found at https://www.whatsmyip.org/ or https://whatismyipaddress.com/). To further prove that you can access the broker from anywhere with an Internet connection, download an MQTT app for your phone and disconnect your phone from your Wi-Fi so it's on your mobile service provider's data connection. Then test the broker connection through your phone app.
 
 > **Note:** There are several MQTT apps out there for Android and iOS. Some of them are OK, but I really don't like any of them too much. I'll elaborate more on this later, but at this step it is worth mentioning that [MyMQTT](https://mymqtt.app/en) is the Android app that I found to be the most usable. 
 
@@ -126,7 +119,7 @@ Node-RED came preinstalled on my Raspberry Pi, and it likely is on yours too. In
 sudo systemctl enable nodered.service
 ```
 
-I could not get it to work using this command. Instead, I wrote a very simple bash script that contained nothing more than the line `node-red` and saved it to `/home/raspberry/Documents/scripts/node_red_startup.sh`. 
+I could not get it to work using this command. Instead, I wrote a very simple bash script that contained nothing more than the line `node-red` and saved it to _/home/raspberry/Documents/scripts/node_red_startup.sh_. 
 
 I then opened up my crontab in the nano editor with the command `crontab -e` and added the following line to the end of the file:
 ```
@@ -136,6 +129,7 @@ I then opened up my crontab in the nano editor with the command `crontab -e` and
 I saved the file and rebooted the Pi and it worked. 
 
 To view the Node-RED interface, open the web browser to http://localhost:1880. From there you can make a very simple flow to subscribe to your broker and output the message contents to the debug window. With this step complete, I then shifted my focus to transmitting the RF signals using the Pi. 
+> **Tip:** You can access the Node-RED interface on a different device by substituting `localhost` with your Pi's local IP in the browser of your development device. 
 
 ## Writing the RF Transmit Script
 ### Determining the Correct Signals
@@ -144,6 +138,8 @@ As mentioned in the [Background](#background) section above, I had already clone
 As an example, the information for the "on" signal of the lights looks like this on the Flipper screen after being captured and saved:
 
 ![Flipper screen patio on](images/rpilights/flipper_screen_patio_on.png)
+<br>
+_The saved patio lights "on" signal as seen from the Flipper screen._
 
 The extracted `.sub` file for this signal reads as follows:
 ```
@@ -161,16 +157,18 @@ The `.sub` file format is described in greater detail in the documentation secti
 
 The Flipper actually tells you everything you need to reproduce the signal. However, I couldn't find explicit documentation on translating a Flipper `.sub` file to the Raspberry Pi. I therefore used some other techniques found in some other guides to confirm I had the correct information and to figure out what to do with it.
 
-Many of the guides and tutorials I found online also set up a way to receive the RF signals on the Raspberry Pi. Luckily, most RF hardware to be used on a Pi come in packs with multiple sets of both transmitters and receivers. Just search amazon (or better yet, the Internet outside of Billionaire Bezos World) for "433 MHz transmitter" and you should find a number of packs. [This pack](https://www.amazon.com/HiLetgo-Wireless-Transmitter-Receiver-Raspberry/dp/B01DKC2EY4/) is the one that initially worked for me. They seem to be fairly underpowered (more on that later), but they worked well enough for me to move forward with the project. 
+Many of the guides and tutorials I found online also set up a way to receive the RF signals on the Raspberry Pi. Luckily, most RF hardware to be used on a Pi come in packs with multiple sets of both transmitters and receivers. Just search amazon (or better yet, the Internet outside of Billionaire Bezos' Bazaar) for "433 MHz transmitter" and you should find a number of packs. [This pack](https://www.amazon.com/HiLetgo-Wireless-Transmitter-Receiver-Raspberry/dp/B01DKC2EY4/) is the one that initially worked for me. They seem to be fairly underpowered (more on that later), but they worked well enough for me to move forward with the project. 
 
 The first way I confirmed the information on the Flipper file was to follow an article on Instructables titled [Super Simple Raspberry Pi 433MHz Home Automation](https://www.instructables.com/id/Super-Simple-Raspberry-Pi-433MHz-Home-Automation/). If you don't have a Flipper Zero, this is an interesting and very visual way to capture the signal. Unfortunately, it appears the article is no longer up as of this writing (Dec, 2025), so I'll give a brief summary here.
 > **Note:** To view the article in the Wayback Machine, click [here](https://web.archive.org/web/20200724004907/https://www.instructables.com/id/Super-Simple-Raspberry-Pi-433MHz-Home-Automation/).
 
-The article is broken into two main sections: receive and transmit. The first section, receiving the signal, wires up the RX hardware to the Pi and uses a script to capture the RF signal and graph the results using Matplotlib. In order to do this, I used one of the images from the amazon posting of the hardware I purchased to identify the function of each pin and followed a [pinout mapping](https://pinout.xyz/) for the Raspberry Pi to set up the receiver. 
+The article is broken into two main sections: receive and transmit. The first section, receiving the signal, wires up the RX hardware to the Pi and uses a script to capture the RF signal and graph the results using Matplotlib. I used one of the images from the amazon posting of the hardware I purchased to identify the function of each pin and followed a [pinout mapping](https://pinout.xyz/) for the Raspberry Pi to set up the receiver. 
 
 ![TX/RX Hardware](images/rpilights/hiletgo_tx-rx_pins.jpg)
+<br>
+_The pin functions of the RX and TX hardware as posted by the amazon retailer._
 
-If I recall correctly, I did not need both the "Signal" and the "Input" pins on the Receiver. Either one of them worked for this script and only one of them was necessary. My adapted version of the listening script can be found [here](https://github.com/sweisss/rpi-smart-hub/blob/main/archived/plot_receive.py). You will need to install [Matplotlib](https://matplotlib.org/) on the Pi. I also recommend setting up a virtual environment before installing Matplotlib. I did this with the simple command within the project directory:
+If I recall correctly, I did not need both the "Signal" and the "Input" pins on the receiver. Either one of them worked for this script and only one of them was necessary. I connected it to GPIO 27. My adapted version of the listening script can be found [here](https://github.com/sweisss/rpi-smart-hub/blob/main/archived/plot_receive.py). You will need to install [Matplotlib](https://matplotlib.org/) on the Pi to use that script. I also recommend setting up a virtual environment before installing Matplotlib. I did this with the simple command within the project directory:
 ```
 python -m venv .venv
 ```
@@ -187,6 +185,8 @@ For more information on Python virtual environments using venv, see the [officia
 Run the listening script and press the button on the remote you want to clone relatively close to the hardware. If all goes well, the script will capture the signal and generate an image of the waveform. Here is an example of a signal plot from the Instructables tutorial (I neglected to save screenshots of my signals and only recorded the binary codes).
 
 ![RF Signal Matplotlib Example](images/rpilights/matplotlib_waveform_example.jpg)
+<br>
+_An example of a plotted RF signal._
 
 An RF signal will typically consist of a preamble pattern, a data pattern that is repeated several times, and a conclusion. Reading an RF signal works by interpreting a pattern of high/low tones (or tone/silence) in combination with periods of short and long tones/silence. The combination will represent a 1 or a 0 that can then be interpreted as binary code. The exact combination of high/low and long/short is arbitrary and can depend on the protocol used. The preceding image from the Instructables article is zoomed in to a section of the data pattern and uses the following combinations to interpret the signal:
 ```
@@ -232,8 +232,12 @@ The most up-to-date version of the script can be found [here](https://github.com
 With the Python script successfully transmitting the RF signals to the lights, and my work station connected to the Pi from the other room, it was now time to return to Node-RED and start putting it all together. 
 
 ## Putting It All Together
-### Confirming MQTT Connections with MQTT Explorer and Android App
+### Sending Commands via MQTT
 The first step I took to incorporate my Python script into the Node-RED flow was to call it from a simple `exec` node and activate that node from a simple `inject` node. After confirming that the lights would respond correctly to the signals triggered through Node-RED, I then hooked it up to the `mqtt in` node described earlier. I added some string parsing and error checking to make sure it would only call the `exec` node with valid arguments, and then tested it by sending the commands through the MQTT Explorer app on my desktop. 
+
+![Node-RED Initial Exec from MQTT](images/rpilights/nodered_initial_exec_from_mqtt.png)
+<br>
+_The initial exec node called from MQTT before string parsing or error handling._
 
 From here, I started testing it with various MQTT apps for my Android phone. As mentioned earlier, the end goal of this project is to control the lights from anywhere with an Internet connection (i.e. mobile data connectivity). Also as mentioned earlier, I did not like any of the MQTT apps available for Android devices that I found. I thought about making my own custom Android app, and I still might eventually do that. However, I realized it would be much quicker and easier to set up a private Discord server and make a Discord bot that could relay commands and the status of the lights. This turned out to be a very fun part of the project. 
 
@@ -273,7 +277,7 @@ I created the Discord bot in three basic steps. First, I made a dedicated server
   Make sure to save any changes. 
 
 - #### Attaching the Bot to the Server
-  The final step in setting up the bot is to invite it to the dedicated Discord server. To do this, move from the "Bot" page up to the "OAuth2" page of the left-hand navigation menu and scroll down to the "OAuth2 URL Generator" section. Under "Scopes" check to box for "bot". 
+  The final step in setting up the bot is to invite it to the dedicated Discord server. To do this, move from the "Bot" page up to the "OAuth2" page of the left-hand navigation menu and scroll down to the "OAuth2 URL Generator" section. Under "Scopes" check the box for "bot". 
 
   ![Discord Bot Scopes Section](images/rpilights/discord_bot_scopes.png)
 
@@ -284,7 +288,7 @@ I created the Discord bot in three basic steps. First, I made a dedicated server
 
   At the bottom of the page will be a Generated URL. Copy this and enter it into a new tab in your web browser. It will display a few more confirmation screens to authorize the bot. Once authorized, the bot will be added to the server!
 
-### Integrating the Bot to Node-RED
+### Integrating the Bot with Node-RED
 There are several node libraries that integrate Discord with Node-RED. My RPi seemed to be a bit dated, and while several were searchable from the Node-RED "Manage palette", all but one required me to update my underlying NodeJS version for them to work. I decided to go with the one library that did not require fully updating NodeJS and Node-RED: [node-red-contrib-discord 5.0.0](https://flows.nodered.org/node/node-red-contrib-discord). That library hadn't been updated in nearly 5 years. It is definitely a little buggy, but it serves its purpose for my project and hasn't yet given me enough trouble to force me to try a more recently maintained and updated one. 
 
 The Discord library is fairly simple to use. You just need to create a `discord-token` node with the token you saved when creating your bot and give it a helpful name. This `discord-token` node can be created within (while setting up) a `discordMessage` node or a `discordSendMessage` node, which simply listen for and return messages or send out message payloads, respectively.
@@ -292,10 +296,14 @@ The Discord library is fairly simple to use. You just need to create a `discord-
 From here I set up two main sections of the flow. The first section starts by using the `discordMessage` node to listen to commands sent via the Discord bot. It then passes the message payload through a series of string parsing and verification nodes. If the received command is valid, it is forwarded to the MQTT broker. If the command is invalid (for example, I often send "test" to simply see if the bot is responsive), it returns a message listing the valid command options. 
 
 ![Discord to MQTT flow](images/rpilights/nodered_discord_to_mqtt_flow.png)
+<br>
+_The flow section that forwards Discord messages to the MQTT broker._
 
 The second main section of the Node-RED flow starts by subscribing to the MQTT broker. Any messages published by the broker will be received by this node and go through some string parsing steps before being forwarded to an `exec` node to call the Python script that sends the RF signals. Even though the incoming Discord messages are validated before being sent to the MQTT broker, there is a potential that the broker could receive an invalid message from a third party method (like MQTT Explorer). However, the Python script itself also has error handling and will return an exit code of 1 if a valid command was not successfully received and sent. More string parsing steps follow to combine the return code from the `exec` node with the command from the `mqtt in` node and build a nice, readable message about the status of the action (whether the script completed successfully or not). The `discordSendMessage` node then sends this message out to the Discord bot. 
 
 ![MQTT to RF to Discord flow](images/rpilights/nodered_mqtt_to_rf_to_discord_flow.png)
+<br>
+_The flow section that sends commands from the MQTT broker to the exec node and reports back to Discord._
 
 See the [Results](#results) section for an image of these flow sections in the full flow context. There is also an image posted in the [GitHub repository](https://github.com/sweisss/rpi-smart-hub/blob/main/PatioLightsFlow_1-17-26.png) of the project. 
 
@@ -303,10 +311,12 @@ See the [Results](#results) section for an image of these flow sections in the f
 At this point, the Discord server and bot became my primary means of communication with the RPi, essentially replacing the user-unfriendly MQTT Android apps. Rather than communicating with the broker directly, the Discord nodes utilize [Discord.js](https://discord.js.org/) which communicates with the Discord server via WebSockets over TLS/SSL (WSS). More details can be found in the [docs](https://discord.com/developers/docs/events/gateway#connections) section of the Discord Developer's page, but here is an image that demonstrates the connection at a high level:
 
 ![Discord Gateway](images/rpilights/discord_gateway.svg)
+<br>
+_WSS communication between the Discord bot and the Discord Gateway._
 
 Because the WSS protocol is encrypted and the connection is outbound from Node-RED, there is no need to expose any specific ports. It's best practice to only expose ports that are regularly being used or are essential for the services to run correctly, so it's a good idea to go back to the router interface at this point and close the port exposing the Mosquitto broker to the public-facing Internet (1883). 
 
-Because I am now utilizing the Discord bot as the main means of communication with the RPi, the MQTT broker could probably be bypassed altogether. This would certainly simplify the Node-RED flow and the overall project. However, I decided to keep the MQTT broker for a couple reasons. First, I still have the idea of possibly making a custom Android app that would utilize MQTT to communicate with the RPi. Second, I experienced enough bugginess of the Discord node library that I developed an attitude to be ready with backup methods of communication. If you're using this writeup to influence your own project, weigh these options and make the decision that makes the most sense for your situation. 
+Because I am now utilizing the Discord bot as the main means of communication with the RPi, the MQTT broker could probably be bypassed altogether. This would certainly simplify the Node-RED flow and the overall project. However, I decided to keep the MQTT broker for a couple reasons. First, I still have the idea of possibly making a custom Android app that would utilize MQTT to communicate with the RPi. Second, I experienced enough bugginess of the Discord node library that I held and still hold an attitude to be ready with backup methods of communication. If you're using this writeup to influence your own project, weigh these options and make the decision that makes the most sense for your situation. 
 
 ## Addressing Stability Issues
 Several issues caused the RPi to periodically lose connectivity. Through hours of troubleshooting, I ended up with the following solutions. 
@@ -314,7 +324,7 @@ Several issues caused the RPi to periodically lose connectivity. Through hours o
 ### Disabling Wi-Fi Power Management
 Wi-Fi Power Management is enabled by default on the Raspberry Pi. This is likely because these devices are often used in restricted power scenarios. After all, it's a fanless board with light-weight components, not a gaming PC. Wi-Fi Power Management allows the Pi to put the Wi-Fi adapter into a sleep state to conserve power. Unfortunately, keeping this setting on can cause issues when constant connectivity is desired (like when I want to turn on or off the lights at random hours throughout the day). In order to disable this feature, I did the following.
 
-First, I checked to make sure it was on, and then turned it off with the following commands:
+First, I checked to make sure it was on and turned it off with the following commands:
 ```
 # Check Wi-Fi power saving (if using Wi-Fi)
 iwconfig wlan0  # Look for "Power Management:on"
@@ -363,17 +373,19 @@ WantedBy=multi-user.target
 With these two services in place, the intermitted connectivity issue was solved for a bit. However, this was not the only thing that caused connectivity issues for me.
 
 ### Using a Wi-Fi Antenna to Avoid Interference
-After replacing an old Vizio soundbar with a Sonos surround system and roaming  speaker, I noticed that I was starting to have connection issues with the Pi again. It seemed that it would lose connection when all the Sonos speakers were active, but if I turned one off, the Pi would be reachable again. After a bit of research, I determined this issue to be the result of a crowded network. To solve this, I ordered a [Wi-Fi antenna](https://www.brostrend.com/products/ac5l) so that the Pi could join my 5G network which is much less crowded as most of my devices in my house (Sonos speakers included) only have the ability to join the 2.4GHz network. There are many Wi-Fi antennas out there. At the time of solving the issue, [this one](https://www.brostrend.com/products/ac5l) made the most sense. At the time of writing, there are many better deals out there. 
-> **Note:** Once adding in the Wi-Fi antenna, `wlan1` became the primary network interface since on my RPi `wlan0` is associated with 2.4GHz and `wlan1` is associated with 5GHz.
+After replacing an old Vizio soundbar with a Sonos surround system and roaming  speaker, I noticed that I was starting to have connection issues with the Pi again. It seemed that it would lose connection when all the Sonos speakers were active, but if I turned one off, the Pi would be reachable again. After a bit of research, I determined this issue to be the result of a crowded network. To solve this, I ordered a [Wi-Fi antenna](https://www.brostrend.com/products/ac5l) so that the Pi could join my 5G network. My 5G network appears to be much less crowded since most of the devices in my house (Sonos speakers included) only have the ability to join the 2.4GHz network. There are many Wi-Fi antennas out there. At the time of solving the issue, [this one](https://www.brostrend.com/products/ac5l) made the most sense. At the time of writing, there are many better deals out there. 
+> **Note:** After adding in the Wi-Fi antenna, `wlan1` became the primary network interface since on my RPi `wlan0` is associated with 2.4GHz and `wlan1` is associated with 5GHz.
 
 ### Setting a Static IP in the Router Interface
-A few months after getting the Discord bot and schedule working, I ran into an issue where the Raspberry Pi was assigned a new IP address on my home network. I looked into setting up a self-hosted DNS server to prevent this issue, but a much quicker and easier workaround was to simply register the IP as static in my home router's interface. On my router interface, this can be done by selecting "Static Addresses" under the "Connected Devices" section of the left-hand navigation bar. From there, you can click on the button to manually add a static device and enter the appropriate information.
+A few months after getting the Discord bot and [daily schedule](#building-a-schedule) working, I ran into an issue where the Raspberry Pi was assigned a new IP address on my home network. I looked into setting up a self-hosted DNS server to prevent this issue, but a much quicker and easier workaround was to simply register the IP as static in my home router's interface. In Arris, this can be done by selecting "Static Addresses" under the "Connected Devices" section of the left-hand navigation bar. From there, you can click on the button to manually add a static device and enter the appropriate information.
 
 ![Static IP List](images/rpilights/router_static_ip_list_redacted.PNG)
 ![Add Static Device Popup](images/rpilights/router_mannually_add_static_ip.png)
+<br>
+_Adding a static IP in the Arris router interface._
 
 ### Configuring a Static Fallback
-After several months without issue using the static IP address reserved in the router interface, the Pi suddenly started having connectivity issues again. It was different this time. The Discord bot would be unreachable, as would the Node-RED interface from another computer on my network. When I would connect my screen to the Pi It would show that it was still connected to my home network, but no longer had an IP address. It turns out that the static IP reservation in the router doesn't prevent DHCP lease expiration. Rather, it just ensures the Pi always gets the same IP when it successfully requests one. In short, the Pi itself would be looking for a new IP from DHCP, but without a static fallback set up on it it would just lose the IP address. To fix this, I added the following to _/etc/dhcpcd.conf_:
+After several months of using the static IP address reserved in the router interface without issue, the Pi suddenly started having connectivity issues again. It was different this time. The Discord bot would be unreachable, as would the Node-RED interface from another computer on my network. However, when I would connect my screen to the Pi it would show that it was still connected to my home network, but it no longer had an IP address. It turns out that the static IP reservation in the router doesn't prevent DHCP lease expiration. Rather, it just ensures the Pi always gets the same IP when it successfully requests one. In short, the Pi itself would be looking for a new IP from DHCP, but without a static fallback set up on it it would just lose the IP address. To fix this, I added the following to _/etc/dhcpcd.conf_:
 ```
 # wlan1 Setup
 # wlan1 configuration
@@ -422,12 +434,12 @@ After making these changes, I set up some live monitoring with the command:
 sudo journalctl -u dhcpcd -f
 ```
 
-The idea here is that if the issue persists, it should fail in every 2 hours and the live monitoring of the `journalctl` would display this. I also decided to leave the Pi alone for 30 minutes and then check for renewal attempts with the command:
+The idea here is that if the issue persists, it should fail in 2 hours and the live monitoring of the `journalctl` would display this. I also decided to leave the Pi alone for 30 minutes and then check for renewal attempts with the command:
 ```
 sudo journalctl -u dhcpcd --since "17:39" | grep -i "renew\|rebind\|lease"
 ```
 
-Life got in the way and I got sidetracked by many distractions and didn't get around to checking the results of these `journalctl -u` commands for 2 weeks rather than 2 hours. However, the Pi and communications with the Discord bot appeared to maintain connectivity throughout this time. When I finally did pull up the Pi's GUI to check on it 2 weeks later there was only one DHCP lease expiration and reassignment from that initial night just before 10:00 pm. I decided called the issue solved (at least for the moment). 
+Life got in the way and I got sidetracked by many distractions and didn't get around to checking the results of these `journalctl -u` commands for 2 weeks instead of the intended 2 hours. However, the Pi and communications with the Discord bot appeared to maintain connectivity throughout this time. When I finally did pull up the Pi's GUI to check on it 2 weeks later there was only one DHCP lease expiration and reassignment from that initial night just before 10:00 pm. I decided to call the issue solved (at least for the moment). 
 
 ## Polishing and Final Touches
 ### Utilizing Environment Variables
@@ -443,63 +455,84 @@ You can replace `DISCORD_TOKEN` with any variable name you'd like.
 To reference the environment variable in Node-RED, simply use the syntax `${VARIABLENAME}`, or `${DISCORD_TOKEN}` in this case. 
 
 ![Discord environment variable reference](images/rpilights/discord_token_reference.png)
+<br>
+_Referencing the Discord token from an environment variable in Node-RED._
 
 For more details on using environment variables in Node-RED, see the [official docs](https://nodered.org/docs/user-guide/environment-variables).
 
 ### Building a Schedule
-I quickly wanted the lights to do more than simply turn on or off on command. I thought it would be great if I could also set up a schedule like my front porch light (which is controlled by a commercial IoT smart switch). The switch that controls my front porch light, however, has the limitation that I need to change the "on" time every few days during shoulder seasons when the sunset time is rapidly changing. After a few weeks of updating my "on" time for the front porch and now patio lights in Node-RED, I decided it would be a much better idea to set it based off of the sunset time for that day. I did this with the `HTTP request` node.
+I quickly wanted the lights to do more than simply turn on or off at will after I got everything connected and running properly. I thought it would be great if I could also set up a schedule like my front porch light (which is controlled by a commercial IoT smart switch). The switch that controls my front porch light, however, has the limitation that I need to change the "on" time every few days during shoulder seasons when the sunset time is rapidly changing. After a few weeks of updating my "on" time for the front porch and now patio lights in Node-RED, I decided it would be a much better idea to set it based off of the sunset time for that day. I did this with the `HTTP request` node.
 
 Every day at 1:00 am, the flow sends a request to [timeanddate.com](https://www.timeanddate.com/). You can find a list of U.S. cities [here](https://www.timeanddate.com/astronomy/usa). I chose the page for my specific city to send the HTTP request to. After the HTTP request, I have a node to check for a `200` response code. Any code other than a `200` will result in setting the "on" time for "4:30" pm (at least for the Winter). If the HTTP request does return `200`, the data gets passed through a few more nodes to parse the response and get the scheduled time of sunset. From there, the flow calculates and sets a delay based on the current time (1:00 am) and the sunset time. Once the delay has completed, the flow continues with sending the "on" command to the MQTT broker. 
 
+![Dynamic Lights On Flow](images/rpilights/nodered_dynamic_lights_on.png)
+<br>
+_The Node-RED flow to dynamically set the lights "on" time to sunset of each day._
+
+### Adding Helpful Error Messages
+To make the Discord bot a little more polished and professional, I though it would be nice to write some help messages that the bot could return if an incorrect command was sent. I thought it would look good for the bot to respond to an invalid command with a CLI inspired help message. Writing this help message turned out to be a bit tedious. I wrote the message as a [JSONata](https://jsonata.org/) expression and needed to add a `\n` any time I wanted a newline in the message. After some trial and error, it looked good enough to ship. I also decided it would be a nice touch to repeat the invalid command in the help message. 
+
+![Discord Bot Error Message](images/rpilights/discord_bot_error_message.png)
+<br>
+_Adding in professional looking error messages is always a nice touch._
+
+After setting up error messages that I felt satisfied with, I decided to take the messages to another level and use a similar technique to allow the bot to confirm a valid command before performing the action as well as reporting back on the result. A series of nodes to parse the device channel and the command gives a nice, personalized look to the responses.
+
+![Discord Bot Confirmation Message](images/rpilights/discord_bot_confirmation_message.png)
+<br>
+_String parsing adds a professional touch to the Discord bot messages._
+
 ### Adding a Nightlight
-Part of the reason I originally wanted to use my Raspberry Pi and create a smart hub rather than simply trying to use a Wi-Fi smart switch plugged direcly into the patio lights was so that I could expand it to other devices. The next device I wanted to include in the system was a little [IR controlled orb](https://www.amazon.com/Cordless-Changing-Remote-Rechargeable-Bedside/dp/B0BVYHQ64S) that I had left over from a Halloween costume and had been using as a nightlight. The "on" and "off" signals of this nightlight were some of the first that I captured on my Flipper Zero, so moving these files over to the Pi was no issue. However, I ran into some issues with transmitting the signal from the Pi. I also found it difficult to find a location for the Pi and its attached breadboard that could reach the RF receiver of the patio lights, be close enough to my home office for the wireless HDMI transmitters to communicate, and maintain a clear line of sight to the orb nightlight. I ended up solving this issue by replacing the IR controlled light with a small [USB LED](https://www.amazon.com/Febrytold-Interior-Atmosphere-Universal-Decoration/dp/B089K6WJ5J/ref=sr_1_6?sr=8-6) that I plugged into an [RF controlled USB switch](https://www.amazon.com/URANT-Wireless-Frequency-Transmitter-Receiver/dp/B0F2HP1D8L/ref=sr_1_4). As a bonus, this USB LED and switch take up much less space on my night stand and keep the clutter down.
+Part of the reason I originally wanted to use my Raspberry Pi and create a smart hub rather than simply trying to use a Wi-Fi smart switch plugged directly into the patio lights was so that I could expand it to other devices. The next device I wanted to include in the system was a little [IR controlled orb](https://www.amazon.com/Cordless-Changing-Remote-Rechargeable-Bedside/dp/B0BVYHQ64S) that I had left over from a Halloween costume and had been using as a nightlight. The "on" and "off" signals of this nightlight were some of the first that I captured on my Flipper Zero, so moving these files over to the Pi was no issue. However, I ran into some issues with transmitting the signal from the Pi. I also found it difficult to find a location for the Pi and its attached breadboard that could reach the RF receiver of the patio lights, be close enough to my home office for the wireless HDMI transmitters to communicate, and maintain a clear line of sight to the orb nightlight. I ended up solving this issue by replacing the IR controlled light with a small [USB LED](https://www.amazon.com/Febrytold-Interior-Atmosphere-Universal-Decoration/dp/B089K6WJ5J/ref=sr_1_6?sr=8-6) that I plugged into an [RF controlled USB switch](https://www.amazon.com/URANT-Wireless-Frequency-Transmitter-Receiver/dp/B0F2HP1D8L/ref=sr_1_4). As a bonus, this USB LED and switch take up much less space on my night stand and keep the clutter down.
 
 It was a very simple and straightforward process of capturing the RF signals for the switch with the Flipper Zero and adding the hex codes from them to the list of options in the Python script on the Pi. I then added in a second channel in the Discord server for the `#nightlight` and added a new branch to the Node-RED flow. I now can control each light through its own respective channel on the Discord server. 
 
-### Adding Helpful Error Messages
-As the number of commands and devices expanded, I found it helpful to write some help messages that the Discord bot could return if an incorrect command was sent to a device. I thought it would look good for the bot to respond to an invalid command with a CLI inspired help message. Writing this help message turned out to be a bit tedious. I wrote the message as a [JSONata](https://jsonata.org/) expression and needed to add a `\n` any time I wanted a newline in the message. After some trial and error, it looked good enough to ship. I also decided it would be a nice touch to repeat the invalid command in the help message. 
-
-![Discord Bot Error Message](images/rpilights/discord_bot_error_message.png)
-
-After setting up error messages that I felt satisfied with, I decided to take the messages to another level and use a similar technique to allow the bot to confirm a valid command before performing the action and reporting back on the result. A series of nodes to parse the device channel as well as the command gives a nice, personalized look to the responses.
-
-![Discord Bot Confirmation Message](images/rpilights/discord_bot_confirmation_message.png)
-![Discord Bot Confirmation Message2](images/rpilights/discord_bot_confirmation_message_2_cropped_2.PNG)
+![Discord Channels List](images/rpilights/discord_channels_list.png)
+<br>
+_The updated channels list on the dedicated Discord server._
 
 ### Adding Nightlight "On" to the Schedule
 Like many people, I often have trouble waking up and getting out of bed in the morning. Turning on the lights definitely helps with this, especially when my first few alarms are set to times before sunrise. I decided to add a daily "on" command for the nightlight at the time of my first alarm to help initiate the waking up process and to try to prevent me from going back to sleep. 
 
 ### Cat-Proofing the Hardware
-The RPi and breadboard with the RF transmitter on it sit on a dresser just beneath a large window in my bedroom. This is because it is the only place I could find where the underpowered RF transmitter can still reach the patio lights and night light receivers, yet the wireless transmitter and receiver for the monitor and keyboard in my home office would still be able to communicate. I never felt comfortable leaving it here since it is a window that my cats commonly like to hang out in. The dresser also tends to collect clothing and other random things that don't immediately get put away where they belong when they are done being used. Furthermore, the dresser does not sit flush with the wall because of the baseboard. While this is nice for running wires behind the scenes, it also leaves open a risk that my curious and careless cats (and I) might knock the breadboard and RF transmitter into the crevasse behind. 
+The RPi and breadboard with the RF transmitter on it sit on a dresser just beneath a large window in my bedroom. This is because it is the only place I could find where the underpowered RF transmitter can still reach the patio lights and night light receivers, yet the wireless transmitter and receiver for the monitor and keyboard in my home office would still be able to communicate. I never felt comfortable leaving it here since it is a window that my cats commonly like to hang out in. The dresser also tends to collect clothing and other random things that don't immediately get put away where they belong when they are done being used. Furthermore, the dresser does not sit flush against the wall because of the baseboard. While this is nice for running wires behind the scenes, it also leaves open a risk that my curious and careless cats (and I) might knock the breadboard and RF transmitter into the crevasse behind. 
 
 While attempting to troubleshoot the transmission distance with various antennas one day, I decided to make a quick housing for everything out of a couple boxes left over from some online shopping. It's not the most elegant looking solution, and as everyone knows, cats love boxes, so it's still not 100% cat-proof. However, the box provides much more assurance from accidentally knocking wires loose or dropping pieces of hardware behind the dresser. 
 
 ![RPi in a box](images/rpilights/rpi_in_box.jpg)
+<br>
+_The inside of the "housing" for the hardware._
 
 ![RPi box with cat](images/rpilights/rpi_cover_with_cat.jpg)
+<br>
+_One of my cats demonstrating the proximity of the hardware to the window._
 
 ## Results
-The most up-to-date Python code and Node-RED flow can be found on [this GitHub repository](https://github.com/sweisss/rpi-smart-hub/tree/main). 
+The most up-to-date Python code and Node-RED flow can be found in [this GitHub repository](https://github.com/sweisss/rpi-smart-hub/tree/main). 
 
 Here is an image of the current Node-RED flow. Part of what makes Node-RED so great is that you can visually follow the logic and understand how the program works. 
 
 ![flows.png](images/rpilights/flow.png)
+<br>
+_The final Node-RED flow as of this writing._
 
 ## Future Expansion
+I have several ideas of where I would like to take this project as time allows. They are listed as follows. 
+
 ### Add Self-Hosted DNS
-As mentioned earlier, I considered self-hosting a DNS server to prevent the RPi from being assigned a new IP at inconvenient times. Assigning a static IP through the router interface provided a much easier solution. However, making a self-hosted DNS server is a great project and learning experience and is therefore still on my list of future expansions. 
+As mentioned earlier, I considered self-hosting a DNS server to prevent the RPi from being assigned a new IP at inconvenient times. Assigning a static IP through the router interface provided a much easier solution. However, making a self-hosted DNS server is a great project and learning experience and is therefore still on my list of future expansions. I could possibly do this with an old laptop that still works but I no longer use, or even with the Pi itself. 
 
 ### Strengthen the RF Signal
-Either from my lack of soldering skills or from my misunderstanding of how the RF transmitter chips work, every time I tried to attach an antenna to the chip I seemed to fry it and it would not send out the RF signal. Improving the strength of the signal would greatly increase the possible locations where I can store the device. The main concern right now is that it is fully accessible by my cats...
+Either from my lack of soldering skills or from my misunderstanding of how the RF transmitter chips work, every time I tried to attach an antenna to the chip I seemed to fry it and it would not send out the RF signal. Improving the strength of the signal would greatly increase the possible locations where I can store the device. After a week of experiencing issues sending the signal to the nightlight, I ordered [this pack](https://www.amazon.com/kwmobile-Transmitter-Receiver-Control-Raspberry/dp/B01H2D2RH6/) of transmitters and receivers. I have not yet attempted to attach an antenna to the replacement hardware, but it already seems to have somewhat improved the signal. 
 
 ### Get a Proper Housing for the Components
 The box mentioned [above](#cat-proofing-the-hardware) in the [Polishing and Final Touches](#polishing-and-final-touches) section provides a good, temporary solution for preventing my cats (or myself) from messing with the hardware, pulling wires, and/or dropping it behind the dresser where it sits. However, I would like to make a more elegant solution. Something like a custom made wooden or 3D printed box would look a lot nicer as well as provide more strength to hold up against prying paws. Strengthening the RF signal would also increase the number of locations where I could store the setup and would therefore influence the design of the housing. 
 
 ### Add Ceiling Fan Control
-My ceiling fan is also controlled with an RF remote. Unfortunately, the frequency this remote works on (300.00 MHz) is not in a range that is legal for civilian use (at least in my area). Even though I've captured the signals from the fan, I cannot emulate the signals on the Flipper Zero because I have the stock firmware on it. A handy table can be found on the [Flipper Docs](https://docs.flipper.net/zero/sub-ghz/frequencies) that displays bands of frequencies that are legal to transmit in various regions. Additionally, a chart of frequency allocations in the U.S. can be found [here](https://www.ntia.gov/files/ntia/publications/2003-allochrt.pdf). I would like to find an RF transmitter that can send this frequency and include it in the project. This would not only allow me to control the light and fan speed from other rooms, but I would also then be able to enhance my "lights on" morning alarm. 
+My ceiling fan is also controlled with an RF remote. Unfortunately, the frequency this remote works on (300.00 MHz) is not in a range that is legal for civilian use (at least in my area). Even though I've captured the signals from the fan, I cannot emulate the signals on the Flipper Zero because I have the stock firmware on it. A handy table can be found in the [Flipper Docs](https://docs.flipper.net/zero/sub-ghz/frequencies) that displays bands of frequencies that are legal to transmit in various regions. Additionally, a chart of frequency allocations in the U.S. can be found [here](https://www.ntia.gov/files/ntia/publications/2003-allochrt.pdf). I would like to find an RF transmitter that can send this frequency and include it in the project. This would not only allow me to control the light and fan speed from other rooms, but I would also then be able to enhance my "lights on" morning alarm. 
 
 ### Add Front Porch Light Control
-Including control of the front porch light is currently one of the more interesting expansions for this project and is likely the next one I will tackle (other than maybe cat-proofing the hardware). The light is controlled by a switch that is powered by [eWeLink](https://ewelink.cc/). There are some Node-RED libraries out there for eWeLink devices. However, they all appear to be out of date and the protocol that eWeLink uses appears to have changed. Another option is somehow integrating the Pi or the Discord bot with Home Assistant. A third option that I am very intrigued by is setting up a device to act as a proxy or a MitM and capture the data entering and exiting the smart switch. Once the protocol is understood and the data has been captured, it should then be possible (hopefully) to replicate the signals from the Pi. I really like this idea because it combines several interests of mine, including DIY, IoT, reverse engineering, and security.  
+Including control of the front porch light is currently one of the more interesting expansions for this project and is likely the next one I will tackle (other than maybe better cat-proofing the hardware). The light is controlled by a switch that is powered by [eWeLink](https://ewelink.cc/). There are some Node-RED libraries out there for eWeLink devices. However, they all appear to be out of date and the protocol that eWeLink uses appears to have changed. Another option is to somehow integrate the Pi or the Discord bot with [Home Assistant](https://www.home-assistant.io/). A third option that I am very intrigued by is setting up a device to act as a proxy or [MitM](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) and capture the data entering and exiting the smart switch. Once the protocol is understood and the data has been captured, it should then be possible (hopefully) to replicate the signals from the Pi. I really like this idea because it combines several interests of mine including DIY, IoT, reverse engineering, and security.  
 
 ### Build an Android App
 As mentioned at the beginning of this writeup, having a custom Android app to send the MQTT signals is completely feasible and is probably good practice for my mobile development skills. However, the Discord bot works well enough that this future expansion is at the end of the list. 
