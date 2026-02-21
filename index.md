@@ -43,7 +43,7 @@ The Node-RED server also maintains a schedule for the lights.
 <br>
 **View the project on [GitHub](https://github.com/sweisss/rpi-smart-hub)**
 
-### Volcano Season 3
+### VolcanoSeason3
 The third iteration of an Android app written in Kotlin that holds a list of quick-links to mountain forecasts and an equipment checklist.
 This third iteration builds on the primitive first and second versions by applying the knowledge and experience gained from the [RxWatch](#rxwatch) project below. 
 
