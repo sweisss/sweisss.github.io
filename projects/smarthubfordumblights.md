@@ -505,12 +505,20 @@ The RPi and breadboard with the RF transmitter on it sit on a dresser just benea
 
 While attempting to troubleshoot the transmission distance with various antennas one day, I decided to make a quick housing for everything out of a couple boxes left over from some online shopping. It's not the most elegant looking solution, and as everyone knows, cats love boxes, so it's still not 100% cat-proof. However, the box provides much more assurance from accidentally knocking wires loose or dropping pieces of hardware behind the dresser. 
 
-![RPi in a box](images/rpilights/rpi_in_box.jpg)
+<!-- ![RPi in a box](images/rpilights/rpi_in_box.jpg) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/rpi_in_box.jpg">
+  <img src="images/rpilights/rpi_in_box.jpg" alt="RPi in a box" />
+</a>
 <br>
+
 _The inside of the "housing" for the hardware._
 
-![RPi box with cat](images/rpilights/rpi_cover_with_cat.jpg)
+<!-- ![RPi box with cat](images/rpilights/rpi_cover_with_cat.jpg) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/rpi_cover_with_cat.jpg">
+  <img src="images/rpilights/rpi_cover_with_cat.jpg" alt="RPi box with cat" />
+</a>
 <br>
+
 _One of my cats demonstrating the proximity of the hardware to the window._
 
 ## Results
