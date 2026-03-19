@@ -159,6 +159,8 @@ The Flipper actually tells you everything you need to reproduce the signal. Howe
 
 Many of the guides and tutorials I found online also set up a way to receive the RF signals on the Raspberry Pi. Luckily, most RF hardware to be used on a Pi come in packs with multiple sets of both transmitters and receivers. Just search amazon (or better yet, the Internet outside of Billionaire Bezos' Bazaar) for "433 MHz transmitter" and you should find a number of packs. [This pack](https://www.amazon.com/HiLetgo-Wireless-Transmitter-Receiver-Raspberry/dp/B01DKC2EY4/) is the one that initially worked for me. They seem to be fairly underpowered (more on that later), but they worked well enough for me to move forward with the project. 
 
+> **Note:** I subsequently replaced the RF hardware with [this pack](https://www.amazon.com/kwmobile-Transmitter-Receiver-Control-Raspberry/dp/B01H2D2RH6/). 
+
 The first way I confirmed the information on the Flipper file was to follow an article on Instructables titled [Super Simple Raspberry Pi 433MHz Home Automation](https://www.instructables.com/id/Super-Simple-Raspberry-Pi-433MHz-Home-Automation/). If you don't have a Flipper Zero, this is an interesting and very visual way to capture the signal. Unfortunately, it appears the article is no longer up as of this writing (Dec, 2025), so I'll give a brief summary here.
 > **Note:** To view the article in the Wayback Machine, click [here](https://web.archive.org/web/20200724004907/https://www.instructables.com/id/Super-Simple-Raspberry-Pi-433MHz-Home-Automation/).
 
