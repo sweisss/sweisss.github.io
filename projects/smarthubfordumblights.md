@@ -321,7 +321,7 @@ I created the Discord bot in three basic steps. First, I made a dedicated server
 
   <!-- ![Discord Bot Scopes Section](images/rpilights/discord_bot_scopes.png) -->
   <a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_scopes.png">
-    <img src="images/rpilights/discord_bot_scopes.png alt="Discord Bot Scopes Section" />
+    <img src="images/rpilights/discord_bot_scopes.png" alt="Discord Bot Scopes Section" />
   </a>
 
   After selecting the "bot" checkbox, a new section will appear named "Bot Permissions". 
