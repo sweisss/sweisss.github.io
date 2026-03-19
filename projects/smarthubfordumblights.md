@@ -102,10 +102,11 @@ This turned out to be very simple.
 Access your router's interface by navigating a web browser to `192.168.0.1`. You will then be prompted to log in using your router's password. Once logged in, there should be an option in the settings interface to add port forwarding. My router is Arris. The Arris interface has the port forwarding option under the "Advanced" section of the left-hand navigation menu. From there, you can enable the port forwarding and add a service. This service should include a helpful name (so you know what it is a few months down the road when you open it again), the IP of the Pi (Server IPv4), and the port mapping (both the internal and external ports). The default port for Mosquitto is 1883. To make it simple, I just used the same port for both the internal and external. Note that the external port is the one that you will be accessing from the outside Internet and the internal port is the one that the service is running on inside your network (on the Pi). 
 
 <!--- ![Port forwarding interface](images/rpilights/ARRIS_port_forwarding.png) --->
-<a href="https://sweisss.github.io/projects/images/rpilights/ARRIS_port_forwarding.png">
+[![Port forwarding interface](images/rpilights/ARRIS_port_forwarding.png)](https://sweisss.github.io/projects/images/rpilights/ARRIS_port_forwarding.png)
+<!-- <a href="https://sweisss.github.io/projects/images/rpilights/ARRIS_port_forwarding.png">
   <img src="images/rpilights/ARRIS_port_forwarding.png" alt="Port forwarding interface" />
 </a>
-<br>
+<br> -->
 
 _An example of the port forwarding screen of my router's interface._
 
