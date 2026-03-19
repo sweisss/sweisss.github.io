@@ -174,8 +174,12 @@ The first way I confirmed the information on the Flipper file was to follow an a
 
 The article is broken into two main sections: receive and transmit. The first section, receiving the signal, wires up the RX hardware to the Pi and uses a script to capture the RF signal and graph the results using Matplotlib. I used one of the images from the amazon posting of the hardware I purchased to identify the function of each pin and followed a [pinout mapping](https://pinout.xyz/) for the Raspberry Pi to set up the receiver. 
 
-![TX/RX Hardware](images/rpilights/hiletgo_tx-rx_pins.jpg)
+<!-- ![TX/RX Hardware](images/rpilights/hiletgo_tx-rx_pins.jpg) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/hiletgo_tx-rx_pins.jpg" >
+  <img src="images/rpilights/hiletgo_tx-rx_pins.jpg" alt="TX/RX Hardware" />
+</a>
 <br>
+
 _The pin functions of the RX and TX hardware as posted by the amazon retailer._
 
 If I recall correctly, I did not need both the "Signal" and the "Input" pins on the receiver. Either one of them worked for this script and only one of them was necessary. I connected it to GPIO 27. My adapted version of the listening script can be found [here](https://github.com/sweisss/rpi-smart-hub/blob/main/archived/plot_receive.py). You will need to install [Matplotlib](https://matplotlib.org/) on the Pi to use that script. I also recommend setting up a virtual environment before installing Matplotlib. I did this with the simple command within the project directory:
@@ -265,7 +269,10 @@ I created the Discord bot in three basic steps. First, I made a dedicated server
 - #### Creating a Dedicated Server
   Creating a personal Discord server is very straightforward. If you haven't done so yet, all you need to do is simply click on the circle icon with the plus (+) in it at the bottom of the list of your server icons.
 
-  ![Add a Discord Server](images/rpilights/add_discord_server.png)
+  <!-- ![Add a Discord Server](images/rpilights/add_discord_server.png) -->
+  <a href="https://sweisss.github.io/projects/images/rpilights/add_discord_server.png" >
+    <img src="images/rpilights/add_discord_server.png" alt="Add a Discord Server" />
+  </a>
 
   After you click on it, a menu will pop up with the option to "Create My Own" and after a few more clicks you'll have your own server. Add an icon image for your server so it stands out in the list, and a channel for each device that you want to control to keep things organized (if you want to organize it like I did, it's completely up to you). 
 
@@ -274,35 +281,56 @@ I created the Discord bot in three basic steps. First, I made a dedicated server
 
   Once logged in on the Applications page, click on the blue "New Application" button on the upper-right. You will be prompted to give the app a name. I chose "RPi Messenger" since this app would essentially serve as a messenger between my phone (or computer) and the Raspberry Pi. After agreeing to the Terms of Service and confirming that you're a human, the "General Information" screen for the app will be displayed. Use the navigation menu on the left to move to the "Bot" page under the Settings section.
 
-  ![Discord Bot Settings Menu](images/rpilights/discord_bot_settings_menu.png)
+  <!-- ![Discord Bot Settings Menu](images/rpilights/discord_bot_settings_menu.png) -->
+  <a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_settings_menu.png">
+    <img src="images/rpilights/discord_bot_settings_menu.png" alt="Discord Bot Settings" />
+  </a>
 
   Give the app an icon image so it stands out, and a banner for a nice touch. I gave it the same one that I gave my server: a fun image of a finger with a happy face drawn on it and wearing a raspberry as a hat. 
 
-  ![RPi Messenger Icon and Banner](images/rpilights/rpi_messenger_icon_banner.png)
+  <!-- ![RPi Messenger Icon and Banner](images/rpilights/rpi_messenger_icon_banner.png) -->
+  <a href="https://sweisss.github.io/projects/images/rpilights/rpi_messenger_icon_banner.png">
+    <img src="images/rpilights/rpi_messenger_icon_banner.png" alt="RPi Messenger Icon and Banner" />
+  </a>
 
   Beneath this area will be an entry box to update the bot's Username. I kept it the same as the Application name (the default setting). The next item on the settings menu is the "Token". If you see the token value and a blue "Copy" button, click copy and immediately save it somewhere safe. It will only be shown once and you will need to reset it if you lose it. If it's already hidden and you only see the blue "Reset Token" button, go ahead and reset it. You will need to enter your password in order to reset it. I had to reset it a couple times. It's a bit of friction, but overall inconsequential if the bot is still new and nothing else depends on the token yet. Below is an example of the token from a throwaway test bot I made.
 
-  ![Discord Bot Example Token](images/rpilights/discord_bot_example_token.png)
+  <!-- ![Discord Bot Example Token](images/rpilights/discord_bot_example_token.png) -->
+  <a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_example_token.png">
+    <img src="images/rpilights/discord_bot_example_token.png" alt="Discord Bot Example Token" />
+  </a>
 
   To make things easy, I kept "Public Bot" checked and "Requires OAuth2 Code Grant" unchecked considering I don't intent to invite anyone else to the dedicated server this bot is on and don't intend to invite the bot to any other servers. 
 
-  ![Discord Bot Public and OAuth Check Boxes](images/rpilights/discord_bot_public_oauth_settings.png)
+  <!-- ![Discord Bot Public and OAuth Check Boxes](images/rpilights/discord_bot_public_oauth_settings.png) -->
+  <a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_public_oauth_settings.png">
+    <img src="images/rpilights/discord_bot_public_oauth_settings.png" alt="Discord Bot Public and OAuth Check Boxes" />
+  </a>
 
   In the "Privileged Gateway Intents" section, make sure that "Server Members Intent" and "Message Content Intent" are checked. These are necessary for the bot to receive the content of messages sent in the server channels. 
 
-  ![Discord Bot Intents](images/rpilights/discord_bot_intents.png)
+  <!-- ![Discord Bot Intents](images/rpilights/discord_bot_intents.png) -->
+  <a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_intents.png">
+    <img src="images/rpilights/discord_bot_intents.png" alt="Discord Bot Intents" />
+  </a>
 
   Make sure to save any changes. 
 
 - #### Attaching the Bot to the Server
   The final step in setting up the bot is to invite it to the dedicated Discord server. To do this, move from the "Bot" page up to the "OAuth2" page of the left-hand navigation menu and scroll down to the "OAuth2 URL Generator" section. Under "Scopes" check the box for "bot". 
 
-  ![Discord Bot Scopes Section](images/rpilights/discord_bot_scopes.png)
+  <!-- ![Discord Bot Scopes Section](images/rpilights/discord_bot_scopes.png) -->
+  <a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_scopes.png">
+    <img src="images/rpilights/discord_bot_scopes.png alt="Discord Bot Scopes Section" />
+  </a>
 
   After selecting the "bot" checkbox, a new section will appear named "Bot Permissions". 
   To allow the bot to send and receive messages back and forth between Node-RED and Discord, I selected "View Channels", "Send Messages", and "Read Message History". If you want your bot to have additional abilities, check the appropriate permissions boxes in this section.
 
-  ![Discord Bot Permissions](images/rpilights/discord_bot_permissions.png)
+  <!-- ![Discord Bot Permissions](images/rpilights/discord_bot_permissions.png) -->
+  <a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_permissions.png">
+    <img src="images/rpilights/discord_bot_permissions.png" alt="Discord Bot Permissions" />
+  </a>
 
   At the bottom of the page will be a Generated URL. Copy this and enter it into a new tab in your web browser. It will display a few more confirmation screens to authorize the bot. Once authorized, the bot will be added to the server!
 
@@ -313,14 +341,22 @@ The Discord library is fairly simple to use. You just need to create a `discord-
 
 From here I set up two main sections of the flow. The first section starts by using the `discordMessage` node to listen to commands sent via the Discord bot. It then passes the message payload through a series of string parsing and verification nodes. If the received command is valid, it is forwarded to the MQTT broker. If the command is invalid (for example, I often send "test" to simply see if the bot is responsive), it returns a message listing the valid command options. 
 
-![Discord to MQTT flow](images/rpilights/nodered_discord_to_mqtt_flow.png)
+<!-- ![Discord to MQTT flow](images/rpilights/nodered_discord_to_mqtt_flow.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/nodered_discord_to_mqtt_flow.png">
+  <img src="images/rpilights/nodered_discord_to_mqtt_flow.png" alt="Discord to MQTT flow" />
+</a>
 <br>
+
 _The flow section that forwards Discord messages to the MQTT broker._
 
 The second main section of the Node-RED flow starts by subscribing to the MQTT broker. Any messages published by the broker will be received by this node and go through some string parsing steps before being forwarded to an `exec` node to call the Python script that sends the RF signals. Even though the incoming Discord messages are validated before being sent to the MQTT broker, there is a potential that the broker could receive an invalid message from a third party method (like MQTT Explorer). However, the Python script itself also has error handling and will return an exit code of 1 if a valid command was not successfully received and sent. More string parsing steps follow to combine the return code from the `exec` node with the command from the `mqtt in` node and build a nice, readable message about the status of the action (whether the script completed successfully or not). The `discordSendMessage` node then sends this message out to the Discord bot. 
 
-![MQTT to RF to Discord flow](images/rpilights/nodered_mqtt_to_rf_to_discord_flow.png)
+<!-- ![MQTT to RF to Discord flow](images/rpilights/nodered_mqtt_to_rf_to_discord_flow.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/nodered_mqtt_to_rf_to_discord_flow.png">
+  <img src="images/rpilights/nodered_mqtt_to_rf_to_discord_flow.png" alt="MQTT to RF Discord flow" />
+</a>
 <br>
+
 _The flow section that sends commands from the MQTT broker to the exec node and reports back to Discord._
 
 See the [Results](#results) section for an image of these flow sections in the full flow context. There is also an image posted in the [GitHub repository](https://github.com/sweisss/rpi-smart-hub/blob/main/PatioLightsFlow_1-17-26.png) of the project. 
@@ -328,8 +364,12 @@ See the [Results](#results) section for an image of these flow sections in the f
 ### Replacing the MQTT Android App
 At this point, the Discord server and bot became my primary means of communication with the RPi, essentially replacing the user-unfriendly MQTT Android apps. Rather than communicating with the broker directly, the Discord nodes utilize [Discord.js](https://discord.js.org/) which communicates with the Discord server via WebSockets over TLS/SSL (WSS). More details can be found in the [docs](https://discord.com/developers/docs/events/gateway#connections) section of the Discord Developer's page, but here is an image that demonstrates the connection at a high level:
 
-![Discord Gateway](images/rpilights/discord_gateway.svg)
+<!-- ![Discord Gateway](images/rpilights/discord_gateway.svg) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/discord_gateway.svg">
+  <img src="images/rpilights/discord_gateway.svg" alt="Discord Gateway" />
+</a>
 <br>
+
 _WSS communication between the Discord bot and the Discord Gateway._
 
 Because the WSS protocol is encrypted and the connection is outbound from Node-RED, there is no need to expose any specific ports. It's best practice to only expose ports that are regularly being used or are essential for the services to run correctly, so it's a good idea to go back to the router interface at this point and close the port exposing the Mosquitto broker to the public-facing Internet (1883). 
@@ -397,9 +437,16 @@ After replacing an old Vizio soundbar with a Sonos surround system and roaming  
 ### Setting a Static IP in the Router Interface
 A few months after getting the Discord bot and [daily schedule](#building-a-schedule) working, I ran into an issue where the Raspberry Pi was assigned a new IP address on my home network. I looked into setting up a self-hosted DNS server to prevent this issue, but a much quicker and easier workaround was to simply register the IP as static in my home router's interface. In Arris, this can be done by selecting "Static Addresses" under the "Connected Devices" section of the left-hand navigation bar. From there, you can click on the button to manually add a static device and enter the appropriate information.
 
-![Static IP List](images/rpilights/router_static_ip_list_redacted.PNG)
-![Add Static Device Popup](images/rpilights/router_mannually_add_static_ip.png)
+<!-- ![Static IP List](images/rpilights/router_static_ip_list_redacted.PNG) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/router_static_ip_list_redacted.PNG">
+  <img src="images/rpilights/router_static_ip_list_redacted.PNG" alt="Static IP List" />
+</a>
+<!-- ![Add Static Device Popup](images/rpilights/router_mannually_add_static_ip.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/router_mannually_add_static_ip.png">
+  <img src="images/rpilights/router_mannually_add_static_ip.png" alt="Add Static Device Popup" />
+</a>
 <br>
+
 _Adding a static IP in the Arris router interface._
 
 ### Configuring a Static Fallback
@@ -472,8 +519,12 @@ You can replace `DISCORD_TOKEN` with any variable name you'd like.
 
 To reference the environment variable in Node-RED, simply use the syntax `${VARIABLENAME}`, or `${DISCORD_TOKEN}` in this case. 
 
-![Discord environment variable reference](images/rpilights/discord_token_reference.png)
+<!-- ![Discord environment variable reference](images/rpilights/discord_token_reference.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/discord_token_reference.png">
+  <img src="images/rpilights/discord_token_reference.png" alt="Discord environment variable reference" />
+</a>
 <br>
+
 _Referencing the Discord token from an environment variable in Node-RED._
 
 For more details on using environment variables in Node-RED, see the [official docs](https://nodered.org/docs/user-guide/environment-variables).
@@ -483,21 +534,33 @@ I quickly wanted the lights to do more than simply turn on or off at will after 
 
 Every day at 1:00 am, the flow sends a request to [timeanddate.com](https://www.timeanddate.com/). You can find a list of U.S. cities [here](https://www.timeanddate.com/astronomy/usa). I chose the page for my specific city to send the HTTP request to. After the HTTP request, I have a node to check for a `200` response code. Any code other than a `200` will result in setting the "on" time for "4:30" pm (at least for the Winter). If the HTTP request does return `200`, the data gets passed through a few more nodes to parse the response and get the scheduled time of sunset. From there, the flow calculates and sets a delay based on the current time (1:00 am) and the sunset time. Once the delay has completed, the flow continues with sending the "on" command to the MQTT broker. 
 
-![Dynamic Lights On Flow](images/rpilights/nodered_dynamic_lights_on.png)
+<!-- ![Dynamic Lights On Flow](images/rpilights/nodered_dynamic_lights_on.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/nodered_dynamic_lights_on.png">
+  <img src="images/rpilights/nodered_dynamic_lights_on.png" alt="Dynamic Lights On Flow" />
+</a>
 <br>
+
 _The Node-RED flow to dynamically set the lights "on" time to sunset of each day._
 
 ### Adding Helpful Error Messages
 To make the Discord bot a little more polished and professional, I though it would be nice to write some help messages that the bot could return if an incorrect command was sent. I thought it would look good for the bot to respond to an invalid command with a CLI inspired help message. Writing this help message turned out to be a bit tedious. I wrote the message as a [JSONata](https://jsonata.org/) expression and needed to add a `\n` any time I wanted a newline in the message. After some trial and error, it looked good enough to ship. I also decided it would be a nice touch to repeat the invalid command in the help message. 
 
-![Discord Bot Error Message](images/rpilights/discord_bot_error_message.png)
+<!-- ![Discord Bot Error Message](images/rpilights/discord_bot_error_message.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_error_message.png">
+  <img src="images/rpilights/discord_bot_error_message.png" alt="Discord Bot Error Message" />
+</a>
 <br>
+
 _Adding in professional looking error messages is always a nice touch._
 
 After setting up error messages that I felt satisfied with, I decided to take the messages to another level and use a similar technique to allow the bot to confirm a valid command before performing the action as well as reporting back on the result. A series of nodes to parse the device channel and the command gives a nice, personalized look to the responses.
 
-![Discord Bot Confirmation Message](images/rpilights/discord_bot_confirmation_message.png)
+<!-- ![Discord Bot Confirmation Message](images/rpilights/discord_bot_confirmation_message.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/discord_bot_confirmation_message.png">
+  <img src="images/rpilights/discord_bot_confirmation_message.png" alt="Discord Bot Confirmation Message" />
+</a>
 <br>
+
 _String parsing adds a professional touch to the Discord bot messages._
 
 ### Adding a Nightlight
@@ -505,8 +568,12 @@ Part of the reason I originally wanted to use my Raspberry Pi and create a smart
 
 It was a very simple and straightforward process of capturing the RF signals for the switch with the Flipper Zero and adding the hex codes from them to the list of options in the Python script on the Pi. I then added in a second channel in the Discord server for the `#nightlight` and added a new branch to the Node-RED flow. I now can control each light through its own respective channel on the Discord server. 
 
-![Discord Channels List](images/rpilights/discord_channels_list.png)
+<!-- ![Discord Channels List](images/rpilights/discord_channels_list.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/discord_channels_list.png">
+  <img src="images/rpilights/discord_channels_list.png" alt="Discord Channels List" />
+</a>
 <br>
+
 _The updated channels list on the dedicated Discord server._
 
 ### Adding Nightlight "On" to the Schedule
