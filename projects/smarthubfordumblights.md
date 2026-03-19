@@ -538,8 +538,12 @@ The most up-to-date Python code and Node-RED flow can be found in [this GitHub r
 
 Here is an image of the current Node-RED flow. Part of what makes Node-RED so great is that you can visually follow the logic and understand how the program works. 
 
-![flows.png](images/rpilights/flow.png)
+<!-- ![flows.png](images/rpilights/flow.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/flow.png">
+  <img src="images/rpilights/flow.png" alt="Full Node-RED Flow" />
+</a>
 <br>
+
 _The final Node-RED flow as of this writing._
 
 ## Future Expansion
