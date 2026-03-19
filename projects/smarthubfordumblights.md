@@ -141,8 +141,12 @@ As mentioned in the [Background](#background) section above, I had already clone
 
 As an example, the information for the "on" signal of the lights looks like this on the Flipper screen after being captured and saved:
 
-![Flipper screen patio on](images/rpilights/flipper_screen_patio_on.png)
+<!-- ![Flipper screen patio on](images/rpilights/flipper_screen_patio_on.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/flipper_screen_patio_on.png">
+  <img src="images/rpilights/flipper_screen_patio_on.png" alt="Flipper screen patio on" />
+</a>
 <br>
+
 _The saved patio lights "on" signal as seen from the Flipper screen._
 
 The extracted `.sub` file for this signal reads as follows:
@@ -190,8 +194,12 @@ For more information on Python virtual environments using venv, see the [officia
 
 Run the listening script and press the button on the remote you want to clone relatively close to the hardware. If all goes well, the script will capture the signal and generate an image of the waveform. Here is an example of a signal plot from the Instructables tutorial (I neglected to save screenshots of my signals and only recorded the binary codes).
 
-![RF Signal Matplotlib Example](images/rpilights/matplotlib_waveform_example.jpg)
+<!-- ![RF Signal Matplotlib Example](images/rpilights/matplotlib_waveform_example.jpg) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/matplotlib_waveform_example.jpg">
+  <img src="images/rpilights/matplotlib_waveform_example.jpg" alt="RF Signal Matplotlib Example" />
+</a>
 <br>
+
 _An example of a plotted RF signal._
 
 An RF signal will typically consist of a preamble pattern, a data pattern that is repeated several times, and a conclusion. Reading an RF signal works by interpreting a pattern of high/low tones (or tone/silence) in combination with periods of short and long tones/silence. The combination will represent a 1 or a 0 that can then be interpreted as binary code. The exact combination of high/low and long/short is arbitrary and can depend on the protocol used. The preceding image from the Instructables article is zoomed in to a section of the data pattern and uses the following combinations to interpret the signal:
@@ -241,8 +249,12 @@ With the Python script successfully transmitting the RF signals to the lights, a
 ### Sending Commands via MQTT
 The first step I took to incorporate my Python script into the Node-RED flow was to call it from a simple `exec` node and activate that node from a simple `inject` node. After confirming that the lights would respond correctly to the signals triggered through Node-RED, I then hooked it up to the `mqtt in` node described earlier. I added some string parsing and error checking to make sure it would only call the `exec` node with valid arguments, and then tested it by sending the commands through the MQTT Explorer app on my desktop. 
 
-![Node-RED Initial Exec from MQTT](images/rpilights/nodered_initial_exec_from_mqtt.png)
+<!-- ![Node-RED Initial Exec from MQTT](images/rpilights/nodered_initial_exec_from_mqtt.png) -->
+<a href="https://sweisss.github.io/projects/images/rpilights/nodered_initial_exec_from_mqtt.png">
+  <img src="images/rpilights/nodered_initial_exec_from_mqtt.png" alt="Node-RED Initial Exec from MQTT" />
+</a>
 <br>
+
 _The initial exec node called from MQTT before string parsing or error handling._
 
 From here, I started testing it with various MQTT apps for my Android phone. As mentioned earlier, the end goal of this project is to control the lights from anywhere with an Internet connection (i.e. mobile data connectivity). Also as mentioned earlier, I did not like any of the MQTT apps available for Android devices that I found. I thought about making my own custom Android app, and I still might eventually do that. However, I realized it would be much quicker and easier to set up a private Discord server and make a Discord bot that could relay commands and the status of the lights. This turned out to be a very fun part of the project. 
