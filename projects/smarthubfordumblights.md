@@ -580,6 +580,59 @@ _The updated channels list on the dedicated Discord server._
 ### Adding Nightlight "On" to the Schedule
 Like many people, I often have trouble waking up and getting out of bed in the morning. Turning on the lights definitely helps with this, especially when my first few alarms are set to times before sunrise. I decided to add a daily "on" command for the nightlight at the time of my first alarm to help initiate the waking up process and to try to prevent me from going back to sleep. 
 
+### Adding Front Porch Light Control
+> **NOTE:** This section is still a rough draft
+
+My front porch light is controlled by a smart switch that uses the [eWeLink](https://ewelink.cc/) app. I ended up with this switch because my house is old and strange and has had many "interesting" DIY renovation projects from previous owners (and admittedly from myself). This switch was the only one that I could find that would fit into the electrical box sunken in the drywall. The eWeLink app appears to be the only one that works with the switch. I did not know this when purchasing the switch and it took some research and troubleshooting to figure that out. The app allows me to build a schedule to turn the porch light on or off at consistent times throughout the day, as well as turn the light on/off remotely on demand. However, as mentioned previously, the only issue with this is during the rapidly changing sunset times of shoulder season where I find myself changing the evening "on" time by 15 minutes every week. 
+
+I had several ideas of how I might be able to integrate the switch with the Raspberry Pi, including to search for and utilize a Node-RED library, to somehow integrate the switch with [Home Assistant](https://www.home-assistant.io/), or to set up a proxy or to [MitM](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) and capture the data entering and exiting the smart switch. I was able to find some Node-RED libraries out there for eWeLink devices. However, they all appear to be out of date and the protocol that eWeLink uses appears to have changed since their last updates. I really liked (and still do) the idea of setting up a proxy/MitM attack on my own device to figure out how it works, but that's much more involved and I haven't had the time to devote to it yet. Luckily, one day when I was poking around the eWeLink website, I stumbled upon the [eWeLink API](https://github.com/CoolKit-Technologies/eWeLink-API/blob/main/en/APICenterV2.md). 
+
+> **Note:** The general path that led me to find this API was the following:
+> 1. Visit the eWeLink [main website](https://ewelink.cc/)
+> 2. Click on [Home Assistant](https://ewelink.cc/ewelink-works-with-home-assistant/) in the "works with" section
+> 3. Click on the [GitHub link](https://github.com/CoolKit-Technologies/ha-addon?tab=readme-ov-file) in the "Installation" section
+> 4. Click on the [CoolKit-Technologies](https://github.com/CoolKit-Technologies) organization link in the upper-left
+> 5. Click on the link to the [eWeLink-API](https://github.com/CoolKit-Technologies/eWeLink-API) under "Popular repositories"
+> 6. Start exploring the repository
+
+#### Experimenting with the API
+It took a lot of searching/wandering/hunting/clicking around to find that API, but once I did I realized I had likely stumbled upon the one I was looking for. I pulled up [Insomnia](https://insomnia.rest/) and started experimenting with the API. After a bit more internet research, I found a [blog post](https://dietrichschroff.blogspot.com/2025/11/energy-measurement-with-sonoff-powct.html?m=1) that hinted at how the authorization of the API worked. Despite the post's poor grammar, it gave me enough information to lead me to an [eWeLink web interface](https://web.ewelink.cc/#/login). I used the eWeLink app on my phone to log into the interface and, sure enough, I saw my front porch switch in my listed devices.
+
+![Screenshot of eWeLink web interface](placeholder.img)
+
+Once authenticated and logged in, it is then possible to pull up the developer tools or Inspector of your web browser, click on the Network tab, and refresh the page to view all the files and resources. Several of these files, including _profile_, _my-scene_, and _query_, will display a bearer token in the Request Headers. I copied this token value and then added an `Authorization` header to the API calls in Insomnia with the value of `Bearer <token value>`. The API call worked and I was able to see the information about my device in the response!
+
+Now that I could make authenticated API calls from Insomnia, I experimented a bit more until I found a way to turn my light on/off. This call is listed in the documentation [here](https://github.com/CoolKit-Technologies/eWeLink-API/blob/main/en/APICenterV2.md#update-the-status-of-a-device-or-group). It is a POST request to the endpoint: 
+```
+v2/device/thing/status
+```
+Be sure to include the Authorization header as described earlier, and in the body use the following JSON content:
+```
+{
+	"type": 1,
+	"id": "<Your device id>",
+	"params": {
+		"switch": "off"
+	}
+}
+```
+Since my device is a simple light switch, this is all the information I needed to include in the API request body. I updated `"off"` to `"on"` and was able to confirm the API call was successful because the status of the light updated in the response body, on the web interface, and on my mobile app. Most importantly, I was able to visually confirm that the light would turn on/off in response to the API calls!
+
+#### Integrating the API with the Discord Bot
+Now that I had the API working correctly, it was time to incorporate it with the Discord bot. I added another channel on the Discord server for the front porch light and began to add it to the Nod-RED flow. 
+
+I took this opportunity to significantly refactor the Node-RED flow to make it cleaner and [DRY](https://en.wikipedia.org/wiki/Don't_repeat_yourself) it out. Rather than listing the devices, their descriptions, and their valid commands in nodes that set this information as flow variables, I moved all the information to a file named [_devices.json_](https://github.com/sweisss/rpi-smart-hub/blob/main/devices.json). This was much more readable and maintainable than hunting for information in various nodes. I also added a field for device type in this JSON file so I could divert the flow through the nodes based on if the device required an RF signal via the `exec` node or an API call via an `http request` node. 
+
+Continuing to refactor and clean, I got rid of the weird merging business around the `exec` node and simply passed the data through the node, making it much easier to follow and much less messy looking. Utilizing the `link in` and `link out` nodes also helped better organize things and keep the "wires" from crisscrossing all over the place.
+
+![Picture of command execution section of flow](placeholder.img)
+
+After cleaning up the flow and adding on-demand control of the front porch light, adding the front porch light to the schedule was simple. Because the API still goes through eWeLink, and the rest of my schedule on the eWeLink app works for what I need, I only updated the evening "on" time to match the patio lights' dynamic sunset time. At this point I realized it would be better to adjust the delay to turn the lights on 10-15 minutes before sunset instead of at the exact moment of sunset, so I updated that too. 
+
+The last aspect of integrating the front porch light with the Discord bot was to add a command to update the bearer token. Because the bearer token has a risk of expiring or being replaced, I wanted a way to remotely update it. I started by saving the token value to a file called _BearerToken.txt_ and put it in the project directory on the Pi next to the python RF script. The Node-RED flow reads the contents of the file and adds it to the headers for the `http request` node. When doing this, I figured it would also be a good idea to save the device id of the switch as an environment variable and call it much like the Discord token, so I went ahead and did that too. Because the Discord bot communicates over a secure WebSocket (as described [above](#replacing-the-mqtt-android-app)), it should be OK to send the bearer token over this channel. When the Discord bot receives a new token, it then overwrites the file on the Pi with the new value. Subsequent HTTP requests will then be made using this new token value. 
+
+![Picture of bearer token section of flow](placeholder.img)
+
 ### Cat-Proofing the Hardware
 The RPi and breadboard with the RF transmitter on it sit on a dresser just beneath a large window in my bedroom. This is because it is the only place I could find where the underpowered RF transmitter can still reach the patio lights and night light receivers, yet the wireless transmitter and receiver for the monitor and keyboard in my home office would still be able to communicate. I never felt comfortable leaving it here since it is a window that my cats commonly like to hang out in. The dresser also tends to collect clothing and other random things that don't immediately get put away where they belong when they are done being used. Furthermore, the dresser does not sit flush against the wall because of the baseboard. While this is nice for running wires behind the scenes, it also leaves open a risk that my curious and careless cats (and I) might knock the breadboard and RF transmitter into the crevasse behind. 
 
@@ -629,8 +682,8 @@ The box mentioned [above](#cat-proofing-the-hardware) in the [Polishing and Fina
 ### Add Ceiling Fan Control
 My ceiling fan is also controlled with an RF remote. Unfortunately, the frequency this remote works on (300.00 MHz) is not in a range that is legal for civilian use (at least in my area). Even though I've captured the signals from the fan, I cannot emulate the signals on the Flipper Zero because I have the stock firmware on it. A handy table can be found in the [Flipper Docs](https://docs.flipper.net/zero/sub-ghz/frequencies) that displays bands of frequencies that are legal to transmit in various regions. Additionally, a chart of frequency allocations in the U.S. can be found [here](https://www.ntia.gov/files/ntia/publications/2003-allochrt.pdf). I would like to find an RF transmitter that can send this frequency and include it in the project. This would not only allow me to control the light and fan speed from other rooms, but I would also then be able to enhance my "lights on" morning alarm. 
 
-### Add Front Porch Light Control
-Including control of the front porch light is currently one of the more interesting expansions for this project and is likely the next one I will tackle (other than maybe better cat-proofing the hardware). The light is controlled by a switch that is powered by [eWeLink](https://ewelink.cc/). There are some Node-RED libraries out there for eWeLink devices. However, they all appear to be out of date and the protocol that eWeLink uses appears to have changed. Another option is to somehow integrate the Pi or the Discord bot with [Home Assistant](https://www.home-assistant.io/). A third option that I am very intrigued by is setting up a device to act as a proxy or [MitM](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) and capture the data entering and exiting the smart switch. Once the protocol is understood and the data has been captured, it should then be possible (hopefully) to replicate the signals from the Pi. I really like this idea because it combines several interests of mine including DIY, IoT, reverse engineering, and security.  
+### Hardware Hack the Front Porch Light Switch
+As mentioned [above](#adding-front-porch-light-control), the Node-RED flow utilizes the [eWeLink API](https://github.com/CoolKit-Technologies/eWeLink-API/blob/main/en/APICenterV2.md) to control the front porch light. This API still runs through [eWeLink](https://ewelink.cc/). While I'm not too concerned with any data eWeLink might be collecting about my front porch light habits and have not yet deemed it a security risk, I still like the idea of completely taking the switch offline and fully controlling it with my own, local devices. If for nothing else, I think this would be a fun and interesting project that will likely involve either hardware hacking the switch, setting up a device to act as a proxy or [MitM](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) and capture the data entering and exiting the smart switch, or simply replacing it with an alternative microcontroller. I like the idea of replacing it with a microcontroller to essentially build a DIY smart switch from scratch because I think that could be a great learning experience. However, the environmentalist in me prefers to make the most of what I already have and not generate more waste by replacing something that already works with something new. I also have always been fascinated by taking something and reworking it in a way so that it can do something which it was not originally intended to do. 
 
 ### Build an Android App
 As mentioned at the beginning of this writeup, having a custom Android app to send the MQTT signals is completely feasible and is probably good practice for my mobile development skills. However, the Discord bot works well enough that this future expansion is at the end of the list. 
