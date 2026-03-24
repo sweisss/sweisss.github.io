@@ -606,6 +606,8 @@ Now that I could make authorized API calls from Insomnia, I experimented a bit m
 ```
 /v2/device/thing/status
 ```
+> **Note:** The [base URL](https://github.com/CoolKit-Technologies/eWeLink-API/blob/main/en/APICenterV2.md#interface-domain-name) for the API depends on your region.
+
 Be sure to include the Authorization header as described earlier, and in the body use the following JSON content:
 ```
 {
