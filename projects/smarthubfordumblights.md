@@ -604,7 +604,7 @@ Once authenticated and logged in, it is then possible to pull up the developer t
 
 Now that I could make authorized API calls from Insomnia, I experimented a bit more until I found a way to turn my light on/off. This call is listed in the documentation [here](https://github.com/CoolKit-Technologies/eWeLink-API/blob/main/en/APICenterV2.md#update-the-status-of-a-device-or-group). It is a POST request to the endpoint: 
 ```
-v2/device/thing/status
+/v2/device/thing/status
 ```
 Be sure to include the Authorization header as described earlier, and in the body use the following JSON content:
 ```
