@@ -577,7 +577,7 @@ It was a very simple and straightforward process of capturing the RF signals for
 
 _The updated channels list on the dedicated Discord server._
 
-### Adding Nightlight "On" to the Schedule
+#### Adding Nightlight "On" to the Schedule
 Like many people, I often have trouble waking up and getting out of bed in the morning. Turning on the lights definitely helps with this, especially when my first few alarms are set to times before sunrise. I decided to add a daily "on" command for the nightlight at the time of my first alarm to help initiate the waking up process and to try to prevent me from going back to sleep. 
 
 ### Adding Front Porch Light Control
