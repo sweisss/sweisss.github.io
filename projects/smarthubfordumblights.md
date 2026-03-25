@@ -236,8 +236,6 @@ RAW_Data: 491 -134 265 -324 499 -134 275 -312 505 -98 1725 -134 329 -64 63 -170 
 
 Once I was confident about the signal I needed to send, I then swapped out the RX hardware for the TX hardware and wired it up to the Pi. I again used the pin identifying picture from amazon and the [pinout mapping](https://pinout.xyz/) to do this.
 
-I actually got hung up on this part of the project for quite a while. Looking back, this was definitely the crux of the whole project for me. 
-
 ### Transmitting the Signals
 Getting the timing right for the signal lengths (short vs. long in ms) proved to be pretty tricky. However, after some trial and error and a little help from some AI to analyze my flipper files and my Python script, I landed on a Python library to do the heavy lifting of the RF transmission. The library is `rpi_rf`. If I recall correctly, this library was pre-installed on my RPi. If it's not on yours, you can install it with `pip install rpi-rf`. Notice the dash (`-`) in the pip install command as opposed to the underscore (`_`) that should be used in the import statement (`from rpi_rf import RFDevice`). Documentation for this library can be found on [pypi](https://pypi.org/project/rpi-rf/) and [GitHub](https://github.com/milaq/rpi-rf).
 
