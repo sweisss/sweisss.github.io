@@ -624,16 +624,22 @@ I took this opportunity to significantly refactor the Node-RED flow to make it c
 Continuing to refactor and clean, I got rid of the weird merging business around the `exec` node and simply passed the data through the node. This made it much easier to follow and much less messy looking. Utilizing the `link in` and `link out` nodes also helped better organize things and keep the "wires" from crisscrossing all over the place.
 
 [![Picture of command execution section of flow](images/rpilights/nodered_commandexecution_refactored.png)](https://sweisss.github.io/projects/images/rpilights/nodered_commandexecution_refactored.png)
+<br>
+_The refactored command execution section of the flow._
 
 #### Adding the Front Porch Light to the Schedule
 After cleaning up the flow and adding on-demand control of the front porch light, incorporating the front porch light to the schedule was simple. Because the API still goes through eWeLink and the rest of my schedule on the eWeLink app works for what I need, I only updated the evening "on" time to match the patio lights' dynamic sunset time. At this point I realized it would be better to adjust the delay to turn the lights on 10-15 minutes before sunset instead of at the exact moment of sunset, so I updated that too. 
 
 [![The scheudule updated with the front porch light](images/rpilights/nodered_schedulewithfrontporch.png)](https://sweisss.github.io/projects/images/rpilights/nodered_schedulewithfrontporch.png)
+<br>
+_The daily schedule after adding the front porch light and some refactoring._
 
 #### Securing the Bearer Token
 The last aspect of integrating the front porch light with the Discord bot was to add a command to update the bearer token. Because the bearer token will expire after a certain amount of time or be replaced after subsequent logins to the eWeLink web interface, I wanted a way to remotely update it. I started by saving the token value to a file called _token.txt_ and put it in the project directory on the Pi next to the python RF script. The Node-RED flow reads the contents of the file and adds it to the headers for the `http request` node. When doing this, I figured it would also be a good idea to save the device id of the switch as an [environment variable](#utilizing-environment-variables) and call it much like the Discord token, so I went ahead and did that too. Because the Discord bot communicates over a secure WebSocket (as described [above](#replacing-the-mqtt-android-app)) and the Discord server is private, it should be OK to send the bearer token over this channel. When the Discord bot receives a new token, it then overwrites the file on the Pi with the new value. Subsequent HTTP requests will then be made using this new token value. 
 
 [![Picture of bearer token section of flow](images/rpilights/nodered_httprequestflow.png)](https://sweisss.github.io/projects/images/rpilights/nodered_httprequestflow.png)
+<br>
+_The HTTP request section of the flow reads/writes the bearer token from/to a file so it's not included in the source code._
 
 ### Cat-Proofing the Hardware
 The RPi and breadboard with the RF transmitter on it sit on a dresser just beneath a large window in my bedroom. This is because it is the only place I could find where the underpowered RF transmitter can still reach the patio lights and night light receivers, yet the wireless transmitter and receiver for the monitor and keyboard in my home office would still be able to communicate. I never felt comfortable leaving it here since it is a window that my cats commonly like to hang out in. The dresser also tends to collect clothing and other random things that don't immediately get put away where they belong when they are done being used. Furthermore, the dresser does not sit flush against the wall because of the baseboard. While this is nice for running wires behind the scenes, it also leaves open a risk that my curious and careless cats (and I) might knock the breadboard and RF transmitter into the crevasse behind. 
