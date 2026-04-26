@@ -536,8 +536,8 @@ Every morning at 1:00 am, the flow uses an `HTTP request` node to find the forec
 After the `HTTP request` node, there is a node to check for a `200` response code followed by nodes to convert the response to JSON and extract the sunset time. If the response code is anything other than `200`, it then retries the request for 3 more times until ultimately setting a hard-coded time to schedule the evening "on" command. From there, the flow calculates and sets a delay based on the current time (1:00 am) and the sunset time. Once the delay has completed, the flow continues with sending the "on" command to the MQTT broker. 
 
 <!-- ![Dynamic Lights On Flow](images/rpilights/nodered_dynamic_lights_on.png) -->
-<a href="https://sweisss.github.io/projects/images/rpilights/nodered_dynamic_lights_on.png">
-  <img src="images/rpilights/nodered_dynamic_lights_on.png" alt="Dynamic Lights On Flow" />
+<a href="https://sweisss.github.io/projects/images/rpilights/nodered_dynamic_sunset_schedule_patiolights.png">
+  <img src="images/rpilights/nodered_dynamic_sunset_schedule_patiolights.png" alt="Dynamic Lights On Flow" />
 </a>
 <br>
 
@@ -632,7 +632,7 @@ _The refactored command execution section of the flow._
 #### Adding the Front Porch Light to the Schedule
 After cleaning up the flow and adding on-demand control of the front porch light, incorporating the front porch light to the schedule was simple. Because the API still goes through eWeLink and the rest of my schedule on the eWeLink app works for what I need, I only updated the evening "on" time to match the patio lights' dynamic sunset time. At this point I realized it would be better to adjust the delay to turn the lights on 10-15 minutes before sunset instead of at the exact moment of sunset, so I updated that too. 
 
-[![The scheudule updated with the front porch light](images/rpilights/nodered_schedulewithfrontporch.png)](https://sweisss.github.io/projects/images/rpilights/nodered_schedulewithfrontporch.png)
+[![The scheudule updated with the front porch light](images/rpilights/nodered_dynamic_sunset_schedule_with_frontporch.png)](https://sweisss.github.io/projects/images/rpilights/nodered_dynamic_sunset_schedule_with_frontporch.png)
 <br>
 _The daily schedule after adding the front porch light and some refactoring._
 
@@ -669,7 +669,7 @@ The most up-to-date Python code and Node-RED flow can be found in [this GitHub r
 
 Here is an image of the current Node-RED flow. Part of what makes Node-RED so great is that you can visually follow the logic and understand how the program works. 
 
-[![The full Node-RED flow](images/rpilights/nodered_fullflow.png)](https://sweisss.github.io/projects/images/rpilights/nodered_fullflow.png)
+[![The full Node-RED flow](images/rpilights/nodered_fullflow_4-26-26.png)](https://sweisss.github.io/projects/images/rpilights/nodered_fullflow_4-26-26.png)
 
 _The final Node-RED flow as of this writing._
 
