@@ -533,7 +533,7 @@ I quickly wanted the lights to do more than simply turn on or off at will after 
 
 Every morning at 1:00 am, the flow uses an `HTTP request` node to find the forecasted sunset time for that evening. It originally was doing a simple web scrape of [timeanddate.com](https://www.timeanddate.com/). However, that website seemed to increase their restrictions after about a year of using this method and the flow started to consistently return error codes when trying to determine the sunset time. To solve this, I replaced the request with one to [open-meteo.com](https://open-meteo.com/en/docs), a free API that does not require a key. While troubleshooting this changeover I found it helpful to use the Discord bot to report the HTTP responses so I could have a better idea of what was going on. 
 
-[![Discord bot reporting a 503 error](images/rpilights/discord_bot_503_message.png)](https://sweisss.github.io/projects/images/rpilights/discord_bot_503_message.png)
+[![Discord bot reporting a 503 error](images/rpilights/discord_bot_502_message.png)](https://sweisss.github.io/projects/images/rpilights/discord_bot_502_message.png)
 <br>
 _The Discord bot reporting a successful retry to the opem-meto API._
 
