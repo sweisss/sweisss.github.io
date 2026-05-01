@@ -533,6 +533,10 @@ I quickly wanted the lights to do more than simply turn on or off at will after 
 
 Every morning at 1:00 am, the flow uses an `HTTP request` node to find the forecasted sunset time for that evening. It originally was doing a simple web scrape of [timeanddate.com](https://www.timeanddate.com/). However, that website seemed to increase their restrictions after about a year of using this method and the flow started to consistently return error codes when trying to determine the sunset time. To solve this, I replaced the request with one to [open-meteo.com](https://open-meteo.com/en/docs), a free API that does not require a key. While troubleshooting this changeover I found it helpful to use the Discord bot to report the HTTP responses so I could have a better idea of what was going on. 
 
+[![Discord bot reporting a 503 error](images/rpilights/discord_bot_503_message.png)](https://sweisss.github.io/projects/images/rpilights/discord_bot_503_message.png)
+<br>
+_The Discord bot reporting a successful retry to the opem-meto API._
+
 After the `HTTP request` node, there is a node to check for a `200` response code followed by nodes to convert the response to JSON and extract the sunset time. If the response code is anything other than `200`, it then retries the request for 3 more times until ultimately setting a hard-coded time to schedule the evening "on" command. From there, the flow calculates and sets a delay based on the current time (1:00 am) and the sunset time. Once the delay has completed, the flow continues with sending the "on" command to the MQTT broker. 
 
 <!-- ![Dynamic Lights On Flow](images/rpilights/nodered_dynamic_lights_on.png) -->
