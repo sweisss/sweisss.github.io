@@ -652,6 +652,10 @@ With the setup described so far, when the Pi goes to turn on the front porch lig
 
 After I had trimmed down the required headers, I reproduced the login request first in Insomnia, then in a Node-RED scratch flow. Once I was able to confirm that I could get the bearer token from a web request in Node-RED, I integrated it into the flow so that if it gets a 401 response it sends a login request, updates the token, and then tries the last command (on or off) again.  
 
+[![Node-RED flow with the automatic token update added.](images/rpilights/nodered_ewelink_flow_with_token_update.png)](https://sweisss.github.io/projects/images/rpilights/nodered_ewelink_flow_with_token_update.png)
+<br>
+_The Node-RED flow now handles an expired eWeLink bearer token._
+
 [![Discord bot automatic bearer token update](images/rpilights/discord_bot_automatic_bearer_token_update_2.png)](https://sweisss.github.io/projects/images/rpilights/discord_bot_automatic_bearer_token_update_2.png)
 <br>
 _The Discord bot reporting an expired and renewed bearer token for the eWeLink API._
