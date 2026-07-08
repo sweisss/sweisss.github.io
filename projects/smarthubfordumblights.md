@@ -647,16 +647,18 @@ The last aspect of integrating the front porch light with the Discord bot was to
 <br>
 _The HTTP request section of the flow reads/writes the bearer token from/to a file so it's not included in the source code._
 
-#### Adding Automated Bearer Token Updates ***(This section is a rough draft)***
+#### Adding Automated Bearer Token Updates
 With the setup described so far, when the Pi goes to turn on the front porch light at sunset and encounters an error from an expired bearer token, the error message is forwarded via the Discord bot and requires action on my part to update the token. I decided to automate this process after a couple times of experiencing this in inconvenient locations (it's easy to do from a computer, not so easy to do from a phone). To automate the token renewal I needed to analyze the web requests in a bit more detail. I hopped onto my [Kali Linux VM](https://www.kali.org/) and opened up [Burp Suite](https://portswigger.net/burp/communitydownload) to capture the web traffic as I logged into the [eWeLink web interface](https://web.ewelink.cc/#/login). 
 
 > **Note:** Kali Linux and Burp Suite are not necessary to figure out the details of the login request. This could have been done by using the browser developer tools, [Insomnia](https://insomnia.rest/), and the [eWeLink API documentation](https://github.com/CoolKit-Technologies/eWeLink-API/blob/main/en/APICenterV2.md#login), just like the process used to determine the API requests [above](#experimenting-with-the-api). However, Burp Suite does make this process quite a bit smoother. 
 
 Logging in by scanning the QR code with the eWeLink mobile app didn't provide any useful information, but logging in with my email and password did. The login request had an encrypted payload which I suspected was my username and password. After a couple minutes of trying to decrypt the payload I decided to just send the request to the repeater to see if it was anything more than my basic login information. I was relieved to find that the same request worked repeatedly. Just sending the encrypted payload with the correct headers was good enough to log in. Not only that, but the bearer token was sitting in plain text right in the response body. I then started removing the request headers one at a time to determine the minimum necessary to get a successful response. 
 
-After I had trimmed down the required headers, I reproduced the login request first in Insomnia, then in a Node-RED scratch flow. Once I was able to confirm that I could get the bearer token from a web request in Node-RED, I integrated it into the flow so that if it gets a 401 response it sends a login request, updates the token, and then tries the last command (on or off) again.  
+After I had trimmed down the required headers, I reproduced the login request first in Insomnia, then in a Node-RED scratch flow. Once I was able to confirm that I could get the bearer token from a web request in Node-RED, I integrated it into the flow so that if it gets a 401 response it sends a login request, updates the token, and then tries the last command (on or off) again.
 
-[![Node-RED flow with the automatic token update added.](images/rpilights/nodered_ewelink_flow_with_token_update.png)](https://sweisss.github.io/projects/images/rpilights/nodered_ewelink_flow_with_token_update.png)
+There is a potential that this encrypted data for the login request could be cracked even though I wasn't able to decrypt it myself (I didn't try very hard). To be on the safe side, I decdided to read it from a file rather than hard-code it into the flow and commit it to GitHub. I saved the encrypted data in a text file in the project directory next to the [_token.txt_ file](#securing-the-bearer-token) and use a node to read it and add it to `msg.payload` before sending off the API request. 
+
+[![Node-RED flow with the automatic token update added.](images/rpilights/nodered_automatic_token_update_flow_section.png)](https://sweisss.github.io/projects/images/rpilights/nodered_automatic_token_update_flow_section.png)
 <br>
 _The Node-RED flow now handles an expired eWeLink bearer token._
 
@@ -690,7 +692,7 @@ The most up-to-date Python code and Node-RED flow can be found in [this GitHub r
 
 Here is an image of the current Node-RED flow. Part of what makes Node-RED so great is that you can visually follow the logic and understand how the program works. 
 
-[![The full Node-RED flow](images/rpilights/nodered_fullflow_4-26-26.png)](https://sweisss.github.io/projects/images/rpilights/nodered_fullflow_4-26-26.png)
+[![The full Node-RED flow](images/rpilights/nodered_fullflow_7-7-26.png)](https://sweisss.github.io/projects/images/rpilights/nodered_fullflow_7-7-26.png)
 
 _The final Node-RED flow as of this writing._
 
