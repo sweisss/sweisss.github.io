@@ -611,11 +611,11 @@ Now that I could make authorized API calls from Insomnia, I experimented with di
 Be sure to include the Authorization header as described earlier, and in the body use the following JSON content:
 ```
 {
-	"type": 1,
-	"id": "<Your device id>",
-	"params": {
-		"switch": "off"
-	}
+    "type": 1,
+    "id": "<Your device id>",
+    "params": {
+        "switch": "off"
+    }
 }
 ```
 If you are unsure of your device id, you can find it by retrieving the "[Thing List](https://github.com/CoolKit-Technologies/eWeLink-API/blob/main/en/APICenterV2.md#get-thing-list)". Do this by sending a GET request to `/v2/device/thing`.
