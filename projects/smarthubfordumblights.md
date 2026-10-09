@@ -30,6 +30,12 @@ The GitHub repository for the project is located [here](https://github.com/sweis
   - [Adding a Discord Bot](#creating-the-discord-bot)
 - [Addressing Stability Issues](#addressing-stability-issues)
 - [Polishing and Final Touches](#polishing-and-final-touches)
+  - [Utilizing Environment Variables](#utilizing-environment-variables)
+  - [Building a Schedule](#building-a-schedule)
+  - [Adding Helpful Error Messages](#adding-helpful-error-messages)
+  - [Adding a Nightlight](#adding-a-nightlight)
+  - [Adding Front Porch Light Control](#adding-front-porch-light-control)
+  - [Cat-Proofing the Hardware](#cat-proofing-the-hardware)
 - [Results](#results)
 - [Future Expansion](#future-expansion)
 
