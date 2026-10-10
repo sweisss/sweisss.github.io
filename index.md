@@ -78,6 +78,16 @@ for the next round as quickly as possible!
 It is set as "View Only", but anyone can make a copy of it and make it their own to start editing or simply entering scores.
 
 
+### InteRxactions
+A continuation of the [RxWatch](#rxwatch) class project made for CS 492 at Oregon State University. The goal of this project is to improve the usability and functionality of the original application in searching for prescription drugs that interact with adverse effects. 
+
+**View the project on [GitHub](https://github.com/sweisss/InteRxactions)**
+
+### openFDA parser
+A Jupyter notebook to explore and manipulate the data from the [openFDA](https://open.fda.gov/) API. This notebook is a tool to assist in the design and development of the [InteRxactions](#interxactions) project. 
+
+**View the Jupyter notebook on [Google Colab](https://colab.research.google.com/drive/11AEnCVZ9o3MY4wFWgxx-WFIOsewW73_-?usp=sharing#scrollTo=kg36Gv_ts9yG) or [GitHub Gist](https://gist.github.com/sweisss/888c38ced0589ffdfd74e6b2b0491f9f)**
+
 ## Oregon State University Projects
 Projects created for specific classes at various campuses of Oregon State University from Fall 2020 to Spring 2024.
 
@@ -195,7 +205,7 @@ It covers a brief introduction to dictionaries, how to use a dictionary as a pri
 
 Watch it on [YouTube](https://youtu.be/-SqWVBQvj-w)
 <br>
-View the accompanying Jupyter Notebook on [Google Colab](https://colab.research.google.com/drive/1kuXPSAmgbJWupGOFexq01hJvtxBPBBrQ?usp=sharing) or [GitHub Gist](https://gist.github.com/sweisss/ec844d711790ac247575532e6014b679)
+View the accompanying Jupyter notebook on [Google Colab](https://colab.research.google.com/drive/1kuXPSAmgbJWupGOFexq01hJvtxBPBBrQ?usp=sharing) or [GitHub Gist](https://gist.github.com/sweisss/ec844d711790ac247575532e6014b679)
 
 ### Packet Transmission Time Calculation
 A short video for CS 372 - Intro to Networking at Oregon State University - Ecampus, Summer 2023.
